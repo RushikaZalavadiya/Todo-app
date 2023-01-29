@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
 import {
   MenuController,
   ModalController,
@@ -29,16 +28,15 @@ export class DashboardPage implements OnInit {
     public popoverCtrl: PopoverController,
     private _todoService: TodoService,
     private _authService: AuthService,
-    public router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.selectedDate = new Date();
-    this.getTodos();    
+    this.getTodos();
     this._authService.logEvent('Dashboard');
   }
 
-  onSegmentChange(ev){
+  onSegmentChange(ev) {
     console.log(ev.detail.value);
     this._authService.logEvent(ev.detail.value);
   }
@@ -109,7 +107,7 @@ export class DashboardPage implements OnInit {
 
   async logout() {
     await this._authService.signOut();
-    this.router.navigate(["welcome"]);
+    // this.router.navigate(["welcome"]);
     this._authService.logEvent('Logout');
   }
 }

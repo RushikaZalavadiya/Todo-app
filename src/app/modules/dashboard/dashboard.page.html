@@ -2,17 +2,12 @@
   <div class="container">
     <div class="header">
       <div class="menu" id="menu">
-        <ion-icon
-        src="assets/icon/menu-icon.svg"
-        class="menu-icon"
-        (click)="openMenu()"></ion-icon>
+        <ion-icon src="assets/icon/menu-icon.svg" class="menu-icon" (click)="openMenu()"></ion-icon>
       </div>
       <h1>{{'MyDay'|translate}}</h1>
       <div class="date-picker">
         <div class="previous-date">
-          <ion-icon
-            src="assets/icon/arrow-left.svg"
-            (click)="previousDate()"></ion-icon>
+          <ion-icon src="assets/icon/arrow-left.svg" (click)="previousDate()"></ion-icon>
         </div>
 
         <div class="label" (click)="changeDate()">
@@ -20,38 +15,34 @@
         </div>
 
         <div class="next-date">
-          <ion-icon
-            src="assets/icon/arrow-right.svg"
-            (click)="nextDate()"></ion-icon>
+          <ion-icon src="assets/icon/arrow-right.svg" (click)="nextDate()"></ion-icon>
         </div>
       </div>
       <div class="segments">
         <ion-segment value="all" mode="md" [(ngModel)]="segmentValue" (ionChange)="onSegmentChange($event)">
           <ion-segment-button class="all" value="all">
-            <ion-label [ngClass]="{'segmentChange':segmentValue==='all'}"
-              >{{'SegmentTypes.All.Text'|translate}}</ion-label
-            >
+            <ion-label
+              [ngClass]="{'segmentChange':segmentValue==='all'}">{{'SegmentTypes.All.Text'|translate}}</ion-label>
           </ion-segment-button>
           <ion-segment-button class="complete" value="complete">
-            <ion-label [ngClass]="{'segmentChange':segmentValue==='complete'}"
-              >{{'SegmentTypes.Complete.Text'|translate}}</ion-label
-            >
+            <ion-label
+              [ngClass]="{'segmentChange':segmentValue==='complete'}">{{'SegmentTypes.Complete.Text'|translate}}</ion-label>
           </ion-segment-button>
           <ion-segment-button class="incomplete" value="incomplete">
-            <ion-label [ngClass]="{'segmentChange':segmentValue==='incomplete'}"
-              >{{'SegmentTypes.Incomplete.Text'|translate}}</ion-label
-            >
+            <ion-label
+              [ngClass]="{'segmentChange':segmentValue==='incomplete'}">{{'SegmentTypes.Incomplete.Text'|translate}}</ion-label>
           </ion-segment-button>
         </ion-segment>
       </div>
     </div>
   </div>
 
+  <div class="test">
+    <ion-button>Hello</ion-button>
+  </div>
   <div [ngClass]="segmentValue=='all' ?'segmentAll':'hide-class'">
     <div *ngIf="!todos.length">
-      <app-empty-task-list
-        src="assets/icon/add-task.png"
-        taskInfo="{{'SegmentTypes.All.TaskInfo'|translate}}"
+      <app-empty-task-list src="assets/icon/add-task.png" taskInfo="{{'SegmentTypes.All.TaskInfo'|translate}}"
         review="{{'SegmentTypes.All.Review'|translate}}"></app-empty-task-list>
     </div>
 
@@ -62,9 +53,7 @@
 
   <div [ngClass]="segmentValue=='complete' ?'segmentComplete':'hide-class'">
     <div *ngIf="!(todos | filter:true)">
-      <app-empty-task-list
-        src="assets/icon/complete.png"
-        taskInfo="{{'SegmentTypes.All.TaskInfo'|translate}}"
+      <app-empty-task-list src="assets/icon/complete.png" taskInfo="{{'SegmentTypes.All.TaskInfo'|translate}}"
         review="{{'SegmentTypes.Complete.Review'|translate}}"></app-empty-task-list>
     </div>
 
@@ -75,9 +64,7 @@
 
   <div [ngClass]="segmentValue=='incomplete'?'segmentInComplete':'hide-class'">
     <div *ngIf="!(todos | filter:false)">
-      <app-empty-task-list
-        src="assets/icon/incomplete.png"
-        taskInfo="{{'SegmentTypes.All.TaskInfo'|translate}}"
+      <app-empty-task-list src="assets/icon/incomplete.png" taskInfo="{{'SegmentTypes.All.TaskInfo'|translate}}"
         review="{{'SegmentTypes.Incomplete.Review'|translate}}"></app-empty-task-list>
     </div>
 
