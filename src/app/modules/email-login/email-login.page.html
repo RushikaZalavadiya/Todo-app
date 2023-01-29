@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{"SignIn.SignInText"|translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="signUp">
+    <div *ngIf="!isOpen">
+      <app-signup></app-signup>
+      <div class="register">
+        <ion-label>{{'SignIn.HaveAccount'|translate}}</ion-label>
+        <ion-button fill="clear" (click)="signIn()">
+          <ion-label>{{'SignIn.SignInText'|translate}}</ion-label>
+        </ion-button>
+      </div>
+    </div>
+  </div>
+  <div class="signIn">
+    <div *ngIf="isOpen">
+      <app-signin></app-signin>
+      <div class="login">
+        <ion-label>{{'SignIn.NeedToSignUp'|translate}}</ion-label>
+        <ion-button fill="clear" (click)="signUp()">
+          <ion-label>{{'SignIn.SignUpText'|translate}}</ion-label>
+        </ion-button>
+      </div>
+    </div>
+  </div>
+  <ion-button (click)="crash()" fill="clear">Crash</ion-button><br>
+  <!-- <ion-button (click)="setContext()" fill="clear">Set context</ion-button><br>
+  <ion-button (click)="setUserID()" fill="clear">Set user id</ion-button><br>
+  <ion-button (click)="addLogMessage()" fill="clear">set log msg</ion-button><br>
+  <ion-button (click)="checkPrevious()" fill="clear">Check Previous</ion-button><br> -->
+
+  <!-- <ion-button fill="clear" (click)="setUserProperty()">setUserProperty</ion-button><br>
+  <ion-button fill="clear" (click)="setUID()">set User id</ion-button> -->
+
+  <ion-button (click)="getDefault()">Get value</ion-button>
+</ion-content>

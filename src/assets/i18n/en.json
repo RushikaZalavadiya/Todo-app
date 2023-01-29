@@ -1,0 +1,73 @@
+{
+  "WelcomeText": "Welcome",
+  "WelcomeMessage": "Please login to start organizing your day",
+  "MyDay": "MyDay",
+  "UserName": "Mahendrasinh Gohil",
+  "UserNotFound": "User Not Found",
+  "SegmentTypes": {
+    "All": {
+      "Text": "All",
+      "TaskInfo": "Add Task",
+      "Review": "Your task list is empty, Create new task"
+    },
+    "Complete": {
+      "Text": "Complete",
+      "TaskInfo": "No complete task",
+      "Review": "Start working on some tasks and mark them check"
+    },
+    "Incomplete": {
+      "Text": "Incomplete",
+      "TaskInfo": "All Clear",
+      "Review": "Look at you, looks like you completed all the tasks for the day"
+    }
+  },
+  "Buttons": {
+    "SignInWithEmail": "Sign In with Email",
+    "SignInWithGoogle": "Sign In with Google",
+    "SignInWithFacebook": "Sign In with Facebook",
+    "CreateTask": "Create Task",
+    "Done": "Done",
+    "Cancel": "Cancel"
+  },
+  "SignIn": {
+    "SignInText": "Sign In",
+    "HaveAccount": "Already have an account ?",
+    "NeedToSignUp": "Don't have an account ?",
+    "SignUpText": "Sign up"
+  },
+  "FormFields": {
+    "Email": "Email",
+    "Password": "Password"
+  },
+  "RequiredMsg": {
+    "Email": "Email is required",
+    "Password": "Password is required"
+  },
+  "AddTask": {
+    "TaskName": "Task Name",
+    "Date": "Date",
+    "Priority": "Priority",
+    "PriorityType": {
+      "High": "High",
+      "Medium": "Medium",
+      "Low": "Low",
+      "VeryLow": "Very Low"
+    }
+  },
+  "Archive": {
+    "ArchiveText": "Archive",
+    "NoTask": "No Deleted Task",
+    "DeleteTask": "Add to Deleted List"
+  },
+  "Favourite": {
+    "FavouriteText": "Favourites",
+    "NoTask": "No Favourite Task",
+    "FavouriteTask": "Add to Favourite List"
+  },
+  "Menu": {
+    "Home": "Home",
+    "Favourite": "Favourite",
+    "Archive": "Archive",
+    "Logout": "Logout"
+  }
+}

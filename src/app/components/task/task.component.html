@@ -1,0 +1,40 @@
+<div class="card">
+  <ion-card>
+    <ion-card-content>
+      <div class="task-detail">
+        <div class="checkbox">
+          <ion-checkbox
+            [(ngModel)]="task.isCompleted"
+            (click)="markAsComplete(task)"></ion-checkbox>
+        </div>
+        <div
+          [ngClass]="
+            task.isCompleted == true
+              ? 'separator-line-checked'
+              : 'separator-line'
+          "></div>
+
+        <div class="content">
+          <p [ngClass]="task.isCompleted == true ? 'checked-header' : 'header'">
+            {{ task.name }}
+          </p>
+          <p class="detail">{{ task.priority }}</p>
+        </div>
+      </div>
+      <div class="modify-icons">
+        <ion-icon
+          class="star"
+          [src]="
+            task.isFav ? 'assets/icon/fill-star.svg' : 'assets/icon/star.svg'
+          "
+          (click)="addToFavourite(task)"></ion-icon>
+        <ion-icon
+          class="close"
+          [src]="
+            task.isDeleted ? 'assets/icon/restore.svg' : 'assets/icon/close.svg'
+          "
+          (click)="deleteTask(task)"></ion-icon>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</div>

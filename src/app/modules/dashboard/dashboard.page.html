@@ -1,0 +1,130 @@
+<ion-content>
+  <div class="container">
+    <div class="header">
+      <div class="menu" id="menu">
+        <ion-icon
+        src="assets/icon/menu-icon.svg"
+        class="menu-icon"
+        (click)="openMenu()"></ion-icon>
+      </div>
+      <h1>{{'MyDay'|translate}}</h1>
+      <div class="date-picker">
+        <div class="previous-date">
+          <ion-icon
+            src="assets/icon/arrow-left.svg"
+            (click)="previousDate()"></ion-icon>
+        </div>
+
+        <div class="label" (click)="changeDate()">
+          <ion-input value="{{selectedDate |date:'EEEE, d MMMM'}}"></ion-input>
+        </div>
+
+        <div class="next-date">
+          <ion-icon
+            src="assets/icon/arrow-right.svg"
+            (click)="nextDate()"></ion-icon>
+        </div>
+      </div>
+      <div class="segments">
+        <ion-segment value="all" mode="md" [(ngModel)]="segmentValue" (ionChange)="onSegmentChange($event)">
+          <ion-segment-button class="all" value="all">
+            <ion-label [ngClass]="{'segmentChange':segmentValue==='all'}"
+              >{{'SegmentTypes.All.Text'|translate}}</ion-label
+            >
+          </ion-segment-button>
+          <ion-segment-button class="complete" value="complete">
+            <ion-label [ngClass]="{'segmentChange':segmentValue==='complete'}"
+              >{{'SegmentTypes.Complete.Text'|translate}}</ion-label
+            >
+          </ion-segment-button>
+          <ion-segment-button class="incomplete" value="incomplete">
+            <ion-label [ngClass]="{'segmentChange':segmentValue==='incomplete'}"
+              >{{'SegmentTypes.Incomplete.Text'|translate}}</ion-label
+            >
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+    </div>
+  </div>
+
+  <div [ngClass]="segmentValue=='all' ?'segmentAll':'hide-class'">
+    <div *ngIf="!todos.length">
+      <app-empty-task-list
+        src="assets/icon/add-task.png"
+        taskInfo="{{'SegmentTypes.All.TaskInfo'|translate}}"
+        review="{{'SegmentTypes.All.Review'|translate}}"></app-empty-task-list>
+    </div>
+
+    <ng-container *ngIf="todos">
+      <app-task *ngFor="let task of todos" [task]="task"></app-task>
+    </ng-container>
+  </div>
+
+  <div [ngClass]="segmentValue=='complete' ?'segmentComplete':'hide-class'">
+    <div *ngIf="!(todos | filter:true)">
+      <app-empty-task-list
+        src="assets/icon/complete.png"
+        taskInfo="{{'SegmentTypes.All.TaskInfo'|translate}}"
+        review="{{'SegmentTypes.Complete.Review'|translate}}"></app-empty-task-list>
+    </div>
+
+    <ng-container *ngFor="let task of todos">
+      <app-task *ngIf="task.isCompleted" [task]="task"></app-task>
+    </ng-container>
+  </div>
+
+  <div [ngClass]="segmentValue=='incomplete'?'segmentInComplete':'hide-class'">
+    <div *ngIf="!(todos | filter:false)">
+      <app-empty-task-list
+        src="assets/icon/incomplete.png"
+        taskInfo="{{'SegmentTypes.All.TaskInfo'|translate}}"
+        review="{{'SegmentTypes.Incomplete.Review'|translate}}"></app-empty-task-list>
+    </div>
+
+    <ng-container *ngFor="let task of todos">
+      <app-task *ngIf="!task.isCompleted" [task]="task"></app-task>
+    </ng-container>
+  </div>
+
+  <div class="create-task-btn">
+    <ion-button (click)="openAddTaskModal()">
+      <ion-icon src="assets/icon/add.svg"></ion-icon>
+      <ion-label>{{'Buttons.CreateTask'|translate}}</ion-label>
+    </ion-button>
+  </div>
+</ion-content>
+
+<ion-menu contentId="menu" class="menu">
+  <ion-content>
+    <ion-menu-toggle>
+      <div class="menu-screen">
+        <div class="profile-picture">
+          <ion-icon src="assets/icon/profile.svg"> </ion-icon>
+        </div>
+        <div class="username">
+          <ion-label>{{'UserName'|translate}}</ion-label>
+          <div class="separator-line"></div>
+        </div>
+        <div class="menu-options">
+          <div class="home" routerLink="/dashboard">
+            <ion-icon src="assets/icon/home.svg"></ion-icon>
+            <ion-label>{{'Menu.Home'|translate}}</ion-label>
+          </div>
+          <div class="favourite" routerLink="/favourite">
+            <ion-icon src="assets/icon/favourite.svg"></ion-icon>
+            <ion-label>{{'Menu.Favourite'|translate}}</ion-label>
+          </div>
+          <div class="archive" routerLink="/archive">
+            <ion-icon src="assets/icon/delete.svg"></ion-icon>
+            <ion-label>{{'Menu.Archive'|translate}}</ion-label>
+          </div>
+
+          <div class="logout" (click)="logout()">
+            <ion-icon src="assets/icon/logout.svg"></ion-icon>
+            <ion-label>{{'Menu.Logout'|translate}}</ion-label>
+          </div>
+        </div>
+      </div>
+    </ion-menu-toggle>
+  </ion-content>
+</ion-menu>

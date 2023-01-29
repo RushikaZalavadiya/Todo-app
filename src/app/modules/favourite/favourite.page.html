@@ -1,0 +1,20 @@
+<ion-content>
+  <div class="heading">
+    <h2>{{'Favourite.FavouriteText'|translate}}</h2>
+    <ion-icon name="star-sharp" size="large"></ion-icon>
+  </div>
+  <div *ngIf="!favTask.length" class="fav-task">
+    <ion-img src="assets/icon/complete.png"></ion-img>
+    <p class="task-info">{{'Favourite.NoTask'|translate}}</p>
+  </div>
+
+  <div *ngIf="favTask">
+    <app-task *ngFor="let task of favTask" [task]="task"></app-task>
+  </div>
+
+  <div class="fav-btn">
+    <ion-button (click)="goBack()"
+      >{{'Favourite.FavouriteTask'|translate}}</ion-button
+    >
+  </div>
+</ion-content>

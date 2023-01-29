@@ -1,0 +1,29 @@
+<div class="login">
+  <form action="" [formGroup]="signInfrm">
+    <ion-item>
+      <ion-label>{{ "FormFields.Email" | translate }}</ion-label>
+      <ion-input
+        type="email"
+        placeholder="Email"
+        formControlName="email"></ion-input>
+    </ion-item>
+    <div *ngIf="user.email.invalid && user.email.touched" class="errMsg">
+      {{ "RequiredMsg.Email" | translate }}
+    </div>
+    <ion-item>
+      <ion-label>{{ "FormFields.Password" | translate }}</ion-label>
+      <ion-input
+        type="password"
+        placeholder="Password"
+        formControlName="password"></ion-input>
+    </ion-item>
+    <div *ngIf="user.email.invalid && user.email.touched" class="errMsg">
+      {{ "RequiredMsg.Email" | translate }}
+    </div>
+  </form>
+  <div class="login-btn">
+    <ion-button (click)="signIn()">
+      <ion-label>{{ "SignIn.SignInText" | translate }}</ion-label>
+    </ion-button>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<ion-content>
+  <div class="heading">
+    <h2>{{'Archive.ArchiveText'|translate}}</h2>
+  </div>
+  <div *ngIf="!deletedTask.length" class="del-task">
+    <ion-img src="assets/icon/complete.png"></ion-img>
+    <p class="task-info">{{'Archive.NoTask'|translate}}</p>
+  </div>
+  <div *ngIf="deletedTask">
+    <app-task *ngFor="let task of deletedTask" [task]="task"></app-task>
+  </div>
+
+  <div class="dlt-btn">
+    <ion-button routerLink="/dashboard"
+      >{{'Archive.DeleteTask'|translate}}</ion-button
+    >
+  </div>
+</ion-content>

@@ -1,0 +1,11 @@
+ion-datetime {
+  min-width: 100%;
+}
+ion-buttons {
+  margin-bottom: 10px;
+}
+@media (max-width: 320px) {
+  ion-datetime {
+    min-height: 52%;
+  }
+}
