@@ -26,7 +26,6 @@ export class WelcomePage implements OnInit {
   }
 
   ngOnInit() {
-    this._authService.logEvent('Welcome Page');
   }
 
   initializeApp() {

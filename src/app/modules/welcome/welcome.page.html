@@ -1,29 +1,29 @@
 <ion-content>
-  <ion-select
+  <!-- <ion-select
     #select
     (ionChange)="translate.use(select.value)"
     [placeholder]="translate.getDefaultLang()|uppercase">
     <ion-select-option *ngFor="let item of translate.getLangs()" [value]="item">
       {{item|uppercase}}
     </ion-select-option>
-  </ion-select>
+  </ion-select> -->
   <div class="welcome-page">
     <h1>{{'WelcomeText' | translate}}</h1>
     <img src="assets/icon/welcome.png" />
     <p>{{'WelcomeMessage' | translate}}</p>
     <div class="login-methods">
       <ion-button fill="outline" (click)="loginWithEmail()">
-        <ion-icon name="mail"></ion-icon>
+        <img src="../../../assets/images/mail.jpg" class="mail">
         <ion-label>{{'Buttons.SignInWithEmail' | translate}}</ion-label>
       </ion-button>
 
       <ion-button fill="outline" (click)="loginWithGoogle()">
-        <ion-icon name="logo-google"></ion-icon>
+        <ion-icon name="logo-google" color="danger"></ion-icon>
         <ion-label>{{'Buttons.SignInWithGoogle' | translate}}</ion-label>
       </ion-button>
 
       <ion-button fill="outline" (click)="loginWithFacebook()">
-        <ion-icon name="logo-facebook"></ion-icon>
+        <ion-icon name="logo-facebook" color="primary"></ion-icon>
         <ion-label>{{'Buttons.SignInWithFacebook' | translate}}</ion-label>
       </ion-button>
     </div>

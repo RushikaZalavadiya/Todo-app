@@ -5,19 +5,19 @@ import { AuthGuard } from './guard/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'welcome',
+    redirectTo: 'landing',
     pathMatch: 'full',
   },
-  {
-    path: 'welcome',
-    loadChildren: () =>
-      import('./modules/welcome/welcome.module').then((m) => m.WelcomePageModule),
-  },
+  // {
+  //   path: 'welcome',
+  //   loadChildren: () =>
+  //     import('./modules/welcome/welcome.module').then((m) => m.WelcomePageModule),
+  // },
   {
     path: 'dashboard',
     loadChildren: () =>
       import('./modules/dashboard/dashboard.module').then((m) => m.DashboardPageModule),
-      canActivate:[AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'favourite',
@@ -33,7 +33,19 @@ const routes: Routes = [
   },
   {
     path: 'email-login',
-    loadChildren: () => import('./modules/email-login/email-login.module').then( m => m.EmailLoginPageModule)
+    loadChildren: () => import('./modules/email-login/email-login.module').then(m => m.EmailLoginPageModule)
+  },
+  {
+    path: 'landing',
+    loadChildren: () => import('./modules/landing/landing.module').then(m => m.LandingPageModule)
+  },
+  {
+    path: 'admin/login',
+    loadChildren: () => import('./modules/admin/login/login.module').then(m => m.LoginPageModule)
+  },
+  {
+    path: 'admin/dashboard',
+    loadChildren: () => import('./modules/admin/dashboard/dashboard.module').then(m => m.DashboardPageModule)
   },
 ];
 

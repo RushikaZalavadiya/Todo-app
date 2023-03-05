@@ -19,7 +19,7 @@
         </div>
       </div>
       <div class="segments">
-        <ion-segment value="all" mode="md" [(ngModel)]="segmentValue" (ionChange)="onSegmentChange($event)">
+        <ion-segment value="all" mode="md" [(ngModel)]="segmentValue">
           <ion-segment-button class="all" value="all">
             <ion-label
               [ngClass]="{'segmentChange':segmentValue==='all'}">{{'SegmentTypes.All.Text'|translate}}</ion-label>
@@ -37,9 +37,6 @@
     </div>
   </div>
 
-  <div class="test">
-    <ion-button>Hello</ion-button>
-  </div>
   <div [ngClass]="segmentValue=='all' ?'segmentAll':'hide-class'">
     <div *ngIf="!todos.length">
       <app-empty-task-list src="assets/icon/add-task.png" taskInfo="{{'SegmentTypes.All.TaskInfo'|translate}}"
@@ -82,36 +79,40 @@
 </ion-content>
 
 <ion-menu contentId="menu" class="menu">
-  <ion-content>
-    <ion-menu-toggle>
-      <div class="menu-screen">
-        <div class="profile-picture">
-          <ion-icon src="assets/icon/profile.svg"> </ion-icon>
+  <!-- <ion-content> -->
+  <ion-menu-toggle>
+    <div class="menu-screen">
+      <div class="profile-picture">
+        <img src="assets/images/user.jpg">
+      </div>
+      <div class="username">
+        <ion-label>{{'UserName'|translate}}</ion-label>
+        <div class="separator-line"></div>
+      </div>
+      <div class="menu-options">
+        <div class="home" routerLink="/dashboard">
+          <ion-icon src="assets/icon/home.svg"></ion-icon>
+          <ion-label>{{'Menu.Home'|translate}}</ion-label>
         </div>
-        <div class="username">
-          <ion-label>{{'UserName'|translate}}</ion-label>
-          <div class="separator-line"></div>
+        <div class="upgrade" routerLink="/email-login">
+          <img src="assets/images/crown.png">
+          <ion-label>Upgrade to pro</ion-label>
         </div>
-        <div class="menu-options">
-          <div class="home" routerLink="/dashboard">
-            <ion-icon src="assets/icon/home.svg"></ion-icon>
-            <ion-label>{{'Menu.Home'|translate}}</ion-label>
-          </div>
-          <div class="favourite" routerLink="/favourite">
-            <ion-icon src="assets/icon/favourite.svg"></ion-icon>
-            <ion-label>{{'Menu.Favourite'|translate}}</ion-label>
-          </div>
-          <div class="archive" routerLink="/archive">
-            <ion-icon src="assets/icon/delete.svg"></ion-icon>
-            <ion-label>{{'Menu.Archive'|translate}}</ion-label>
-          </div>
+        <div class="favourite" routerLink="/favourite">
+          <ion-icon src="assets/icon/favourite.svg"></ion-icon>
+          <ion-label>{{'Menu.Favourite'|translate}}</ion-label>
+        </div>
+        <div class="archive" routerLink="/archive">
+          <ion-icon name="trash"></ion-icon>
+          <ion-label>{{'Menu.Archive'|translate}}</ion-label>
+        </div>
 
-          <div class="logout" (click)="logout()">
-            <ion-icon src="assets/icon/logout.svg"></ion-icon>
-            <ion-label>{{'Menu.Logout'|translate}}</ion-label>
-          </div>
+        <div class="logout" (click)="logout()">
+          <ion-icon name="log-out"></ion-icon>
+          <ion-label>{{'Menu.Logout'|translate}}</ion-label>
         </div>
       </div>
-    </ion-menu-toggle>
-  </ion-content>
+    </div>
+  </ion-menu-toggle>
+  <!-- </ion-content> -->
 </ion-menu>

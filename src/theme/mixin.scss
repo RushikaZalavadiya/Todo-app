@@ -1,0 +1,15 @@
+@mixin d-flex($flex-direction , $justify-content , $align-items) {
+    display: flex;
+
+    @if($flex-direction) {
+        flex-direction: $flex-direction;
+    }
+
+    @if($justify-content) {
+        justify-content: $justify-content;
+    }
+
+    @if($align-items) {
+        align-items: $align-items;
+    }
+}

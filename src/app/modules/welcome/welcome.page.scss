@@ -1,57 +1,67 @@
-@mixin flexProperty {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+@import '../../../theme/mixin.scss';
+@import '../../../theme/fonts.scss';
 
 ion-content {
   --background: var(--ion-color-white-lilac);
 }
+
 ion-select {
   margin-top: 25px;
   width: fit-content;
 }
+
 .welcome-page {
-  @include flexProperty();
-  flex-direction: column;
+  @include d-flex(column, center, center);
 
   h1 {
     font-family: "Source Sans Pro-Bold";
     font-size: 38px;
     margin-top: 55px;
     color: var(--ion-color-navy);
-    line-height: 50px;
+    line-height: 40px;
   }
+
   img {
     width: 330px;
     height: 240px;
-    margin-top: 50px;
+    margin-top: 15px;
   }
+
   p {
     font-family: "Source Sans Pro-SemiBold";
-    font-size: 22px;
+    font-size: 17px;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 30px;
     color: var(--ion-color-navy);
-    @include flexProperty();
+    @include d-flex(row, center, center);
     width: 85%;
     line-height: 30px;
   }
+
   .login-methods {
-    @include flexProperty();
-    flex-direction: column;
+    @include d-flex(column, center, center);
     margin-top: 10px;
     width: 75%;
+
     ion-button {
       width: 100%;
       height: 50px;
       margin-top: 10px;
       --border-radius: 16px;
       text-transform: capitalize;
+      --color: #000000;
+
       ion-icon {
         height: 25px;
         width: 25px;
       }
+
+      .mail {
+        height: 20px;
+        width: 30px;
+        margin: inherit;
+      }
+
       ion-label {
         margin-left: 15px;
         font-size: 17px;
@@ -60,32 +70,37 @@ ion-select {
   }
 }
 
-@media (max-width: 320px) {
-  .welcome-page {
-    h1 {
-      margin-top: 30px;
-      font-size: 32px;
-    }
-    img {
-      width: 280px;
-      height: 200px;
-      margin-top: 20px;
-    }
-    p {
-      margin-top: 15px;
-      font-size: 18px;
-    }
-    .login-methods {
-      ion-button {
-        width: 95%;
-        ion-icon {
-          height: 22px;
-          width: 22px;
-        }
-        ion-label {
-          font-size: 15px;
-        }
-      }
-    }
-  }
-}
+// @media (max-width: 320px) {
+//   .welcome-page {
+//     h1 {
+//       margin-top: 30px;
+//       font-size: 32px;
+//     }
+
+//     img {
+//       width: 280px;
+//       height: 200px;
+//       margin-top: 20px;
+//     }
+
+//     p {
+//       margin-top: 15px;
+//       font-size: 18px;
+//     }
+
+//     .login-methods {
+//       ion-button {
+//         width: 95%;
+
+//         ion-icon {
+//           height: 22px;
+//           width: 22px;
+//         }
+
+//         ion-label {
+//           font-size: 15px;
+//         }
+//       }
+//     }
+//   }
+// }

@@ -14,7 +14,7 @@ export class SignupComponent implements OnInit {
   constructor(
     private _authService: AuthService,
     public alertCtrl: AlertController
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.signUpfrm = new FormGroup({
@@ -38,8 +38,7 @@ export class SignupComponent implements OnInit {
         )
         .then((userCredential) => {
           console.log(userCredential.user);
-          this._authService.logEvent('SignUp');
-          
+
           // if(userCredential){
           //   const alert = await this.alertCtrl.create({
           //     header: 'Account created',

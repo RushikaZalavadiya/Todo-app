@@ -4,14 +4,14 @@
 
 export const environment = {
   production: false,
-   firebaseConfig : {
-    apiKey: "AIzaSyD_tVRc6XIDlkKAlh-yORIh9t-jeXk_AOE",
-    authDomain: "todo-c31c6.firebaseapp.com",
-    projectId: "todo-c31c6",
-    storageBucket: "todo-c31c6.appspot.com",
-    messagingSenderId: "668049412758",
-    appId: "1:668049412758:web:63898d0b90a1a3611028b7",
-    measurementId: "G-NTC6ZEYE1K"
+  firebaseConfig: {
+    apiKey: "AIzaSyD_V41O4JyaL1HAt7WTdXOjwN5ojIbG3OQ",
+    authDomain: "todo-app-e75b4.firebaseapp.com",
+    projectId: "todo-app-e75b4",
+    storageBucket: "todo-app-e75b4.appspot.com",
+    messagingSenderId: "190294578941",
+    appId: "1:190294578941:web:c6d952cbf196fed3b51094",
+    measurementId: "G-XPQT2MKTXZ"
   }
 };
 

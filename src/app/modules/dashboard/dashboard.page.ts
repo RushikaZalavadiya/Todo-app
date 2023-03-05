@@ -20,7 +20,17 @@ type SegmentTypes = "all" | "complete" | "incomplete";
 export class DashboardPage implements OnInit {
   public selectedDate: Date;
   public segmentValue: SegmentTypes = "all";
-  public todos: TaskDetail[] = [];
+  public todos: TaskDetail[] = [
+    {
+      date: "2023-02-24T23:19:00+05:30",
+      isCompleted: false,
+      isDeleted: false,
+      isFav: false,
+      name: "Test",
+      priority: "High Priority",
+      uid: "HKtJTMOfUmZaNyEZHKssCgZXYyy1"
+    }
+  ];
 
   constructor(
     public modalCtrl: ModalController,
@@ -33,18 +43,12 @@ export class DashboardPage implements OnInit {
   ngOnInit() {
     this.selectedDate = new Date();
     this.getTodos();
-    this._authService.logEvent('Dashboard');
-  }
-
-  onSegmentChange(ev) {
-    console.log(ev.detail.value);
-    this._authService.logEvent(ev.detail.value);
   }
 
   getTodos() {
     this._authService._user$.subscribe((user) => {
-      console.log(user.uid);
-      this.allTask(user.uid);
+      console.log(user?.uid);
+      this.allTask(user?.uid);
     });
   }
 
@@ -96,10 +100,9 @@ export class DashboardPage implements OnInit {
   }
 
   async openAddTaskModal() {
-    this._authService.logEvent('Add task');
     const modal = await this.modalCtrl.create({
       component: AddTaskModalComponent,
-      initialBreakpoint: 0.75,
+      initialBreakpoint: 0.80,
       cssClass: "modal-border",
     });
     modal.present();
@@ -108,6 +111,5 @@ export class DashboardPage implements OnInit {
   async logout() {
     await this._authService.signOut();
     // this.router.navigate(["welcome"]);
-    this._authService.logEvent('Logout');
   }
 }

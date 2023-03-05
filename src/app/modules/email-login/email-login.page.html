@@ -1,7 +1,7 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-icon name="arrow-back-outline"></ion-icon>
     </ion-buttons>
     <ion-title>{{"SignIn.SignInText"|translate}}</ion-title>
   </ion-toolbar>
@@ -30,14 +30,39 @@
       </div>
     </div>
   </div>
-  <ion-button (click)="crash()" fill="clear">Crash</ion-button><br>
-  <!-- <ion-button (click)="setContext()" fill="clear">Set context</ion-button><br>
-  <ion-button (click)="setUserID()" fill="clear">Set user id</ion-button><br>
-  <ion-button (click)="addLogMessage()" fill="clear">set log msg</ion-button><br>
-  <ion-button (click)="checkPrevious()" fill="clear">Check Previous</ion-button><br> -->
+</ion-content> -->
+<ion-content [fullscreen]="true">
+  <div class="circle circle1"></div>
 
-  <!-- <ion-button fill="clear" (click)="setUserProperty()">setUserProperty</ion-button><br>
-  <ion-button fill="clear" (click)="setUID()">set User id</ion-button> -->
+  <div class="container">
+    <ion-icon name="person" color="black"></ion-icon>
+    <ion-item lines="none" class="ion-text-center ion-margin itemDesign" color="light">
+      <ion-input placeholder="Email" type="text" clearInput="true"></ion-input>
+    </ion-item>
+    <ion-item lines="none" class="ion-text-center ion-margin itemDesign" color="light">
+      <ion-input placeholder="Password" type="password" clearInput="true"></ion-input>
+    </ion-item>
 
-  <ion-button (click)="getDefault()">Get value</ion-button>
+  </div>
+
+  <div class="circle circle2"></div>
+
+  <div class="align ion-text-center">
+    <div class="loginbtn">
+      <ion-label>Need to Signup ?</ion-label>
+
+    </div>
+    <!-- <ion-text color="medium">
+      <p>Forgot Password?</p>
+    </ion-text>
+    <p class="signup">
+      <ion-note>
+        Not a member yet? <ion-text routerLink="/new-signup" color="primary">Sign Up</ion-text>
+      </ion-note>
+    </p> -->
+    <ion-row>
+      <ion-col size="3"><ion-icon name="logo-facebook" color="white"></ion-icon></ion-col>
+      <ion-col size="3"><ion-icon name="logo-google" color="danger"></ion-icon></ion-col>
+    </ion-row>
+  </div>
 </ion-content>

@@ -11,9 +11,13 @@ export class TodoService {
   public todos = [];
   public deletedTodo = [];
   private _todos$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  public _newtodos$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+
 
   public todoCollection = "Todo";
-  constructor() {}
+  constructor() {
+    this.getAdminTodos()
+  }
 
   addTodo(todo: TaskDetail) {
     return firebase.firestore().collection(this.todoCollection).add(todo);
@@ -38,9 +42,19 @@ export class TodoService {
         this._todos$.next(data);
       });
   }
+  getAdminTodos() {
+    return firebase.firestore().collection(this.todoCollection).onSnapshot((snapshot) => {
+      const data = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      console.log(data);
 
+      this._newtodos$.next(data)
+    })
+  }
   task(): Observable<TaskDetail[]> {
-    return this._todos$.asObservable();
+    return this._newtodos$.asObservable();
   }
 
   markAsComplete(id: string, todo: TaskDetail) {

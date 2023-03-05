@@ -19,7 +19,7 @@ export class SigninComponent implements OnInit {
     public router: Router,
     private _todoService: TodoService,
     private _translateService: TranslateService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.signInfrm = new FormGroup({
@@ -34,7 +34,7 @@ export class SigninComponent implements OnInit {
   }
 
   signIn() {
-    
+
     this.signInfrm.markAllAsTouched();
 
     if (this.signInfrm.valid) {
@@ -44,7 +44,6 @@ export class SigninComponent implements OnInit {
           this.signInfrm.controls["password"].value
         )
         .then((userCredential) => {
-          this._authService.logEvent('SignIn');
           console.log(userCredential.user, "user");
           this.router.navigate(["dashboard"]);
         })

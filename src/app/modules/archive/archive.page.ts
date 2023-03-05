@@ -11,13 +11,12 @@ import { TodoService } from "src/app/services/todo.service";
 export class ArchivePage implements OnInit, OnDestroy {
   public deletedTask = [];
   public subscription: Subscription;
-  constructor(private _todoService: TodoService,private _authService:AuthService) {}
+  constructor(private _todoService: TodoService, private _authService: AuthService) { }
 
   ngOnInit() {
     this.subscription = this._todoService.task().subscribe((data) => {
       this.deletedTask = data.filter((task) => task.isDeleted);
     });
-    this._authService.logEvent('Archive Page');
   }
 
   ngOnDestroy(): void {

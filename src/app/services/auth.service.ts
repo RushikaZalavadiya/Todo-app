@@ -12,8 +12,8 @@ import { BehaviorSubject } from "rxjs";
 import { Router } from "@angular/router";
 import { USER_ID } from "../constants/commonKeys";
 import { LanguageService } from "./language.service";
-import { FirebaseAnalytics } from "@capacitor-community/firebase-analytics";
-import { FirebaseCrashlytics } from "@capacitor-community/firebase-crashlytics";
+// import { FirebaseAnalytics } from "@capacitor-community/firebase-analytics";
+// import { FirebaseCrashlytics } from "@capacitor-community/firebase-crashlytics";
 
 @Injectable({
   providedIn: "root",
@@ -25,19 +25,29 @@ export class AuthService {
     public router: Router,
     private _langService: LanguageService
   ) {
-    this.getUser();
+    // this.getUser();
+  }
+  visitorUser(id: string) {
+    return firebase.firestore().collection('Visitor');
   }
 
   getUser() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this._user$.next(user);
+        this._user$.subscribe(data => {
+          console.log(data);
+
+        })
+
         this.router.navigate(["dashboard"]);
-      } else {
-        this.router.navigate(["welcome"]);
       }
+      // else {
+      //   this.router.navigate(["welcome"]);
+      // }
     });
   }
+
 
   get user() {
     return this._user$.asObservable();
@@ -89,72 +99,5 @@ export class AuthService {
     return firebase.auth().signOut();
   }
 
-  logEvent(event){
-    FirebaseAnalytics.logEvent({
-      name:event,
-      params: {
-        content_type: "event from device",
-        content_id: "event from device (id)",
-        items: [{ name: "event from device" }],
-      },
-    })
-  }
-  setUserProperty(){
-    FirebaseAnalytics.setUserProperty({
-      name:'Favourite_food',
-      value:'pizza'
-    })
-    console.log('set user property...');
-  }
-  setUID(){
-    FirebaseAnalytics.setUserId({
-      userId:'DDDwTrlrGDQh62J48aN7eY5Cnlq1'
-    })
-    console.log('set user id...');    
-  }
-  crash(){
-    FirebaseCrashlytics.crash({message:'crash'})
-    .then((res)=>{
-      console.log('crash res...',res);      
-    }).catch((e)=>{
-      console.log('crash err',e);      
-    });
-  }
-  setContext(){
-    FirebaseCrashlytics.setContext({
-      key: 'page',
-      value: 'home',
-      type: 'string'
-    }).then((res)=>{
-      console.log('setcontext res...',res);      
-    }).catch((e)=>{
-      console.log('setcontext err',e);      
-    });
-  }
-  setUserId(){
-    FirebaseCrashlytics.setUserId({
-      userId:'123456'
-    }).then((res)=>{
-      console.log('setUserId res...',res);      
-    }).catch((e)=>{
-      console.log('setUserId err',e);      
-    });
-  }
-  sendLogMessage(){
-    FirebaseCrashlytics.addLogMessage({
-      message:'Test crash add log message...'
-    }).then((res)=>{
-      console.log('addLogMessage res...',res);      
-    }).catch((e)=>{
-      console.log('addLogMessage err',e);      
-    });
-  }
-  checkPrevious(){
-    FirebaseCrashlytics.didCrashDuringPreviousExecution()
-    .then((res)=>{
-      console.log('didCrashDuringPreviousExecution res...',res);      
-    }).catch((e)=>{
-      console.log('didCrashDuringPreviousExecution err',e);      
-    });
-  }
+
 }

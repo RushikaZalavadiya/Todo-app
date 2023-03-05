@@ -12,10 +12,10 @@ import { LanguageService } from "./services/language.service";
 export class AppComponent {
   constructor(public langService: LanguageService) {
     langService.initializeLang();
-    if(isPlatform('mobileweb')){
-      FirebaseAnalytics.initializeFirebase(environment.firebaseConfig).then(res=>{
-        console.log(res);
-      });
+    if (isPlatform('mobileweb')) {
+      // FirebaseAnalytics.initializeFirebase(environment.firebaseConfig).then(res=>{
+      //   console.log(res);
+      // });
     }
   }
 }

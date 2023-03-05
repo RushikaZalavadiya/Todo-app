@@ -14,14 +14,11 @@ import firebase from "firebase/compat/app";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
-import { FirebaseRemoteConfig } from "@joinflux/firebase-remote-config";
+
+firebase.initializeApp(environment.firebaseConfig);
 
 
-const app = firebase.initializeApp(environment.firebaseConfig);
-
-FirebaseRemoteConfig.initializeFirebase(app as any);
-
-export function HttpLoaderFactory(http: HttpClient) { 
+export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
@@ -43,4 +40,4 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

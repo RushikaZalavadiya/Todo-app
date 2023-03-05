@@ -1,7 +1,7 @@
 export interface TaskDetail {
   uid: string;
   name: string;
-  date: Date;
+  date: Date | string;
   priority: string;
   isCompleted: boolean;
   isFav: boolean;

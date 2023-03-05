@@ -1,0 +1,47 @@
+<ion-content>
+  <div class="header">
+    <div class="menu" id="menu">
+      <ion-icon src="assets/icon/menu-icon.svg" class="menu-icon" (click)="openMenu()"></ion-icon>
+    </div>
+    <h1>Dashboard</h1>
+  </div>
+
+  <ion-card *ngFor="let todo of todoList;">
+    <ion-card-header>
+      <ion-card-title>{{ todo.name }}</ion-card-title>
+      <ion-card-subtitle>{{todo.priority}}</ion-card-subtitle>
+    </ion-card-header>
+
+  </ion-card>
+
+</ion-content>
+<ion-menu contentId="menu" class="menu">
+  <ion-menu-toggle>
+    <div class="menu-screen">
+      <div class="profile-picture">
+        <img src="assets/images/user.jpg">
+      </div>
+      <div class="username">
+        <ion-label></ion-label>
+        <div class="separator-line"></div>
+      </div>
+      <div class="menu-options">
+        <div class="home" routerLink="/dashboard">
+          <ion-icon src="assets/icon/home.svg"></ion-icon>
+          <ion-label>Home</ion-label>
+        </div>
+        <div class="upgrade">
+          <ion-icon name="people-outline"></ion-icon>
+          <ion-label>All Users</ion-label>
+        </div>
+        <div class="favourite">
+          <ion-icon name="code-working-outline"></ion-icon>
+          <ion-label>All Todos</ion-label>
+        </div>
+
+
+      </div>
+    </div>
+  </ion-menu-toggle>
+  <!-- </ion-content> -->
+</ion-menu>

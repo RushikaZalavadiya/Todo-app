@@ -15,15 +15,14 @@ export class FavouritePage implements OnInit, OnDestroy {
   constructor(
     private _todoService: TodoService,
     public navCtrl: NavController,
-    private _authService:AuthService
-  ) {}
+    private _authService: AuthService
+  ) { }
 
   ngOnInit() {
     this.subscription = this._todoService.task().subscribe((data) => {
       this.favTask = data.filter((task) => task.isFav);
     });
-    this._authService.logEvent('Favourite Page');
-    console.log('fav...');    
+    console.log('fav...');
   }
 
   ngOnDestroy(): void {

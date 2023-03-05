@@ -26,7 +26,18 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 @import "./theme/fonts.scss";
+@import './theme/mixin.scss';
 
 .modal-border {
   --border-radius: 50px;
 }
+
+* {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+// ion-content,
+// ion-menu {
+//   --background: var(--ion-color-primary) !important;
+//   --color: var(--ion-color-black) !important;
+// }
