@@ -29,7 +29,7 @@ export class LoginPage implements OnInit {
 
   async login() {
 
-    if (this.credentials.value.email === 'pratham@gmail.com' && this.credentials.value.password === '!@#333dddD') {
+    if (this.credentials.value.email === 'pratham@gmail.com' && this.credentials.value.password === '!@333dddD') {
 
       this.router.navigate(['/admin/dashboard']);
     }
