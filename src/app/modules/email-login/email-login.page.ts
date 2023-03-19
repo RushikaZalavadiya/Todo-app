@@ -1,6 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { FirebaseCrashlytics } from "@capacitor-community/firebase-crashlytics";
-import { FirebaseRemoteConfig } from "@joinflux/firebase-remote-config";
 import { activate, fetchAndActivate, fetchConfig, getBoolean, getNumber, getRemoteConfig, getString, getValue } from "firebase/remote-config";
 import { AuthService } from "src/app/services/auth.service";
 import firebase from "firebase/compat/app";

@@ -31,66 +31,27 @@
     </div>
   </div>
 </ion-content> -->
-
-
 <ion-content [fullscreen]="true">
   <div class="circle circle1"></div>
-  <form [formGroup]="loginForm" class="container">
+
+  <div class="container">
     <ion-icon name="person" color="black"></ion-icon>
-    <ion-item lines="none" class="ion-text-center itemDesign" color="light">
-      <!-- <ion-label>E-Mail <ion-text color="danger">*</ion-text></ion-label> -->
-      <ion-input required formControlName="email" type="text" placeholder="Enter email"></ion-input>
-    </ion-item>
-    <p *ngIf="formData.email.invalid && formData.email.touched" lines="none" class="form-error">
-      Please enter a valid email address.
-    </p>
-    <ion-item lines="none" class="ion-text-center itemDesign" color="light">
-      <!-- <ion-label>Password <ion-text color="danger">*</ion-text></ion-label> -->
-      <ion-input required formControlName="password" type="text" placeholder="Enter password"></ion-input>
-    </ion-item>
-    <p *ngIf="formData.password.invalid && formData.password.touched" lines="none" class="form-error">
-      Please enter a valid password.
-    </p>
-    <ion-button class="login-btn" type="submit" [disabled]="loginForm.invalid" (click)="onSubmit()">
-      Login
-    </ion-button>
-  </form>
-  <div class="circle circle2"></div>
-
-  <!-- <div class="container">
-
-    <ion-item>
+    <ion-item lines="none" class="ion-text-center ion-margin itemDesign" color="light">
       <ion-input placeholder="Email" type="text" clearInput="true"></ion-input>
     </ion-item>
     <ion-item lines="none" class="ion-text-center ion-margin itemDesign" color="light">
       <ion-input placeholder="Password" type="password" clearInput="true"></ion-input>
     </ion-item>
-<<<<<<< Updated upstream
-
-  </div> -->
-
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <ion-button>LOGIN</ion-button>
+    <ion-button>SIGNUP</ion-button>
   </div>
-=======
 
-  </div> -->
-
->>>>>>> dfef3a48956e19a264355f3908b447adedc97749
-=======
-
-  </div> -->
-
->>>>>>> dfef3a48956e19a264355f3908b447adedc97749
->>>>>>> Stashed changes
-
+  <div class="circle circle2"></div>
 
   <div class="align ion-text-center">
     <div class="loginbtn">
-      <ion-label routerLink="/email-signup">Don't have an account? <span style="color: yellow;">Sign
-          up</span></ion-label>
+      <ion-label routerLink="/email-login">Already have a account? <span style="color: yellow;">Sign
+          in</span></ion-label>
+
     </div>
     <!-- <ion-text color="medium">
       <p>Forgot Password?</p>
@@ -100,9 +61,9 @@
         Not a member yet? <ion-text routerLink="/new-signup" color="primary">Sign Up</ion-text>
       </ion-note>
     </p> -->
-    <ion-row>
+    <!-- <ion-row>
       <ion-col size="3"><ion-icon name="logo-facebook" color="white"></ion-icon></ion-col>
-      <ion-col size="3"><ion-icon name="logo-google" class="l" color="danger"></ion-icon></ion-col>
-    </ion-row>
+      <ion-col size="3"><ion-icon name="logo-google" color="danger"></ion-icon></ion-col>
+    </ion-row> -->
   </div>
 </ion-content>

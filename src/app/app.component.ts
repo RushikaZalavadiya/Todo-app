@@ -1,5 +1,4 @@
 import { Component } from "@angular/core";
-import { FirebaseAnalytics } from "@capacitor-community/firebase-analytics";
 import { isPlatform } from "@ionic/angular";
 import { environment } from "src/environments/environment";
 import { LanguageService } from "./services/language.service";

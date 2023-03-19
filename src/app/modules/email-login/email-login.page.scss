@@ -109,7 +109,7 @@ ion-icon {
 
 .align {
   position: absolute;
-  width: 65%;
+  // width: 65%;
   margin: auto;
   bottom: 14vh;
   left: 16vw;
@@ -140,14 +140,31 @@ ion-input {
 }
 
 ion-label {
-  margin-left: 90px;
+  margin-left: 20px;
   color: white;
   text-decoration: underline;
 }
 
+<<<<<<< Updated upstream
 p {
   margin: 5px;
   color: darkred;
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+.l {
+  margin-left: 14%;
+=======
+p {
+  margin: 5px;
+  color: darkred;
+>>>>>>> dfef3a48956e19a264355f3908b447adedc97749
+=======
+p {
+  margin: 5px;
+  color: darkred;
+>>>>>>> dfef3a48956e19a264355f3908b447adedc97749
+>>>>>>> Stashed changes
 }
 
 .signup ion-text {
@@ -182,6 +199,27 @@ ion-text p {
   margin-left: 40px;
 }
 
+<<<<<<< Updated upstream
 ion-item {
   margin-top: 15px;
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+ion-button {
+  margin-left: 23px;
+  --border-radius: 50px;
+  --background: var(--ion-color-royal-blue);
+  width: 186px;
+  height: 56px;
+  --box-shadow: 0px 12px 25px rgba(47, 88, 226, 0.4);
+  --color: var(--ion-color-white-lilac);
+=======
+ion-item {
+  margin-top: 15px;
+>>>>>>> dfef3a48956e19a264355f3908b447adedc97749
+=======
+ion-item {
+  margin-top: 15px;
+>>>>>>> dfef3a48956e19a264355f3908b447adedc97749
+>>>>>>> Stashed changes
 }

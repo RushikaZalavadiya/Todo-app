@@ -114,6 +114,7 @@ ion-menu::part(container) {
   border-bottom-right-radius: 20px;
 }
 
+
 ion-menu {
   ion-content {
     --background: var(--ion-color-royal-blue);
@@ -320,4 +321,8 @@ ion-menu {
       }
     }
   }
+}
+
+ion-icon {
+  color: black !important;
 }
