@@ -91,9 +91,10 @@ ion-content {
 
 .container {
   position: absolute;
-  top: 6vh;
+  top: 4vh;
   left: 5vw;
   align-items: center;
+  width: 77%;
 }
 
 .itemDesign {
@@ -144,8 +145,19 @@ ion-label {
   text-decoration: underline;
 }
 
+p {
+  margin: 5px;
+  color: darkred;
+}
+
 .signup ion-text {
   font-size: 16px;
+}
+
+.login-btn {
+  --border-radius: 13px;
+  width: 98%;
+  --background: none !important;
 }
 
 // .loginbtn {
@@ -168,4 +180,8 @@ ion-text p {
 
 .signup ion-note {
   margin-left: 40px;
+}
+
+ion-item {
+  margin-top: 15px;
 }

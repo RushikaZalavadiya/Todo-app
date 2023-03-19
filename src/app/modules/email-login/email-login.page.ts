@@ -5,6 +5,11 @@ import { activate, fetchAndActivate, fetchConfig, getBoolean, getNumber, getRemo
 import { AuthService } from "src/app/services/auth.service";
 import firebase from "firebase/compat/app";
 import { environment } from "src/environments/environment";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { AuthErrorCodes } from "firebase/auth";
+import { TranslateService } from "@ngx-translate/core";
+import { StripeService } from "src/app/services/stripe.service";
 
 
 @Component({
@@ -13,19 +18,59 @@ import { environment } from "src/environments/environment";
   styleUrls: ["./email-login.page.scss"],
 })
 export class EmailLoginPage implements OnInit {
-  public isOpen = true;
-  constructor(private _authService: AuthService) {
+
+  public loginForm: FormGroup;
+  message: string;
+  constructor(private _authService: AuthService,
+    public router: Router,
+    public _translateService: TranslateService,
+    public stripe: StripeService
+  ) {
   }
 
   ngOnInit() {
-
+    this.loginForm = new FormGroup({
+      email: new FormControl('test@gmail.com', [Validators.email, Validators.required]),
+      password: new FormControl('123456', [Validators.minLength(6), Validators.required]),
+    });
     console.log('email..');
   }
-  signUp() {
-    this.isOpen = false;
+  get formData() {
+    return this.loginForm.controls;
   }
 
-  signIn() {
-    this.isOpen = true;
+  onSubmit() {
+    if (this.loginForm.value.email === 'pratham@gmail.com' && this.loginForm.value.password === '!@333dddD') {
+      this.router.navigate(['/admin/dashboard']);
+    }
+    else {
+
+      this._authService
+        .signInWithEmail(
+          this.loginForm.controls["email"].value,
+          this.loginForm.controls["password"].value
+        )
+        .then((userCredential) => {
+
+          if (userCredential) {
+            this.stripe.createCustomer(this.loginForm.controls['email'].value).subscribe((res) => {
+              console.log(res, 'cust');
+
+            })
+          }
+          // console.log(userCredential.user, "user");
+          // this.router.navigate(["dashboard"]);
+        })
+        .catch((error) => {
+          console.log(error);
+
+          if (error.code == AuthErrorCodes.USER_DELETED) {
+            this._translateService.get("UserNotFound").subscribe((msg) => {
+              this.message = msg;
+            });
+            this._authService.toastMsg(this.message);
+          }
+        });
+    }
   }
 }

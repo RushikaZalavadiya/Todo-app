@@ -12,7 +12,8 @@ export const environment = {
     messagingSenderId: "190294578941",
     appId: "1:190294578941:web:c6d952cbf196fed3b51094",
     measurementId: "G-XPQT2MKTXZ"
-  }
+  },
+  url: 'https://api.stripe.com'
 };
 
 /*

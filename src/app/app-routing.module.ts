@@ -39,10 +39,10 @@ const routes: Routes = [
     path: 'landing',
     loadChildren: () => import('./modules/landing/landing.module').then(m => m.LandingPageModule)
   },
-  {
-    path: 'admin/login',
-    loadChildren: () => import('./modules/admin/login/login.module').then(m => m.LoginPageModule)
-  },
+  // {
+  //   path: 'admin/login',
+  //   loadChildren: () => import('./modules/admin/login/login.module').then(m => m.LoginPageModule)
+  // },
   {
     path: 'admin/dashboard',
     loadChildren: () => import('./modules/admin/dashboard/dashboard.module').then(m => m.DashboardPageModule)

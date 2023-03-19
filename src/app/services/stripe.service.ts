@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
 @Injectable({
@@ -7,9 +7,20 @@ import { Injectable } from "@angular/core";
 export class StripeService {
     constructor(public http: HttpClient) { }
 
-    createCustomer() {
-        var myHeaders = new Headers();
-        myHeaders.append("Authorization", "Basic pk_test_51MjmwqSJpfM5g6noZSp89jtTTx5neVS89p9ZBRbMPMIZO1P2PXXWkCi1iSXSwT6fA6mBwlrzLR1Dfy8LpMvuGzuJ00BZL8DdV3");
-        return this.http.post('https://api.stripe.com/v1/customers', myHeaders);
+    createCustomer(email: string) {
+        let myHeaders = new HttpHeaders();
+        myHeaders.append("Authorization", "Bearer sk_test_51MjmwqSJpfM5g6nohdAZNMlGALcBqm5qwztPCASQ2kfZMDNmsDTfcAaI4BfxjZvxhR0MnuDhwkLwVozYmwb8qtXK0065U8Z4zh");
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("email", email);
+
+
+        return this.http.post('https://api.stripe.com/v1/customers', urlencoded, {
+            headers: {
+                "Authorization": "Bearer sk_test_51MjmwqSJpfM5g6nohdAZNMlGALcBqm5qwztPCASQ2kfZMDNmsDTfcAaI4BfxjZvxhR0MnuDhwkLwVozYmwb8qtXK0065U8Z4zh",
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        });
     }
 }

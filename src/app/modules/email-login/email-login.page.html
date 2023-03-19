@@ -31,21 +31,44 @@
     </div>
   </div>
 </ion-content> -->
+
+
 <ion-content [fullscreen]="true">
   <div class="circle circle1"></div>
-
-  <div class="container">
+  <form [formGroup]="loginForm" class="container">
     <ion-icon name="person" color="black"></ion-icon>
-    <ion-item lines="none" class="ion-text-center ion-margin itemDesign" color="light">
+    <ion-item lines="none" class="ion-text-center itemDesign" color="light">
+      <!-- <ion-label>E-Mail <ion-text color="danger">*</ion-text></ion-label> -->
+      <ion-input required formControlName="email" type="text" placeholder="Enter email"></ion-input>
+    </ion-item>
+    <p *ngIf="formData.email.invalid && formData.email.touched" lines="none" class="form-error">
+      Please enter a valid email address.
+    </p>
+    <ion-item lines="none" class="ion-text-center itemDesign" color="light">
+      <!-- <ion-label>Password <ion-text color="danger">*</ion-text></ion-label> -->
+      <ion-input required formControlName="password" type="text" placeholder="Enter password"></ion-input>
+    </ion-item>
+    <p *ngIf="formData.password.invalid && formData.password.touched" lines="none" class="form-error">
+      Please enter a valid password.
+    </p>
+    <ion-button class="login-btn" type="submit" [disabled]="loginForm.invalid" (click)="onSubmit()">
+      Login
+    </ion-button>
+  </form>
+  <div class="circle circle2"></div>
+
+  <!-- <div class="container">
+
+    <ion-item>
       <ion-input placeholder="Email" type="text" clearInput="true"></ion-input>
     </ion-item>
     <ion-item lines="none" class="ion-text-center ion-margin itemDesign" color="light">
       <ion-input placeholder="Password" type="password" clearInput="true"></ion-input>
     </ion-item>
 
-  </div>
+  </div> -->
 
-  <div class="circle circle2"></div>
+
 
   <div class="align ion-text-center">
     <div class="loginbtn">

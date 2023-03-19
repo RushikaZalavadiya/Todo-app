@@ -28,7 +28,7 @@ export class AuthService {
     // this.getUser();
   }
   visitorUser(id: string) {
-    return firebase.firestore().collection('Visitor');
+    return firebase.firestore().collection('Visitor').add({ test: 'test' });
   }
 
   getUser() {
