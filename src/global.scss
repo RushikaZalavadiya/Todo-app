@@ -41,3 +41,8 @@ ion-menu {
   --background: var(--ion-color-royal-blue) !important;
   color: white !important
 }
+
+app-add-task-modal {
+  height: 100vh !important;
+  background: var(--ion-color-royal-blue);
+}

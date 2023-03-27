@@ -38,18 +38,14 @@ export class SignupComponent implements OnInit {
         .then((userCredential) => {
           console.log(userCredential.user);
 
-          // if(userCredential){
-          //   const alert = await this.alertCtrl.create({
-          //     header: 'Account created',
-          //     buttons: [
-          //       {
-          //         text: 'Ok',
-          //         role: 'confirm',
-          //       }
-          //     ]
-          //   });
-          //   alert.present();
-          // }
+          if (userCredential) {
+            if (userCredential) {
+              // this.stripe.createCustomer(this.loginForm.controls['email'].value).subscribe((res) => {
+              //   console.log(res, 'cust');
+
+              // })
+            }
+          }
         });
     } else {
       return false;

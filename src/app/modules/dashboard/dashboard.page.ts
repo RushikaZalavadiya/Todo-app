@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import {
   MenuController,
   ModalController,
@@ -38,6 +39,7 @@ export class DashboardPage implements OnInit {
     public popoverCtrl: PopoverController,
     private _todoService: TodoService,
     private _authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -110,6 +112,6 @@ export class DashboardPage implements OnInit {
 
   async logout() {
     await this._authService.signOut();
-    // this.router.navigate(["welcome"]);
+    this.router.navigate(["landing"]);
   }
 }

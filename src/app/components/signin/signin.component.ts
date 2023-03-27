@@ -2,9 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthService } from "src/app/services/auth.service";
-import { AuthErrorCodes } from "firebase/auth";
 import { TodoService } from "src/app/services/todo.service";
 import { TranslateService } from "@ngx-translate/core";
+import * as firebaseErrorCodes from 'firebase-error-codes';
 
 @Component({
   selector: "app-signin",
@@ -50,7 +50,7 @@ export class SigninComponent implements OnInit {
         .catch((error) => {
           console.log(error);
 
-          if (error.code == AuthErrorCodes.USER_DELETED) {
+          if (error.code == firebaseErrorCodes.Auth.userNotFound) {
             this._translateService.get("UserNotFound").subscribe((msg) => {
               this.message = msg;
             });

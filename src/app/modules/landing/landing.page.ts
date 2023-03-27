@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { StripeService } from 'src/app/services/stripe.service';
 
 @Component({
   selector: 'app-landing',
@@ -9,13 +10,14 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LandingPage implements OnInit {
 
-  constructor(public router: Router, public auth: AuthService) { }
+  constructor(public router: Router, public auth: AuthService, public stripe: StripeService) { }
 
   ngOnInit() {
+
   }
   continue() {
     let id = this.create_UUID();
-    this.auth.visitorUser(id);
+    this.auth.visitorUser();
     this.router.navigate(['dashboard']);
   }
   create_UUID() {
@@ -26,5 +28,12 @@ export class LandingPage implements OnInit {
       return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
     });
     return uuid;
+  }
+
+  subscribe(id: string) {
+    this.stripe.getPlan(id).subscribe((res) => {
+      console.log(res);
+    })
+    this.router.navigate(['/email-signup'], { state: { id: id } });
   }
 }

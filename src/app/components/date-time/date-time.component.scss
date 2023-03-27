@@ -1,9 +1,13 @@
 ion-datetime {
   min-width: 100%;
+  // height: calc(100vh - 237px);
+  margin-top: -14%;
 }
+
 ion-buttons {
   margin-bottom: 10px;
 }
+
 @media (max-width: 320px) {
   ion-datetime {
     min-height: 52%;

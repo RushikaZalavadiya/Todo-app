@@ -1,6 +1,10 @@
-<ion-datetime [(ngModel)]="selectedDate" #datetime presentation="date">
-  <ion-buttons slot="buttons">
-    <ion-button (click)="change()">{{ "Buttons.Done" | translate }}</ion-button>
-    <ion-button>{{ "Buttons.Cancel" | translate }}</ion-button>
-  </ion-buttons>
-</ion-datetime>
+<div class="date">
+
+  <ion-datetime [(ngModel)]="selectedDate" #datetime presentation="date">
+    <ion-buttons slot="buttons">
+      <ion-button (click)="change()">{{ "Buttons.Done" | translate }}</ion-button>
+      <ion-button>{{ "Buttons.Cancel" | translate }}</ion-button>
+    </ion-buttons>
+  </ion-datetime>
+
+</div>

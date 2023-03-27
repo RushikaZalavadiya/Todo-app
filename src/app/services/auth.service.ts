@@ -1,7 +1,9 @@
 import { Injectable } from "@angular/core";
 import { ToastController } from "@ionic/angular";
 import { GoogleAuth } from "@codetrix-studio/capacitor-google-auth";
-import { FacebookAuthProvider, GoogleAuthProvider } from "firebase/auth";
+import {
+  GoogleAuthProvider, FacebookAuthProvider
+} from "@firebase/auth";
 import {
   FacebookLogin,
   FacebookLoginResponse,
@@ -23,11 +25,11 @@ export class AuthService {
   constructor(
     public toastCtrl: ToastController,
     public router: Router,
-    private _langService: LanguageService
+    private _langService: LanguageService,
   ) {
     // this.getUser();
   }
-  visitorUser(id: string) {
+  visitorUser() {
     return firebase.firestore().collection('Visitor').add({ test: 'test' });
   }
 

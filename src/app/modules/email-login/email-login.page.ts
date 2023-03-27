@@ -1,14 +1,15 @@
 import { Component, OnInit } from "@angular/core";
+// import { FirebaseCrashlytics } from "@capacitor-community/firebase-crashlytics";
+// import { FirebaseRemoteConfig } from "@joinflux/firebase-remote-config";
 import { activate, fetchAndActivate, fetchConfig, getBoolean, getNumber, getRemoteConfig, getString, getValue } from "firebase/remote-config";
 import { AuthService } from "src/app/services/auth.service";
 import firebase from "firebase/compat/app";
 import { environment } from "src/environments/environment";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { AuthErrorCodes } from "firebase/auth";
 import { TranslateService } from "@ngx-translate/core";
 import { StripeService } from "src/app/services/stripe.service";
-
+import * as firebaseErrorCodes from 'firebase-error-codes';
 
 @Component({
   selector: "app-email-login",
@@ -49,20 +50,13 @@ export class EmailLoginPage implements OnInit {
           this.loginForm.controls["password"].value
         )
         .then((userCredential) => {
-
-          if (userCredential) {
-            this.stripe.createCustomer(this.loginForm.controls['email'].value).subscribe((res) => {
-              console.log(res, 'cust');
-
-            })
-          }
-          // console.log(userCredential.user, "user");
-          // this.router.navigate(["dashboard"]);
+          console.log(userCredential.user, "user");
+          this.router.navigate(["dashboard"]);
         })
         .catch((error) => {
           console.log(error);
 
-          if (error.code == AuthErrorCodes.USER_DELETED) {
+          if (error.code == firebaseErrorCodes.Auth.userNotFound) {
             this._translateService.get("UserNotFound").subscribe((msg) => {
               this.message = msg;
             });

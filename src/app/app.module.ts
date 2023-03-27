@@ -17,7 +17,6 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 
 firebase.initializeApp(environment.firebaseConfig);
 
-
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
