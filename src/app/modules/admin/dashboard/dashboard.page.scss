@@ -9,6 +9,7 @@
     justify-content: flex-start;
     flex-direction: row;
     width: 77%;
+    padding-bottom: 4%;
 
     .menu {
         display: flex;
@@ -182,4 +183,14 @@ ion-label {
 
 ion-icon {
     font-size: 33px;
+}
+
+ion-card:nth-child(even) {
+    background: #b0b0d7;
+
+}
+
+ion-card:nth-child(odd) {
+    background: #c8baba;
+
 }

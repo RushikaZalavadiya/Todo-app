@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { AuthService } from "src/app/services/auth.service";
 import { TodoService } from "src/app/services/todo.service";
 import { TranslateService } from "@ngx-translate/core";
-import * as firebaseErrorCodes from 'firebase-error-codes';
+// import * as firebaseErrorCodes from 'firebase-error-codes';
 
 @Component({
   selector: "app-signin",
@@ -49,13 +49,14 @@ export class SigninComponent implements OnInit {
         })
         .catch((error) => {
           console.log(error);
-
-          if (error.code == firebaseErrorCodes.Auth.userNotFound) {
+          if (error.code) {
             this._translateService.get("UserNotFound").subscribe((msg) => {
               this.message = msg;
             });
             this._authService.toastMsg(this.message);
           }
+
+
         });
     } else {
       return false;

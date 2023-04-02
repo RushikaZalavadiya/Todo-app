@@ -9,7 +9,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
 import { StripeService } from "src/app/services/stripe.service";
-import * as firebaseErrorCodes from 'firebase-error-codes';
+// import * as firebaseErrorCodes from 'firebase-error-codes';
 
 @Component({
   selector: "app-email-login",
@@ -56,7 +56,7 @@ export class EmailLoginPage implements OnInit {
         .catch((error) => {
           console.log(error);
 
-          if (error.code == firebaseErrorCodes.Auth.userNotFound) {
+          if (error.code) {
             this._translateService.get("UserNotFound").subscribe((msg) => {
               this.message = msg;
             });

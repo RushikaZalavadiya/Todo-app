@@ -63,6 +63,9 @@ export class AuthService {
     return firebase.auth().createUserWithEmailAndPassword(email, password);
   }
 
+  SignUpWIthForgotPassWord(email) {
+    return firebase.auth().sendPasswordResetEmail(email)
+  }
   async signInWithGoogle() {
     let googleUser = await GoogleAuth.signIn();
     const credential = GoogleAuthProvider.credential(

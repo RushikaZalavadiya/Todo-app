@@ -14,6 +14,7 @@ import firebase from "firebase/compat/app";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
+// import { ForgotPasswordPipe } from './forgot-password.pipe';
 
 firebase.initializeApp(environment.firebaseConfig);
 

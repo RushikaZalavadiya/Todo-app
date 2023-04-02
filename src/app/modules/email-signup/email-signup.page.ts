@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { StripeService } from 'src/app/services/stripe.service';
-import * as firebaseErrorCodes from 'firebase-error-codes';
+// import * as firebaseErrorCodes from 'firebase-error-codes';
 import { Router } from '@angular/router';
 
 @Component({
@@ -24,8 +24,15 @@ export class EmailSignupPage {
       password: new FormControl('123456', [Validators.minLength(6), Validators.required]),
     });
 
-    const data = router.getCurrentNavigation().extras.state;
-    this.id = data['id'];
+    if (router) {
+
+      const data = router.getCurrentNavigation().extras.state;
+      if (data) {
+
+
+        this.id = data['id'];
+      }
+    }
   }
   onSubmit() {
     this.signupForm.markAllAsTouched();
@@ -62,13 +69,13 @@ export class EmailSignupPage {
           }
         }).catch((e) => {
           console.log(e.message);
-          if (e instanceof Error) {
-            if (e.message.includes(firebaseErrorCodes.Auth.emailAlreadyExists)) {
-              this._authService.toastMsg('Email is already in use.');
-            } else {
-              this._authService.toastMsg('Something went wrong. Please try again.');
-            }
-          }
+          // if (e instanceof Error) {  
+          //   if (e.message.includes(firebaseErrorCodes.Auth.emailAlreadyExists)) {
+          //     this._authService.toastMsg('Email is already in use.');
+          //   } else {
+          //     this._authService.toastMsg('Something went wrong. Please try again.');
+          //   }
+          // }
         });
     } else {
       return false;

@@ -50,7 +50,11 @@ const routes: Routes = [
   {
     path: 'email-signup',
     loadChildren: () => import('./modules/email-signup/email-signup.module').then(m => m.EmailSignupPageModule)
+  },  {
+    path: 'forgot-password',
+    loadChildren: () => import('./forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
   },
+
 
 ];
 

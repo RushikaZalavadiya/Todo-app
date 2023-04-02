@@ -148,9 +148,11 @@ ion-label {
     font-size: 16px;
 }
 
-// .loginbtn {
-//   margin-left: 30px;
-// }
+.loginbtn {
+    margin-bottom: 17%;
+    margin-left: 15%;
+    width: 100%;
+}
 
 // .loginbtn ion-button {
 //   width: 240px;
@@ -338,8 +340,10 @@ p {
 
 .login-btn {
     --border-radius: 13px;
-    width: 98%;
+    width: 70%;
     --background: none !important;
+    margin-top: 3%;
+    margin: 5% 0px 0px 11px;
 }
 
 // .loginbtn {
