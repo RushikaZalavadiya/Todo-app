@@ -8,11 +8,11 @@ const routes: Routes = [
     redirectTo: 'landing',
     pathMatch: 'full',
   },
-  // {
-  //   path: 'welcome',
-  //   loadChildren: () =>
-  //     import('./modules/welcome/welcome.module').then((m) => m.WelcomePageModule),
-  // },
+  {
+    path: 'welcome',
+    loadChildren: () =>
+      import('./modules/welcome/welcome.module').then((m) => m.WelcomePageModule),
+  },
   {
     path: 'dashboard',
     loadChildren: () =>
@@ -50,10 +50,24 @@ const routes: Routes = [
   {
     path: 'email-signup',
     loadChildren: () => import('./modules/email-signup/email-signup.module').then(m => m.EmailSignupPageModule)
-  },  {
-    path: 'forgot-password',
-    loadChildren: () => import('./forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
   },
+  {
+    path: 'forgot-password',
+    loadChildren: () => import('./forgot-password/forgot-password.module').then(m => m.ForgotPasswordPageModule)
+  },
+
+  {
+    path: 'admin/user',
+    loadChildren: () => import('./modules/admin/user/user.module').then(m => m.UserPageModule)
+  },  {
+    path: 'profile',
+    loadChildren: () => import('./modules/profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
+    path: 'update',
+    loadChildren: () => import('./modules/update/update.module').then( m => m.UpdatePageModule)
+  },
+
 
 
 ];

@@ -27,7 +27,9 @@ export class EmailLoginPage implements OnInit {
     public router: Router,
     public _translateService: TranslateService,
     public stripe: StripeService,
-    public loading: LoadingService
+    public loading: LoadingService,
+    public _auth: AuthService
+
   ) {
   }
 

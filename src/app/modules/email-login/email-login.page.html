@@ -51,9 +51,10 @@
     <p *ngIf="formData.password.invalid && formData.password.touched" lines="none" class="form-error">
       Please enter a valid password.
     </p>
-    <ion-button class="login-btn" type="submit" [disabled]="loginForm.invalid" (click)="onSubmit()">
+    <!-- <ion-button class="login-btn" type="submit" (click)="onSubmit()">
       Login
-    </ion-button>
+    </ion-button> -->
+    <p (click)="onSubmit()" class="loginp">Login</p>
   </form>
   <div class="circle circle2"></div>
 
@@ -65,17 +66,24 @@
     <ion-item lines="none" class="ion-text-center ion-margin itemDesign" color="light">
       <ion-input placeholder="Password" type="password" clearInput="true"></ion-input>
     </ion-item>
-<<<<<<< Updated upstream
+
 
   </div> -->
+
   <div class="section">
     <a href="forgot-password">Forgot-password?</a>
-    <div class="loginbtn">
-      <ion-label routerLink="/email-signup">Don't have an account? <span style="color: yellow;">Sign
-          up</span></ion-label>
+
+    <div class="align ion-text-center">
+      <p routerLink="/forgot-password">Forgot-password?</p>
+
+      <div class="loginbtn">
+        <ion-label routerLink="/email-signup">Don't have an account? <span style="color: yellow;">Sign
+            up</span></ion-label>
+      </div>
     </div>
     <!-- <ion-text color="medium">
       <p>Forgot Password?</p>
+
     </ion-text>
     <p class="signup">
       <ion-note>
@@ -83,10 +91,16 @@
       </ion-note>
     </p> -->
     <br>
+
     <div class="login-section">
       <div class="div">OR</div>
       <!-- <ion-icon name="logo-facebook" color="white" (click)="facebook()"></ion-icon> -->
       <ion-icon name="logo-google" class="l" color="danger" (click)="google()"></ion-icon>
     </div>
+
+    <ion-row>
+      <ion-col size="3"><ion-icon name="logo-facebook" color="white"></ion-icon></ion-col>
+      <ion-col size="3"><ion-icon name="logo-google" class="l" color="danger" (click)="google()"></ion-icon></ion-col>
+    </ion-row>
   </div>
 </ion-content>
