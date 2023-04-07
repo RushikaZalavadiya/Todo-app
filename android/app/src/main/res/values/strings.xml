@@ -8,4 +8,6 @@
     <string name="facebook_app_id">5195857290520104</string>
     <string name="facebook_client_token">4a80472da3db156d9785f02692e89ce1</string>
     <string name="fb_login_protocol_scheme">fb5195857290520104</string>
+        <string name="testId">ca-app-pub-3940256099942544~6300978111</string>
+
 </resources>

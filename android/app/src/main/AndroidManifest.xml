@@ -28,9 +28,13 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths"></meta-data>
+             <!-- <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-3940256099942544/6300978111"  />  -->
         </provider>        
             <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
             <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
+      <meta-data
+        android:name="com.google.android.gms.ads.APPLICATION_ID"
+        android:value="@string/testId"/>    
     </application>
     <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
