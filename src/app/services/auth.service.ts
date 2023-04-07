@@ -14,6 +14,7 @@ import { BehaviorSubject } from "rxjs";
 import { Router } from "@angular/router";
 import { USER_ID } from "../constants/commonKeys";
 import { LanguageService } from "./language.service";
+import "firebase/compat/firestore"
 // import { FirebaseAnalytics } from "@capacitor-community/firebase-analytics";
 // import { FirebaseCrashlytics } from "@capacitor-community/firebase-crashlytics";
 
@@ -22,6 +23,8 @@ import { LanguageService } from "./language.service";
 })
 export class AuthService {
   public _user$: BehaviorSubject<any> = new BehaviorSubject(null);
+  public _regUser$: BehaviorSubject<any> = new BehaviorSubject(null);
+
   constructor(
     public toastCtrl: ToastController,
     public router: Router,
@@ -49,8 +52,33 @@ export class AuthService {
       // }
     });
   }
+  regUser(user: any) {
+    return firebase.firestore().collection('regUser').add(user);
 
+  }
+  getregUser() {
+    firebase
+      .firestore()
+      .collection('regUser')
 
+      .onSnapshot((snapshot) => {
+        console.log(snapshot);
+        const data = snapshot.docs.map((doc) => ({
+
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+        console.log("user data", data);
+
+        this._regUser$.next(data);
+      });
+    return this._regUser$.asObservable();
+  }
+
+  gets() {
+
+  }
   get user() {
     return this._user$.asObservable();
   }

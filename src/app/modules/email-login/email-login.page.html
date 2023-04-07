@@ -51,9 +51,10 @@
     <p *ngIf="formData.password.invalid && formData.password.touched" lines="none" class="form-error">
       Please enter a valid password.
     </p>
-    <ion-button class="login-btn" type="submit" [disabled]="loginForm.invalid" (click)="onSubmit()">
+    <!-- <ion-button class="login-btn" type="submit" (click)="onSubmit()">
       Login
-    </ion-button>
+    </ion-button> -->
+    <p (click)="onSubmit()" class="loginp">Login</p>
   </form>
   <div class="circle circle2"></div>
 
@@ -69,7 +70,7 @@
 
   </div> -->
   <div class="align ion-text-center">
-    <p>Forgot-password?</p>
+    <p routerLink="/forgot-password">Forgot-password?</p>
     <div class="loginbtn">
       <ion-label routerLink="/email-signup">Don't have an account? <span style="color: yellow;">Sign
           up</span></ion-label>
@@ -85,7 +86,8 @@
     <br>
     <ion-row>
       <ion-col size="3"><ion-icon name="logo-facebook" color="white"></ion-icon></ion-col>
-      <ion-col size="3"><ion-icon name="logo-google" class="l" color="danger"></ion-icon></ion-col>
+      <ion-col size="3"><ion-icon name="logo-google" class="l" color="danger"
+          (click)="googleLogin()"></ion-icon></ion-col>
     </ion-row>
   </div>
 </ion-content>

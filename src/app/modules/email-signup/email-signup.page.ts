@@ -46,6 +46,7 @@ export class EmailSignupPage {
         .then((userCredential) => {
           console.log(userCredential.user);
 
+          this._authService.regUser(this.signupForm.value).then((res) => console.log(res))
           if (userCredential) {
             this.stripe.createCustomer(this.signupForm.controls['email'].value).subscribe((customer) => {
               console.log(customer, 'cust');

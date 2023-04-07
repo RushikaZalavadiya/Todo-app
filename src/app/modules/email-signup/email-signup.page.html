@@ -50,9 +50,11 @@
     <p *ngIf="formData.password.invalid && formData.password.touched" lines="none" class="form-error">
       Please enter a valid password.
     </p>
-    <ion-button class="login-btn" type="submit" [disabled]="signupForm.invalid" (click)="onSubmit()">
+    <!-- <ion-button class="login-btn" type="submit" [disabled]="signupForm.invalid" (click)="onSubmit()">
       Register
-    </ion-button>
+    </ion-button> -->
+    <p (click)="onSubmit()" class="loginp">Register188</p>
+
   </form>
 
 

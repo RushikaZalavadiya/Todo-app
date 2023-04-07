@@ -23,7 +23,8 @@ export class EmailLoginPage implements OnInit {
   constructor(private _authService: AuthService,
     public router: Router,
     public _translateService: TranslateService,
-    public stripe: StripeService
+    public stripe: StripeService,
+    public _auth: AuthService
   ) {
   }
 
@@ -64,5 +65,19 @@ export class EmailLoginPage implements OnInit {
           }
         });
     }
+  }
+  googleLogin() {
+    console.log("m");
+    this._auth
+      .signInWithGoogle()
+      .then((userCredential) => {
+        console.log(userCredential.user);
+        // localStorage.setItem(USER_ID.uid, userCredential.user.uid);
+        // this.router.navigate(["dashboard"]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    // this._auth.signInWithGoogle().then((res) => console.log(res)).catch((err) => console.log(err))
   }
 }
