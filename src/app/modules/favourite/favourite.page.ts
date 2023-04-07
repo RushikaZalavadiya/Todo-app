@@ -19,7 +19,7 @@ export class FavouritePage implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.subscription = this._todoService.task().subscribe((data) => {
+    this.subscription = this._todoService._todos$.subscribe((data) => {
       this.favTask = data.filter((task) => task.isFav);
     });
     console.log('fav...');

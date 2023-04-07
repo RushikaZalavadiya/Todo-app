@@ -101,23 +101,12 @@ ion-content {
   border-radius: 20px;
 }
 
-ion-icon {
+ion-icon.person {
   font-size: 5rem;
   margin-left: 30vw;
   color: #6969d0;
 }
 
-.align {
-  position: absolute;
-  // width: 65%;
-  margin: auto;
-  bottom: 14vh;
-  left: 16vw;
-
-  ion-text {
-    font-size: small;
-  }
-}
 
 ion-row {
   // margin-left: -8vw;
@@ -132,21 +121,13 @@ ion-input {
   display: flex;
 }
 
-.align ion-text-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  // text-align: center;
-}
-
 ion-label {
   margin-left: 20px;
   color: white;
-  text-decoration: underline;
-}
 
-ion-row {
-  margin-top: 0px;
+  span {
+    text-decoration: underline;
+  }
 }
 
 p {
@@ -168,11 +149,14 @@ p {
   height: 49px;
   margin: 20px 10px;
   margin-top: 20px;
+  --box-shadow: none;
+  margin-left: 40px;
+  font-size: 20px;
 }
 
-// .loginbtn {
-//   margin-left: 30px;
-// }
+.loginbtn {
+  margin-top: 15px;
+}
 
 // .loginbtn ion-button {
 //   width: 240px;
@@ -204,4 +188,45 @@ ion-item {
     --box-shadow: 0px 12px 25px rgba(47, 88, 226, 0.4);
     --color: var(--ion-color-white-lilac);
   }
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  // width: 65%;
+  margin: auto;
+  bottom: 10vh;
+  left: 29vw;
+
+  ion-text {
+    font-size: small;
+  }
+}
+
+.div {
+  margin-top: 25px;
+}
+
+.login-section {
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+
+
+  ion-icon {
+    font-size: 45px;
+  }
+
+  .l {
+    margin-top: 14px;
+  }
+}
+
+a {
+  margin-left: 120px;
+  color: white;
+  font-size: 15px;
 }

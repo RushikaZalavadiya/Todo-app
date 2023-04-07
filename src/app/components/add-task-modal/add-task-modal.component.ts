@@ -5,6 +5,7 @@ import { TaskDetail } from "src/app/interfaces/todo";
 import { AuthService } from "src/app/services/auth.service";
 import { TodoService } from "src/app/services/todo.service";
 import { DateTimeComponent } from "../date-time/date-time.component";
+import { USER_ID } from "src/app/constants/commonKeys";
 
 type PriorityTypes =
   | "High Priority"
@@ -28,11 +29,12 @@ export class AddTaskModalComponent implements OnInit {
     public popoverCtrl: PopoverController,
     private _todoService: TodoService,
     private _authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.inputTask = new FormGroup({
       name: new FormControl("", Validators.required),
+      category: new FormControl("", Validators.required)
     });
   }
 
@@ -57,13 +59,16 @@ export class AddTaskModalComponent implements OnInit {
   }
 
   addTask() {
+    let id = localStorage.getItem(USER_ID.uid);
     this._authService._user$.subscribe((user) => {
+      console.log(user);
       this.uid = user.uid;
     });
 
     const taskDetail: TaskDetail = {
       uid: this.uid,
       name: this.inputTask.controls["name"].value,
+      category: this.inputTask.controls["category"].value,
       date: this.selectedDate,
       priority: this.taskPriority,
       isCompleted: false,
@@ -72,7 +77,7 @@ export class AddTaskModalComponent implements OnInit {
     };
     if (this.inputTask.valid) {
       this._todoService
-        .addTodo(taskDetail)
+        .addTodo(taskDetail, id)
         .then((res) => {
           console.log(res);
         })

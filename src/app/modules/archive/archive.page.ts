@@ -14,7 +14,7 @@ export class ArchivePage implements OnInit, OnDestroy {
   constructor(private _todoService: TodoService, private _authService: AuthService) { }
 
   ngOnInit() {
-    this.subscription = this._todoService.task().subscribe((data) => {
+    this.subscription = this._todoService._todos$.subscribe((data) => {
       this.deletedTask = data.filter((task) => task.isDeleted);
     });
   }

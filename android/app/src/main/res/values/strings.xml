@@ -4,7 +4,7 @@
     <string name="title_activity_main">ToDo-App</string>
     <string name="package_name">io.ionic.todo</string>
     <string name="custom_url_scheme">io.ionic.todo</string>
-    <string name="server_client_id">668049412758-mgqq5of12cuq02pf1qf9co2u9u24313d.apps.googleusercontent.com</string>
+    <string name="server_client_id">190294578941-78ob3avlc728dlp53t3agvkttaf4mj22.apps.googleusercontent.com</string>
     <string name="facebook_app_id">5195857290520104</string>
     <string name="facebook_client_token">4a80472da3db156d9785f02692e89ce1</string>
     <string name="fb_login_protocol_scheme">fb5195857290520104</string>

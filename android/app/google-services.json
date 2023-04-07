@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "190294578941-2kvn6ulogu2mgvtgisf7bso1ho3mp09u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.ionic.todo",
+            "certificate_hash": "1eadeb3a55ea686ac5c7c2730221836159fb5691"
+          }
+        },
+        {
           "client_id": "190294578941-78ob3avlc728dlp53t3agvkttaf4mj22.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "190294578941-78ob3avlc728dlp53t3agvkttaf4mj22.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "190294578941-r4sp6srlov6n1sm60qbrjrq6vj9q9lgj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "io.ionic.todo"
+              }
             }
           ]
         }

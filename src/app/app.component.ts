@@ -26,7 +26,7 @@ export class AppComponent {
 
   checkPermission() {
     LocalNotifications.checkPermissions().then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.display == 'granted') {
         this.schedule();
       } else {
@@ -48,7 +48,7 @@ export class AppComponent {
           body: 'Enjoy your day!!',
           id: 1,
           title: 'Add task',
-          smallIcon: ''
+          smallIcon: 'todo'
         }
       ]
     })

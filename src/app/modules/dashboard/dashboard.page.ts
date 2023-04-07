@@ -7,6 +7,7 @@ import {
 } from "@ionic/angular";
 import { AddTaskModalComponent } from "src/app/components/add-task-modal/add-task-modal.component";
 import { DateTimeComponent } from "src/app/components/date-time/date-time.component";
+import { USER_ID } from "src/app/constants/commonKeys";
 import { TaskDetail } from "src/app/interfaces/todo";
 import { AuthService } from "src/app/services/auth.service";
 import { TodoService } from "src/app/services/todo.service";
@@ -21,17 +22,7 @@ type SegmentTypes = "all" | "complete" | "incomplete";
 export class DashboardPage implements OnInit {
   public selectedDate: Date;
   public segmentValue: SegmentTypes = "all";
-  public todos: TaskDetail[] = [
-    {
-      date: "2023-02-24T23:19:00+05:30",
-      isCompleted: false,
-      isDeleted: false,
-      isFav: false,
-      name: "Test",
-      priority: "High Priority",
-      uid: "HKtJTMOfUmZaNyEZHKssCgZXYyy1"
-    }
-  ];
+  public todos: TaskDetail[] = [];
 
   constructor(
     public modalCtrl: ModalController,
@@ -45,11 +36,25 @@ export class DashboardPage implements OnInit {
   ngOnInit() {
     this.selectedDate = new Date();
     this.getTodos();
+    // let d = this.router.getCurrentNavigation().extras.state;
+    // if (d.type) {
+
+    //   if (d.type == 'visitor') {
+    //     this._authService.addVisitor().then((res) => {
+    //       console.log(res.id);
+    //       const visitor = {
+    //         type: 'visitor',
+    //         id: res.id
+    //       }
+    //       localStorage.setItem(USER_ID.user, JSON.stringify(visitor));
+    //     })
+    //   }
+    // }
   }
 
   getTodos() {
     this._authService._user$.subscribe((user) => {
-      console.log(user?.uid);
+      // console.log(user?.uid);
       this.allTask(user?.uid);
     });
   }
@@ -68,13 +73,14 @@ export class DashboardPage implements OnInit {
   }
 
   allTask(uid: string) {
+    // this._todoService.getTodos() 
     this._todoService.getTodos(uid, (data) => {
       this.todos = data.filter(
         (task) =>
           new Date(task.date).setHours(0, 0, 0, 0) ===
           new Date(this.selectedDate).setHours(0, 0, 0, 0)
       );
-      console.log(this.todos);
+      // console.log(this.todos);
     });
   }
 

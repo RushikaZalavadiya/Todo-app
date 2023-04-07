@@ -1,93 +1,101 @@
 @mixin flexProperty() {
-    display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
-.card{
-    @include flexProperty();
-    flex-direction: column;
-    ion-card {
-        border-radius: 25px;
-        margin-top: 5px;
-        width: 80%;
-    
-        ion-card-content {
-          display: flex;
-          justify-content: space-between;
-          .task-detail {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-    
-            ion-checkbox {
-              align-items: center;
-              width: 32px;
-              height: 32px;
-              margin-left: 5px;
-              --border-radius: 8px;
-              --checkmark-color: #ffffff;
-              --checkmark-width: 4px;
-              --background-checked: #1aff00;
-              --border-color-checked: #1aff00;
-              --border-width: 4px;
-              --border-color: #d7dbe6;
-            }
-    
-            .separator-line {
-              border-left: 3px solid #ff006f;
-              height: 95%;
-              margin-left: 15px;
-              border-radius: 30px;
-              box-shadow: 0px 3px 16px #ff006f;
-            }
-            .separator-line-checked {
-              border-left: 3px solid #1aff00;
-              box-shadow: 0px 3px 16px #1aff00;
-              height: 95%;
-              margin-left: 15px;
-              border-radius: 30px;
-            }
-            .content {
-              font-family: "Source Sans Pro-SemiBold";
-              margin-left: 18px;
-    
-              .header {
-                color: var(--ion-color-navy);
-                font-size: 22px;
-                line-height: 27px;
-              }
-              .checked-header {
-                text-decoration: line-through;
-                font-size: 22px;
-                line-height: 27px;
-                color: var(--ion-color-navy);
-              }
-              .detail {
-                font-family: "Source Sans Pro-SemiBold";
-                font-size: 18px;
-                color: var(--ion-color-santa-grey);
-                line-height: 23px;
-                margin-top: 7px;
-              }
-            }
+
+.card {
+  @include flexProperty();
+  flex-direction: column;
+
+  ion-card {
+    border-radius: 25px;
+    margin-top: 5px;
+    width: 80%;
+
+    ion-card-content {
+      display: flex;
+      justify-content: space-between;
+
+      .task-detail {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        ion-checkbox {
+          align-items: center;
+          width: 32px;
+          height: 32px;
+          margin-left: 5px;
+          --border-radius: 8px;
+          --checkmark-color: #ffffff;
+          --checkmark-width: 4px;
+          --background-checked: #1aff00;
+          --border-color-checked: #1aff00;
+          --border-width: 4px;
+          --border-color: #d7dbe6;
+        }
+
+        .separator-line {
+          border-left: 3px solid #ff006f;
+          height: 95%;
+          margin-left: 15px;
+          border-radius: 30px;
+          box-shadow: 0px 3px 16px #ff006f;
+        }
+
+        .separator-line-checked {
+          border-left: 3px solid #1aff00;
+          box-shadow: 0px 3px 16px #1aff00;
+          height: 95%;
+          margin-left: 15px;
+          border-radius: 30px;
+        }
+
+        .content {
+          font-family: "Source Sans Pro-SemiBold";
+          margin-left: 18px;
+
+          .header {
+            color: var(--ion-color-navy);
+            font-size: 22px;
+            line-height: 27px;
+            font-family: "Source Sans Pro-SemiBold";
+          }
+
+          .checked-header {
+            text-decoration: line-through;
+            font-size: 22px;
+            line-height: 27px;
+            color: var(--ion-color-navy);
+          }
+
+          .detail {
+            font-family: "Source Sans Pro-SemiBold";
+            font-size: 18px;
+            color: var(--ion-color-santa-grey);
+            line-height: 23px;
+            margin-top: 7px;
           }
         }
       }
-      .modify-icons {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-    
-        .star {
-          width: 20px;
-          height: 20px;
-          margin-right: 12px;
-        }
-        .close {
-          width: 16px;
-          height: 16px;
-        }
-      }
-}
+    }
+  }
 
- 
+  .modify-icons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    .star {
+      width: 20px;
+      height: 20px;
+      margin-right: 12px;
+    }
+
+    .close {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}

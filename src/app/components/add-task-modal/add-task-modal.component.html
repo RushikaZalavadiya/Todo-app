@@ -6,6 +6,14 @@
           <ion-label>{{ "AddTask.TaskName" | translate }}</ion-label>
           <ion-input formControlName="name"></ion-input>
         </ion-item>
+        <ion-item>
+          <ion-select placeholder="Select Category" formControlName="category">
+            <ion-select-option value="All">All</ion-select-option>
+            <ion-select-option value="Work">Work</ion-select-option>
+            <ion-select-option value="Personal">Personal</ion-select-option>
+            <ion-select-option value="Birthday">Birthday</ion-select-option>
+          </ion-select>
+        </ion-item>
       </form>
 
       <ion-item class="date">

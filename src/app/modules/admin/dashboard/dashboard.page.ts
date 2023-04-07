@@ -13,7 +13,7 @@ export class DashboardPage implements OnInit {
   constructor(private menuController: MenuController, public _todo: TodoService, public router: Router) { }
 
   ngOnInit() {
-    this._todo.task().subscribe((res) => {
+    this._todo._todos$.subscribe((res) => {
       console.log('res...', res);
       this.todoList = res;
     })

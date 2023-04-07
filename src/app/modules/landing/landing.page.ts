@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { USER_ID } from 'src/app/constants/commonKeys';
 import { AuthService } from 'src/app/services/auth.service';
+import { LoadingService } from 'src/app/services/loading.service';
 import { StripeService } from 'src/app/services/stripe.service';
 
 @Component({
@@ -10,15 +12,14 @@ import { StripeService } from 'src/app/services/stripe.service';
 })
 export class LandingPage implements OnInit {
 
-  constructor(public router: Router, public auth: AuthService, public stripe: StripeService) { }
+  constructor(public router: Router, public auth: AuthService, public stripe: StripeService, public loading: LoadingService) { }
 
   ngOnInit() {
 
   }
-  continue() {
-    let id = this.create_UUID();
-    this.auth.visitorUser();
-    this.router.navigate(['dashboard']);
+  async continue() {
+    await this.loading.present('Loading...');
+    this.router.navigate(['dashboard'], { state: { type: 'visitor' } });
   }
   create_UUID() {
     var dt = new Date().getTime();
@@ -30,7 +31,8 @@ export class LandingPage implements OnInit {
     return uuid;
   }
 
-  subscribe(id: string) {
+  async subscribe(id: string) {
+    // await this.loading.present('Loading...');
     this.stripe.getPlan(id).subscribe((res) => {
       console.log(res);
     })

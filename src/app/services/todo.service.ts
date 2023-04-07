@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
-import { TaskDetail } from "../interfaces/todo";
+import { TaskDetail, User } from "../interfaces/todo";
 import "firebase/compat/firestore";
 import firebase from "firebase/compat/app";
+import { USER_ID } from "../constants/commonKeys";
 
 @Injectable({
   providedIn: "root",
@@ -10,24 +11,28 @@ import firebase from "firebase/compat/app";
 export class TodoService {
   public todos = [];
   public deletedTodo = [];
-  private _todos$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  public _todos$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   public _newtodos$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  id = localStorage.getItem(USER_ID.uid);
 
-
+  public userCollection = "User";
   public todoCollection = "Todo";
   constructor() {
-    this.getAdminTodos()
   }
 
-  addTodo(todo: TaskDetail) {
-    return firebase.firestore().collection(this.todoCollection).add(todo);
+  getUser() {
+    return firebase.firestore().collection(this.userCollection).doc(this.id).get();
   }
 
-  getTodos(uid: string, todos) {
+  addTodo(todo: TaskDetail, id: string) {
+    return firebase.firestore().collection(this.userCollection).doc(id).collection(this.todoCollection).add(todo);
+  }
+
+  getTodos(uid, todos) {
+
     return firebase
       .firestore()
-      .collection(this.todoCollection)
-      .where("uid", "==", uid)
+      .collection(this.userCollection).doc(uid).collection(this.todoCollection)
       .onSnapshot((snapshot) => {
         const data = snapshot.docs.map((doc) => ({
           id: doc.id,
@@ -35,35 +40,24 @@ export class TodoService {
           ...doc.data(),
         }));
 
-        console.log("user data", data);
+        // console.log("user data", data);
         this.todos = data.filter((todo) => todo.isDeleted == false);
 
         todos(this.todos);
         this._todos$.next(data);
       });
   }
-  getAdminTodos() {
-    return firebase.firestore().collection(this.todoCollection).onSnapshot((snapshot) => {
-      const data = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      console.log(data);
-
-      this._newtodos$.next(data)
-    })
-  }
-  task(): Observable<TaskDetail[]> {
-    return this._newtodos$.asObservable();
-  }
 
   markAsComplete(id: string, todo: TaskDetail) {
+    console.log(todo, id);
     if (this.todos.filter((task) => task.id == id)) {
       todo.isCompleted = !todo.isCompleted;
     }
+    console.log(todo, id);
+
     return firebase
       .firestore()
-      .collection(this.todoCollection)
+      .collection(this.userCollection).doc(this.id).collection(this.todoCollection)
       .doc(id)
       .update(todo);
   }
@@ -75,7 +69,7 @@ export class TodoService {
     }
     return firebase
       .firestore()
-      .collection(this.todoCollection)
+      .collection(this.userCollection).doc(this.id).collection(this.todoCollection)
       .doc(id)
       .update(todo);
   }
@@ -86,7 +80,7 @@ export class TodoService {
     }
     return firebase
       .firestore()
-      .collection(this.todoCollection)
+      .collection(this.userCollection).doc(this.id).collection(this.todoCollection)
       .doc(id)
       .update(todo);
   }

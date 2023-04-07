@@ -14,6 +14,7 @@ import { BehaviorSubject } from "rxjs";
 import { Router } from "@angular/router";
 import { USER_ID } from "../constants/commonKeys";
 import { LanguageService } from "./language.service";
+import { User } from "../interfaces/todo";
 // import { FirebaseAnalytics } from "@capacitor-community/firebase-analytics";
 // import { FirebaseCrashlytics } from "@capacitor-community/firebase-crashlytics";
 
@@ -22,26 +23,34 @@ import { LanguageService } from "./language.service";
 })
 export class AuthService {
   public _user$: BehaviorSubject<any> = new BehaviorSubject(null);
+
+  public userCollection = "User";
+  public visitorCollection = "Visitor";
+
   constructor(
     public toastCtrl: ToastController,
     public router: Router,
     private _langService: LanguageService,
   ) {
-    // this.getUser();
-  }
-  visitorUser() {
-    return firebase.firestore().collection('Visitor').add({ test: 'test' });
+    this.getUser();
+    GoogleAuth.initialize({
+      clientId: '190294578941-78ob3avlc728dlp53t3agvkttaf4mj22.apps.googleusercontent.com',
+      grantOfflineAccess: true,
+      scopes: ['email']
+    })
+    FacebookLogin.initialize({ appId: '5195857290520104' })
   }
 
+  addProUser(user: User, id: string) {
+    return firebase.firestore().collection(this.userCollection).doc(id).set(user);
+  }
+  addVisitor() {
+    return firebase.firestore().collection(this.visitorCollection).add({});
+  }
   getUser() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this._user$.next(user);
-        this._user$.subscribe(data => {
-          console.log(data);
-
-        })
-
         this.router.navigate(["dashboard"]);
       }
       // else {
@@ -49,8 +58,6 @@ export class AuthService {
       // }
     });
   }
-
-
   get user() {
     return this._user$.asObservable();
   }

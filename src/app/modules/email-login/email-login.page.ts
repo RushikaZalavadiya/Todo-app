@@ -9,6 +9,9 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
 import { StripeService } from "src/app/services/stripe.service";
+import { USER_ID } from "src/app/constants/commonKeys";
+import { User } from "src/app/interfaces/todo";
+import { LoadingService } from "src/app/services/loading.service";
 // import * as firebaseErrorCodes from 'firebase-error-codes';
 
 @Component({
@@ -23,7 +26,8 @@ export class EmailLoginPage implements OnInit {
   constructor(private _authService: AuthService,
     public router: Router,
     public _translateService: TranslateService,
-    public stripe: StripeService
+    public stripe: StripeService,
+    public loading: LoadingService
   ) {
   }
 
@@ -43,7 +47,6 @@ export class EmailLoginPage implements OnInit {
       this.router.navigate(['/admin/dashboard']);
     }
     else {
-
       this._authService
         .signInWithEmail(
           this.loginForm.controls["email"].value,
@@ -51,7 +54,20 @@ export class EmailLoginPage implements OnInit {
         )
         .then((userCredential) => {
           console.log(userCredential.user, "user");
-          this.router.navigate(["dashboard"]);
+          this.loading.present('Loading...').then(() => {
+
+            localStorage.setItem(USER_ID.uid, userCredential.user.uid);
+            const user: User = {
+              email: userCredential.user.email,
+              id: userCredential.user.uid
+            }
+            this._authService.addProUser(user, userCredential.user.uid).then((res) => {
+              console.log(res);
+            }).catch((e) => {
+              console.log(e);
+            })
+            this.router.navigate(["dashboard"]);
+          })
         })
         .catch((error) => {
           console.log(error);
@@ -64,5 +80,11 @@ export class EmailLoginPage implements OnInit {
           }
         });
     }
+  }
+  google() {
+    this._authService.signInWithGoogle().then(() => { })
+  }
+  facebook() {
+    this._authService.loginWithFacebook().then(() => { })
   }
 }

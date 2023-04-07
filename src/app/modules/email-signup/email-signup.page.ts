@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { StripeService } from 'src/app/services/stripe.service';
-// import * as firebaseErrorCodes from 'firebase-error-codes';
+import * as firebaseErrorCodes from 'firebase-error-codes';
 import { Router } from '@angular/router';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-email-signup',
@@ -16,7 +17,8 @@ export class EmailSignupPage {
   constructor(
     public _authService: AuthService,
     public stripe: StripeService,
-    public router: Router
+    public router: Router,
+    public loading: LoadingService
   ) {
 
     this.signupForm = new FormGroup({
@@ -45,37 +47,39 @@ export class EmailSignupPage {
         )
         .then((userCredential) => {
           console.log(userCredential.user);
-
-          if (userCredential) {
-            this.stripe.createCustomer(this.signupForm.controls['email'].value).subscribe((customer) => {
-              console.log(customer, 'cust');
-              this.stripe.createPaymentMethod().subscribe((pm) => {
-                console.log(pm);
-                this.stripe.attachPaymentMethod(customer['id'], pm['id']).subscribe((res) => {
-                  console.log(res);
-                  this.stripe.updateCustomer(customer['id'], pm['id']).subscribe((res) => {
+          this.loading.present('Loaing...').then(() => {
+            if (userCredential) {
+              this.stripe.createCustomer(this.signupForm.controls['email'].value).subscribe((customer) => {
+                console.log(customer, 'cust');
+                this.stripe.createPaymentMethod().subscribe((pm) => {
+                  console.log(pm);
+                  this.stripe.attachPaymentMethod(customer['id'], pm['id']).subscribe((res) => {
                     console.log(res);
-                    // this.stripe.createSubscription(customer['id'], this.id).subscribe((res) => {
-                    //   console.log(res);
-                    // })
-                    this.stripe.checkout(this.id).subscribe((res) => {
+                    this.stripe.updateCustomer(customer['id'], pm['id']).subscribe((res) => {
                       console.log(res);
-                      window.location.replace(res['url'])
+                      // this.stripe.createSubscription(customer['id'], this.id).subscribe((res) => {
+                      //   console.log(res);
+                      // })
+                      this.loading.dismiss();
+                      this.stripe.checkout(this.id).subscribe((res) => {
+                        console.log(res);
+                        window.location.replace(res['url'])
+                      })
                     })
                   })
                 })
               })
-            })
-          }
+            }
+          })
         }).catch((e) => {
           console.log(e.message);
-          // if (e instanceof Error) {  
-          //   if (e.message.includes(firebaseErrorCodes.Auth.emailAlreadyExists)) {
-          //     this._authService.toastMsg('Email is already in use.');
-          //   } else {
-          //     this._authService.toastMsg('Something went wrong. Please try again.');
-          //   }
-          // }
+          if (e instanceof Error) {
+            if (e.message.includes('auth/email-already-in-use')) {
+              this._authService.toastMsg('Email is already exists. Please try with different.');
+            } else {
+              this._authService.toastMsg('Something went wrong. Please try again.');
+            }
+          }
         });
     } else {
       return false;
