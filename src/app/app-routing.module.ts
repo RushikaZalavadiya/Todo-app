@@ -67,6 +67,10 @@ const routes: Routes = [
     path: 'update',
     loadChildren: () => import('./modules/update/update.module').then( m => m.UpdatePageModule)
   },
+  {
+    path: 'dashboard-visitor',
+    loadChildren: () => import('./modules/dashboard-visitor/dashboard-visitor.module').then( m => m.DashboardVisitorPageModule)
+  },
 
 
 

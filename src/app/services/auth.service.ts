@@ -15,6 +15,8 @@ import { Router } from "@angular/router";
 import { USER_ID } from "../constants/commonKeys";
 import { LanguageService } from "./language.service";
 import { User } from "../interfaces/todo";
+import "firebase/compat/firestore"
+import { LoadingService } from "./loading.service";
 // import { FirebaseAnalytics } from "@capacitor-community/firebase-analytics";
 // import { FirebaseCrashlytics } from "@capacitor-community/firebase-crashlytics";
 
@@ -26,11 +28,13 @@ export class AuthService {
 
   public userCollection = "User";
   public visitorCollection = "Visitor";
+  public _regUser$: BehaviorSubject<any> = new BehaviorSubject(null);
 
   constructor(
     public toastCtrl: ToastController,
     public router: Router,
     private _langService: LanguageService,
+    public loading: LoadingService
   ) {
     this.getUser();
     GoogleAuth.initialize({
@@ -51,13 +55,37 @@ export class AuthService {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this._user$.next(user);
-        this.router.navigate(["dashboard"]);
+        // this.router.navigate(["dashboard"]);
       }
       // else {
       //   this.router.navigate(["welcome"]);
       // }
     });
   }
+  regUser(user: any) {
+    return firebase.firestore().collection('regUser').add(user);
+
+  }
+  getregUser() {
+    firebase
+      .firestore()
+      .collection('regUser')
+
+      .onSnapshot((snapshot) => {
+        console.log(snapshot);
+        const data = snapshot.docs.map((doc) => ({
+
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+        console.log("user data", data);
+
+        this._regUser$.next(data);
+      });
+    return this._regUser$.asObservable();
+  }
+
   get user() {
     return this._user$.asObservable();
   }
@@ -78,6 +106,7 @@ export class AuthService {
     const credential = GoogleAuthProvider.credential(
       googleUser.authentication.idToken
     );
+    this.loading.present('Loading...');
     return firebase.auth().signInWithCredential(credential);
   }
 

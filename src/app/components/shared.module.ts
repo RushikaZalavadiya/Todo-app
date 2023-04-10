@@ -11,6 +11,9 @@ import { EmptyTaskListComponent } from "./empty-task-list/empty-task-list.compon
 import { TaskComponent } from "./task/task.component";
 import { FilterPipe } from "./pipes/filter.pipe";
 import { TranslateModule } from "@ngx-translate/core";
+import { ButtonComponent } from "./button/button.component";
+import { IconButtonComponent } from "./icon-button/icon-button.component";
+import { InputComponent } from "./input/input.component";
 
 const COMPONENTS = [
   AddTaskModalComponent,
@@ -20,6 +23,7 @@ const COMPONENTS = [
   EmptyTaskListComponent,
   TaskComponent,
   FilterPipe,
+  InputComponent, ButtonComponent, IconButtonComponent
 ];
 @NgModule({
   declarations: [...COMPONENTS],
@@ -32,4 +36,4 @@ const COMPONENTS = [
   ],
   exports: [...COMPONENTS],
 })
-export class ComponentsModule {}
+export class ComponentsModule { }

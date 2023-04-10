@@ -14,6 +14,9 @@ import { LoadingService } from 'src/app/services/loading.service';
 export class EmailSignupPage {
   id: string;
   signupForm: FormGroup;
+  focused: boolean;
+  passwordType: string = 'password';
+  passwordIcon: string = 'eye';
   constructor(
     public _authService: AuthService,
     public stripe: StripeService,
@@ -22,6 +25,7 @@ export class EmailSignupPage {
   ) {
 
     this.signupForm = new FormGroup({
+      name: new FormControl('', Validators.required),
       email: new FormControl('test@gmail.com', [Validators.email, Validators.required]),
       password: new FormControl('123456', [Validators.minLength(6), Validators.required]),
     });
@@ -36,6 +40,18 @@ export class EmailSignupPage {
       }
     }
   }
+
+  hideShowPassword() {
+    this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
+    this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
+  }
+  onBlur(event: any) {
+    const value = event.target.value;
+
+    if (!value) {
+      this.focused = false;
+    }
+  }
   onSubmit() {
     this.signupForm.markAllAsTouched();
 
@@ -47,29 +63,8 @@ export class EmailSignupPage {
         )
         .then((userCredential) => {
           console.log(userCredential.user);
-          this.loading.present('Loaing...').then(() => {
-            if (userCredential) {
-              this.stripe.createCustomer(this.signupForm.controls['email'].value).subscribe((customer) => {
-                console.log(customer, 'cust');
-                this.stripe.createPaymentMethod().subscribe((pm) => {
-                  console.log(pm);
-                  this.stripe.attachPaymentMethod(customer['id'], pm['id']).subscribe((res) => {
-                    console.log(res);
-                    this.stripe.updateCustomer(customer['id'], pm['id']).subscribe((res) => {
-                      console.log(res);
-                      // this.stripe.createSubscription(customer['id'], this.id).subscribe((res) => {
-                      //   console.log(res);
-                      // })
-                      this.loading.dismiss();
-                      this.stripe.checkout(this.id).subscribe((res) => {
-                        console.log(res);
-                        window.location.replace(res['url'])
-                      })
-                    })
-                  })
-                })
-              })
-            }
+          this.loading.present('Loaing...', 4000).then(() => {
+            this.checkoutSubscription(userCredential);
           })
         }).catch((e) => {
           console.log(e.message);
@@ -87,5 +82,32 @@ export class EmailSignupPage {
   }
   get formData() {
     return this.signupForm.controls;
+  }
+  google() {
+    this._authService.signInWithGoogle().then((userCredential) => {
+      this.checkoutSubscription(userCredential);
+    })
+  }
+
+  checkoutSubscription(userCredential) {
+    if (userCredential) {
+      this.stripe.createCustomer(this.signupForm.controls['email'].value).subscribe((customer) => {
+        console.log(customer, 'cust');
+        this.stripe.createPaymentMethod().subscribe((pm) => {
+          console.log(pm);
+          this.stripe.attachPaymentMethod(customer['id'], pm['id']).subscribe((res) => {
+            console.log(res);
+            this.stripe.updateCustomer(customer['id'], pm['id']).subscribe((res) => {
+              console.log(res);
+              this.loading.dismiss();
+              this.stripe.checkout(this.id).subscribe((res) => {
+                console.log(res);
+                window.location.replace(res['url'])
+              })
+            })
+          })
+        })
+      })
+    }
   }
 }

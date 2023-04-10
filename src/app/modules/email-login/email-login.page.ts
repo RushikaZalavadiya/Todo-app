@@ -23,6 +23,9 @@ export class EmailLoginPage implements OnInit {
 
   public loginForm: FormGroup;
   message: string;
+  focused: boolean;
+  passwordType: string = 'password';
+  passwordIcon: string = 'eye';
   constructor(private _authService: AuthService,
     public router: Router,
     public _translateService: TranslateService,
@@ -43,12 +46,24 @@ export class EmailLoginPage implements OnInit {
   get formData() {
     return this.loginForm.controls;
   }
+  onBlur(event: any) {
+    const value = event.target.value;
 
+    if (!value) {
+      this.focused = false;
+    }
+  }
+  hideShowPassword() {
+    this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
+    this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
+  }
   onSubmit() {
     if (this.loginForm.value.email === 'pratham@gmail.com' && this.loginForm.value.password === '!@333dddD') {
       this.router.navigate(['/admin/dashboard']);
     }
     else {
+      console.log('testing.....');
+
       this._authService
         .signInWithEmail(
           this.loginForm.controls["email"].value,

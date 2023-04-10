@@ -1,60 +1,23 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-icon name="arrow-back-outline"></ion-icon>
-    </ion-buttons>
-    <ion-title>{{"SignIn.SignInText"|translate}}</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <div class="signUp">
-    <div *ngIf="!isOpen">
-      <app-signup></app-signup>
-      <div class="register">
-        <ion-label>{{'SignIn.HaveAccount'|translate}}</ion-label>
-        <ion-button fill="clear" (click)="signIn()">
-          <ion-label>{{'SignIn.SignInText'|translate}}</ion-label>
-        </ion-button>
-      </div>
-    </div>
-  </div>
-  <div class="signIn">
-    <div *ngIf="isOpen">
-      <app-signin></app-signin>
-      <div class="login">
-        <ion-label>{{'SignIn.NeedToSignUp'|translate}}</ion-label>
-        <ion-button fill="clear" (click)="signUp()">
-          <ion-label>{{'SignIn.SignUpText'|translate}}</ion-label>
-        </ion-button>
-      </div>
-    </div>
-  </div>
-</ion-content> -->
-<ion-content [fullscreen]="true">
+<!-- <ion-content [fullscreen]="true">
   <div class="circle circle1"></div>
 
   <form [formGroup]="signupForm" class="container">
     <ion-icon name="person" color="black"></ion-icon>
     <ion-item lines="none" class="ion-text-center itemDesign" color="light">
-      <!-- <ion-label>E-Mail <ion-text color="danger">*</ion-text></ion-label> -->
       <ion-input required formControlName="email" type="text" placeholder="Enter email"></ion-input>
     </ion-item>
     <p *ngIf="formData.email.invalid && formData.email.touched" lines="none" class="form-error">
       Please enter a valid email address.
     </p>
     <ion-item lines="none" class="ion-text-center itemDesign" color="light">
-      <!-- <ion-label>Password <ion-text color="danger">*</ion-text></ion-label> -->
       <ion-input required formControlName="password" type="text" placeholder="Enter password"></ion-input>
     </ion-item>
     <p *ngIf="formData.password.invalid && formData.password.touched" lines="none" class="form-error">
       Please enter a valid password.
     </p>
-    <!-- <ion-button class="login-btn" type="submit" [disabled]="signupForm.invalid" (click)="onSubmit()">
+    <ion-button class="login-btn" type="submit" [disabled]="signupForm.invalid" (click)="onSubmit()">
       Register
-    </ion-button> -->
-    <p (click)="onSubmit()" class="loginp">Register188</p>
-
+    </ion-button>
   </form>
 
 
@@ -66,17 +29,37 @@
           in</span></ion-label>
 
     </div>
-    <!-- <ion-text color="medium">
-      <p>Forgot Password?</p>
-    </ion-text>
-    <p class="signup">
-      <ion-note>
-        Not a member yet? <ion-text routerLink="/new-signup" color="primary">Sign Up</ion-text>
-      </ion-note>
-    </p> -->
-    <!-- <ion-row>
-      <ion-col size="3"><ion-icon name="logo-facebook" color="white"></ion-icon></ion-col>
-      <ion-col size="3"><ion-icon name="logo-google" color="danger"></ion-icon></ion-col>
-    </ion-row> -->
+ 
+   
   </div>
+</ion-content> -->
+<ion-content class="ion-padding">
+  <h1>Create Account,</h1>
+  <h3>Sign up to get started!</h3>
+
+  <form [formGroup]="signupForm">
+    <div class="form-field">
+      <label [ngClass]="focused ? 'label-focused' : ''">Username</label>
+      <input type="text" (focus)="focused = true" (blur)="onBlur($event)" formControlName="name" />
+    </div>
+    <div class="form-field">
+      <label [ngClass]="focused ? 'label-focused' : ''">Email</label>
+      <input type="email" (focus)="focused = true" (blur)="onBlur($event)" formControlName="email" />
+    </div>
+    <div class="form-field">
+      <div class="pass">
+        <label [ngClass]="focused ? 'label-focused' : ''">Password</label>
+        <input [type]="passwordType" (focus)="focused = true" (blur)="onBlur($event)" formControlName="password" />
+      </div>
+
+      <div (click)='hideShowPassword()' class="icon">
+        <ion-icon item-end [name]="passwordIcon" class="passwordIcon"></ion-icon>
+      </div>
+    </div>
+
+    <app-button label='Register' (click)="onSubmit()"></app-button>
+    <app-icon-button icon='logo-google' label='Connect with Google' color="danger" (click)="google()"></app-icon-button>
+  </form>
+
+  <p class="footer-text">I'm already a member, <a routerLink="/email-login">Sign In</a></p>
 </ion-content>

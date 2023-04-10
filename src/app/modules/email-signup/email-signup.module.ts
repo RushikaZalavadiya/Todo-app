@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { EmailSignupPageRoutingModule } from './email-signup-routing.module';
 
 import { EmailSignupPage } from './email-signup.page';
+import { ComponentsModule } from 'src/app/components/shared.module';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { EmailSignupPage } from './email-signup.page';
     FormsModule,
     IonicModule,
     EmailSignupPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ComponentsModule
   ],
   declarations: [EmailSignupPage]
 })

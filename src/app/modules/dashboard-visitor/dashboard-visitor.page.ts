@@ -1,25 +1,20 @@
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import {
-  MenuController,
-  ModalController,
-  PopoverController,
-} from "@ionic/angular";
-import { AddTaskModalComponent } from "src/app/components/add-task-modal/add-task-modal.component";
-import { DateTimeComponent } from "src/app/components/date-time/date-time.component";
-import { USER_ID } from "src/app/constants/commonKeys";
-import { TaskDetail } from "src/app/interfaces/todo";
-import { AuthService } from "src/app/services/auth.service";
-import { TodoService } from "src/app/services/todo.service";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ModalController, MenuController, PopoverController } from '@ionic/angular';
+import { AddTaskModalComponent } from 'src/app/components/add-task-modal/add-task-modal.component';
+import { DateTimeComponent } from 'src/app/components/date-time/date-time.component';
+import { TaskDetail } from 'src/app/interfaces/todo';
+import { AuthService } from 'src/app/services/auth.service';
+import { TodoService } from 'src/app/services/todo.service';
 
 type SegmentTypes = "all" | "complete" | "incomplete";
 
 @Component({
-  selector: "app-dashboard",
-  templateUrl: "./dashboard.page.html",
-  styleUrls: ["./dashboard.page.scss"],
+  selector: 'app-dashboard-visitor',
+  templateUrl: './dashboard-visitor.page.html',
+  styleUrls: ['./dashboard-visitor.page.scss'],
 })
-export class DashboardPage implements OnInit {
+export class DashboardVisitorPage implements OnInit {
   public selectedDate: Date;
   public segmentValue: SegmentTypes = "all";
   public todos: TaskDetail[] = [];

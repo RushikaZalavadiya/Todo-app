@@ -3,6 +3,8 @@ import { LocalNotifications } from "@capacitor/local-notifications";
 import { isPlatform } from "@ionic/angular";
 import { environment } from "src/environments/environment";
 import { LanguageService } from "./services/language.service";
+import { FirebaseDynamicLinks } from "@pantrist/capacitor-firebase-dynamic-links";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-root",
@@ -10,7 +12,7 @@ import { LanguageService } from "./services/language.service";
   styleUrls: ["app.component.scss"],
 })
 export class AppComponent {
-  constructor(public langService: LanguageService) {
+  constructor(public langService: LanguageService, public router: Router) {
     langService.initializeLang();
     if (isPlatform('mobileweb')) {
       // FirebaseAnalytics.initializeFirebase(environment.firebaseConfig).then(res=>{
@@ -22,8 +24,14 @@ export class AppComponent {
     } else {
       this.schedule();
     }
+    this.getLinkData();
   }
-
+  getLinkData() {
+    FirebaseDynamicLinks.addListener('deepLinkOpen', (data) => {
+      console.log(data.url);
+      this.router.navigate(['/email-login']);
+    })
+  }
   checkPermission() {
     LocalNotifications.checkPermissions().then((res) => {
       // console.log(res);

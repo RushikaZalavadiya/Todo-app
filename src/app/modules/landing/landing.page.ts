@@ -19,7 +19,7 @@ export class LandingPage implements OnInit {
   }
   async continue() {
     await this.loading.present('Loading...');
-    this.router.navigate(['dashboard'], { state: { type: 'visitor' } });
+    this.router.navigate(['dashboard-visitor']);
   }
   create_UUID() {
     var dt = new Date().getTime();

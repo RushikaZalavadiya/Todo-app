@@ -1,106 +1,76 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-icon name="arrow-back-outline"></ion-icon>
-    </ion-buttons>
-    <ion-title>{{"SignIn.SignInText"|translate}}</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <div class="signUp">
-    <div *ngIf="!isOpen">
-      <app-signup></app-signup>
-      <div class="register">
-        <ion-label>{{'SignIn.HaveAccount'|translate}}</ion-label>
-        <ion-button fill="clear" (click)="signIn()">
-          <ion-label>{{'SignIn.SignInText'|translate}}</ion-label>
-        </ion-button>
-      </div>
-    </div>
-  </div>
-  <div class="signIn">
-    <div *ngIf="isOpen">
-      <app-signin></app-signin>
-      <div class="login">
-        <ion-label>{{'SignIn.NeedToSignUp'|translate}}</ion-label>
-        <ion-button fill="clear" (click)="signUp()">
-          <ion-label>{{'SignIn.SignUpText'|translate}}</ion-label>
-        </ion-button>
-      </div>
-    </div>
-  </div>
-</ion-content> -->
-
-
-<ion-content [fullscreen]="true">
+<!-- <ion-content [fullscreen]="true">
   <div class="circle circle1"></div>
   <form [formGroup]="loginForm" class="container">
     <ion-icon name="person" color="black" class="person"></ion-icon>
     <ion-item lines="none" class="ion-text-center itemDesign" color="light">
-      <!-- <ion-label>E-Mail <ion-text color="danger">*</ion-text></ion-label> -->
       <ion-input required formControlName="email" type="text" placeholder="Enter email"></ion-input>
     </ion-item>
     <p *ngIf="formData.email.invalid && formData.email.touched" lines="none" class="form-error">
       Please enter a valid email address.
     </p>
     <ion-item lines="none" class="ion-text-center itemDesign" color="light">
-      <!-- <ion-label>Password <ion-text color="danger">*</ion-text></ion-label> -->
       <ion-input required formControlName="password" type="text" placeholder="Enter password"></ion-input>
     </ion-item>
     <p *ngIf="formData.password.invalid && formData.password.touched" lines="none" class="form-error">
       Please enter a valid password.
     </p>
-    <!-- <ion-button class="login-btn" type="submit" (click)="onSubmit()">
+    <ion-button class="login-btn" type="submit" (click)="onSubmit()">
       Login
-    </ion-button> -->
-    <p (click)="onSubmit()" class="loginp">Login</p>
+    </ion-button>
+
   </form>
   <div class="circle circle2"></div>
-
-  <!-- <div class="container">
-
-    <ion-item>
-      <ion-input placeholder="Email" type="text" clearInput="true"></ion-input>
-    </ion-item>
-    <ion-item lines="none" class="ion-text-center ion-margin itemDesign" color="light">
-      <ion-input placeholder="Password" type="password" clearInput="true"></ion-input>
-    </ion-item>
-
-
-  </div> -->
 
   <div class="section">
     <a href="forgot-password">Forgot-password?</a>
 
     <div class="align ion-text-center">
-      <p routerLink="/forgot-password">Forgot-password?</p>
 
       <div class="loginbtn">
         <ion-label routerLink="/email-signup">Don't have an account? <span style="color: yellow;">Sign
             up</span></ion-label>
       </div>
     </div>
-    <!-- <ion-text color="medium">
-      <p>Forgot Password?</p>
 
-    </ion-text>
-    <p class="signup">
-      <ion-note>
-        Not a member yet? <ion-text routerLink="/new-signup" color="primary">Sign Up</ion-text>
-      </ion-note>
-    </p> -->
     <br>
 
     <div class="login-section">
       <div class="div">OR</div>
-      <!-- <ion-icon name="logo-facebook" color="white" (click)="facebook()"></ion-icon> -->
       <ion-icon name="logo-google" class="l" color="danger" (click)="google()"></ion-icon>
     </div>
-
-    <ion-row>
-      <ion-col size="3"><ion-icon name="logo-facebook" color="white"></ion-icon></ion-col>
-      <ion-col size="3"><ion-icon name="logo-google" class="l" color="danger" (click)="google()"></ion-icon></ion-col>
-    </ion-row>
   </div>
+</ion-content> -->
+<ion-content class="ion-padding">
+  <h1>Welcome,</h1>
+  <h3>Sign in to continue!</h3>
+
+  <form [formGroup]="loginForm">
+    <div class="form-field">
+      <label [ngClass]="focused ? 'label-focused' : ''">Email</label>
+      <input type="email" (focus)="focused = true" (blur)="onBlur($event)" formControlName="email" />
+    </div>
+    <p *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched" color="danger" class="form-error">
+      Please enter a valid email address.
+    </p>
+    <div class="form-field">
+      <div class="pass">
+        <label [ngClass]="focused ? 'label-focused' : ''">Password</label>
+        <input [type]="passwordType" (focus)="focused = true" (blur)="onBlur($event)" formControlName="password" />
+      </div>
+
+      <div (click)='hideShowPassword()' class="icon">
+        <ion-icon item-end [name]="passwordIcon" class="passwordIcon"></ion-icon>
+      </div>
+    </div>
+    <ion-text *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched" color="danger"
+      class="form-error">
+      Please enter Password.
+    </ion-text>
+    <a routerLink="/forgot-password" class="forgot-password-link">Forgot Password?</a>
+
+    <app-button label='Login' (click)="onSubmit()"></app-button>
+    <!-- <app-icon-button icon='logo-google' label='Connect with Google' color="danger"></app-icon-button> -->
+  </form>
+
+  <p class="footer-text">I'm a new user, <a routerLink="/email-signup">Sign Up</a></p>
 </ion-content>
