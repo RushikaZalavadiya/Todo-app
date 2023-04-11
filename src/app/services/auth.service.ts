@@ -48,8 +48,8 @@ export class AuthService {
   addProUser(user: User, id: string) {
     return firebase.firestore().collection(this.userCollection).doc(id).set(user);
   }
-  addVisitor() {
-    return firebase.firestore().collection(this.visitorCollection).add({});
+  addVisitor(user: User, id: string) {
+    return firebase.firestore().collection(this.visitorCollection).doc(id).set(user);
   }
   getUser() {
     firebase.auth().onAuthStateChanged((user) => {
@@ -61,29 +61,6 @@ export class AuthService {
       //   this.router.navigate(["welcome"]);
       // }
     });
-  }
-  regUser(user: any) {
-    return firebase.firestore().collection('regUser').add(user);
-
-  }
-  getregUser() {
-    firebase
-      .firestore()
-      .collection('regUser')
-
-      .onSnapshot((snapshot) => {
-        console.log(snapshot);
-        const data = snapshot.docs.map((doc) => ({
-
-          id: doc.id,
-          ...doc.data(),
-        }));
-
-        console.log("user data", data);
-
-        this._regUser$.next(data);
-      });
-    return this._regUser$.asObservable();
   }
 
   get user() {

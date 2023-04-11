@@ -9,8 +9,9 @@ export interface TaskDetail {
   isDeleted: boolean;
 }
 export interface User {
-  email: string;
+  email?: string;
   id?: string;
+  type?: string
 }
 export enum Category {
   all = 'All',

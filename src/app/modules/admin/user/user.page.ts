@@ -11,7 +11,7 @@ export class UserPage implements OnInit {
   constructor(public _auth: AuthService) { }
 
   ngOnInit() {
-    // this._auth.getregUser().subscribe(res => this.regUserData = res)
+
   }
 
 }
