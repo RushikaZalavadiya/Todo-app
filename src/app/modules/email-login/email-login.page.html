@@ -50,7 +50,7 @@
       <input type="email" (focus)="focused = true" (blur)="onBlur($event)" formControlName="email" />
     </div>
     <p *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched" color="danger" class="form-error">
-      Please enter a valid email address.
+      *Please enter a valid email address.
     </p>
     <div class="form-field">
       <div class="pass">
@@ -62,10 +62,9 @@
         <ion-icon item-end [name]="passwordIcon" class="passwordIcon"></ion-icon>
       </div>
     </div>
-    <ion-text *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched" color="danger"
-      class="form-error">
-      Please enter Password.
-    </ion-text>
+    <p *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched" color="danger" class="form-error">
+      *Please enter Password.
+    </p>
     <a routerLink="/forgot-password" class="forgot-password-link">Forgot Password?</a>
 
     <app-button label='Login' (click)="onSubmit()"></app-button>

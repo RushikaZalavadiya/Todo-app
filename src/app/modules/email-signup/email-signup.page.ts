@@ -26,8 +26,8 @@ export class EmailSignupPage {
 
     this.signupForm = new FormGroup({
       name: new FormControl('', Validators.required),
-      email: new FormControl('test@gmail.com', [Validators.email, Validators.required]),
-      password: new FormControl('123456', [Validators.minLength(6), Validators.required]),
+      email: new FormControl('', [Validators.email, Validators.required]),
+      password: new FormControl('', [Validators.minLength(6), Validators.required]),
     });
 
     if (router) {

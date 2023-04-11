@@ -38,8 +38,8 @@ export class EmailLoginPage implements OnInit {
 
   ngOnInit() {
     this.loginForm = new FormGroup({
-      email: new FormControl('test@gmail.com', [Validators.email, Validators.required]),
-      password: new FormControl('123456', [Validators.minLength(6), Validators.required]),
+      email: new FormControl('', [Validators.email, Validators.required]),
+      password: new FormControl('', [Validators.minLength(6), Validators.required]),
     });
     console.log('email..');
   }
@@ -58,6 +58,7 @@ export class EmailLoginPage implements OnInit {
     this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
   }
   onSubmit() {
+    this.loginForm.markAllAsTouched();
     if (this.loginForm.value.email === 'pratham@gmail.com' && this.loginForm.value.password === '!@333dddD') {
       this.router.navigate(['/admin/dashboard']);
     }

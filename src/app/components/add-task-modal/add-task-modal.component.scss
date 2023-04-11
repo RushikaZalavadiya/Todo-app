@@ -39,6 +39,14 @@
   }
 }
 
+
+ion-select {
+  width: 100%;
+  --color: var(--ion-color-white);
+  margin-top: 10px;
+  margin-bottom: 6px;
+}
+
 .priority {
   display: flex;
   justify-content: flex-start;
