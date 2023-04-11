@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ModalController, MenuController, PopoverController } from '@ionic/angular';
 import { AddTaskModalComponent } from 'src/app/components/add-task-modal/add-task-modal.component';
 import { DateTimeComponent } from 'src/app/components/date-time/date-time.component';
+import { USER_ID } from 'src/app/constants/commonKeys';
 import { TaskDetail } from 'src/app/interfaces/todo';
 import { AuthService } from 'src/app/services/auth.service';
 import { TodoService } from 'src/app/services/todo.service';
@@ -35,10 +36,8 @@ export class DashboardVisitorPage implements OnInit {
   }
 
   getTodos() {
-    this._authService._user$.subscribe((user) => {
-      // console.log(user?.uid);
-      this.allTask(user?.uid);
-    });
+    const id = localStorage.getItem(USER_ID.uid);
+    this.allTask(id);
   }
 
   async openDatePicker() {
@@ -56,7 +55,7 @@ export class DashboardVisitorPage implements OnInit {
 
   allTask(uid: string) {
     // this._todoService.getTodos() 
-    this._todoService.getTodos(uid, (data) => {
+    this._todoService.getVisitorTodos(uid, (data) => {
       this.todos = data.filter(
         (task) =>
           new Date(task.date).setHours(0, 0, 0, 0) ===

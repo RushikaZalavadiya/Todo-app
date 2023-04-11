@@ -12,16 +12,16 @@ export class TodoService {
   public todos = [];
   public deletedTodo = [];
   public _todos$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  public _visitorTodo$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+
   public _newtodos$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   id = localStorage.getItem(USER_ID.uid);
 
   public userCollection = "User";
   public todoCollection = "Todo";
-  constructor() {
-  }
+  public visitorCollection = "Visitor";
 
-  getUser() {
-    return firebase.firestore().collection(this.userCollection).doc(this.id).get();
+  constructor() {
   }
 
   addTodo(todo: TaskDetail, id: string) {
@@ -45,6 +45,29 @@ export class TodoService {
 
         todos(this.todos);
         this._todos$.next(data);
+      });
+  }
+
+  addVisitorTodo(todo: TaskDetail, id: string) {
+    return firebase.firestore().collection(this.userCollection).doc(id).collection(this.todoCollection).add(todo);
+  }
+  getVisitorTodos(uid, todos) {
+
+    return firebase
+      .firestore()
+      .collection(this.visitorCollection).doc(uid).collection(this.todoCollection)
+      .onSnapshot((snapshot) => {
+        const data = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          isDeleted: doc.data().isDeleted,
+          ...doc.data(),
+        }));
+
+        // console.log("user data", data);
+        this.todos = data.filter((todo) => todo.isDeleted == false);
+
+        todos(this.todos);
+        this._visitorTodo$.next(data);
       });
   }
 

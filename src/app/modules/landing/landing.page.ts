@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { USER_ID } from 'src/app/constants/commonKeys';
+import { User } from 'src/app/interfaces/todo';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { StripeService } from 'src/app/services/stripe.service';
@@ -18,7 +19,13 @@ export class LandingPage implements OnInit {
 
   }
   async continue() {
+    const user: User = {
+      id: this.create_UUID(),
+      type: 'Visitor'
+    }
+    this.auth.addVisitor(user, user.id);
     await this.loading.present('Loading...');
+    localStorage.setItem(USER_ID.uid, user.id);
     this.router.navigate(['dashboard-visitor']);
   }
   create_UUID() {
