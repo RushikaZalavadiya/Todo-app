@@ -37,5 +37,11 @@
   <ion-button (click)="removebannerad()">remove banner</ion-button> -->
   <ion-button (click)="loadinterad()"> banner</ion-button>
   <ion-button (click)="showinterad()"> banner2</ion-button>
+  <!-- <ion-datetime displayFormat="hh:mm A" pickerFormat="h mm A" [(ngModel)]="morningTime"
+    (ionChange)="Reminder()"></ion-datetime> -->
 
+  <ion-button (click)="scheduleMorningReminder()">no</ion-button>
+  <!-- <ion-datetime [(ngModel)]="selectedDate"></ion-datetime> -->
+  <input type="datetime-local" [(ngModel)]="selectedDate">
+  <ion-button (click)="time()">dateSelected</ion-button>
 </ion-content>

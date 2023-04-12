@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalNotifications } from '@capacitor/local-notifications';
 import { ToastController } from '@ionic/angular';
 import { AdmobAds, BannerPosition, BannerSize } from 'capacitor-admob-ads';
 
@@ -8,7 +9,10 @@ import { AdmobAds, BannerPosition, BannerSize } from 'capacitor-admob-ads';
   styleUrls: ['./update.page.scss'],
 })
 export class UpdatePage implements OnInit {
-
+  selectedDate: any
+  date: any;
+  datePipe: any;
+  localNotifications: any;
   constructor(public toastCtrl: ToastController) { }
 
   ngOnInit() {
@@ -85,6 +89,76 @@ export class UpdatePage implements OnInit {
       this.preserntToas("......");
     }).catch((err) => {
       this.preserntToas(err.message)
+    })
+  }
+  Reminder() {
+    console.log(this.selectedDate)
+  }
+  async scheduleMorningReminder() {
+    // let year = new Date().getFullYear();
+    // let month = new Date().getMonth();
+    // let day = new Date().getDate();
+
+    // let time1 = new Date(year, month, day, 7, 5, 0);
+    // console.log(time1)
+    // let time2 = new Date(year, month, day, 12, 0, 0);
+
+    await LocalNotifications.schedule({
+      notifications: [{
+        id: 1,
+        title: 'a...............',
+        body: 'aaaaa',
+        schedule: {
+          at: this.selectedDate,
+          repeats: true,
+        },
+
+      }]
+    })
+    // await LocalNotifications.schedule({  
+    //   notifications: [
+    //     {
+    //       id: 1,
+    //       title: 'My first notification',
+    //       trigger: { at: new Date(time1) },
+    //       data: { "id": 1, "name": "Mr. A" }
+    //     },
+    //     {
+    //       id: 2,
+    //       title: 'My Second notification',
+    //       trigger: { at: new Date(time2) },
+    //       data: { "id": 2, "name": "Mr. B" },
+
+    //     }
+    //   ]
+    // })
+
+  }
+  async time() {
+    let todayDate = new Date();
+    console.log('t', todayDate);
+    let dateSelected = new Date(this.selectedDate)
+    console.log('s', this.selectedDate);
+
+    if (todayDate.getDate() > dateSelected.getDate()) {
+      this.preserntToas("please selected valid date")
+      console.log("plaese slected valid date");
+    }
+    else {
+      dateSelected = this.selectedDate
+      console.log("valid date.....");
+    }
+    await LocalNotifications.schedule({
+      notifications: [{
+        id: 1,
+        title: 'Reminder....',
+        body: 'reminder.....  ',
+        schedule: {
+          at: new Date(dateSelected),
+          repeats: true,
+        },
+
+      }]
     })
   }
 }
