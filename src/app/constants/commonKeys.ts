@@ -1,4 +1,5 @@
 export const USER_ID = {
   uid: "User Id",
-  user: "User"
+  user: "User",
+  deviceId: "_capuid"
 };

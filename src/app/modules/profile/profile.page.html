@@ -20,20 +20,21 @@
           <label for="user-name">Name</label>
           <div class="input-wrapper">
             <span class="icon"><i class="fas fa-user"></i></span>
-            <input type="text" id="user-name" value="Lorem Ipsum" autocomplete="username" required>
+            <input type="text" id="user-name" [value]="user.username" value="Lorem Ipsum" autocomplete="username"
+              required>
           </div>
           <div id="user-name-helper" class="helper">
 
           </div>
         </div>
-        <div class="fieldset">
+        <!-- <div class="fieldset">
           <label for="user-id">Registration</label>
           <div class="input-wrapper">
             <span class="icon"><i class="fas fa-address-card"></i></span>
             <input type="number" id="user-id" value="424242" required>
           </div>
           <div id="user-id-helper" class="helper"></div>
-        </div>
+        </div> -->
         <div class="fieldset">
           <label for="email">E-mail</label>
           <div class="input-wrapper">
@@ -42,14 +43,14 @@
           </div>
           <div id="email-helper" class="helper"></div>
         </div>
-        <div class="fieldset">
+        <!-- <div class="fieldset">
           <label for="pass">Password</label>
           <div class="input-wrapper">
             <span class="icon"><i class="fas fa-key"></i></span>
             <input type="password" id="pass" value="pass123*" autocomplete="current-password">
           </div>
           <div id="pass-helper" class="helper"></div>
-        </div>
+        </div> -->
         <div class="actions">
           <ion-button id="cancel" class="lx-btn">Cancel</ion-button>
 

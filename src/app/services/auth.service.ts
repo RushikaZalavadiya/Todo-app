@@ -62,7 +62,10 @@ export class AuthService {
       // }
     });
   }
-
+  getUserProfile() {
+    const id = localStorage.getItem(USER_ID.uid);
+    return firebase.firestore().collection(this.userCollection).doc(id).get()
+  }
   get user() {
     return this._user$.asObservable();
   }

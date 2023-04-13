@@ -6,6 +6,7 @@ import { DateTimeComponent } from 'src/app/components/date-time/date-time.compon
 import { USER_ID } from 'src/app/constants/commonKeys';
 import { TaskDetail } from 'src/app/interfaces/todo';
 import { AuthService } from 'src/app/services/auth.service';
+import { LoadingService } from 'src/app/services/loading.service';
 import { TodoService } from 'src/app/services/todo.service';
 
 type SegmentTypes = "all" | "complete" | "incomplete";
@@ -26,18 +27,20 @@ export class DashboardVisitorPage implements OnInit {
     public popoverCtrl: PopoverController,
     private _todoService: TodoService,
     private _authService: AuthService,
-    private router: Router
+    private router: Router,
+    public loading: LoadingService
   ) { }
 
   ngOnInit() {
     this.selectedDate = new Date();
+    this.loading.present('Loading....', 1000);
     this.getTodos();
-
   }
 
   getTodos() {
-    const id = localStorage.getItem(USER_ID.uid);
+    const id = localStorage.getItem(USER_ID.deviceId);
     this.allTask(id);
+    console.log(this.todos);
   }
 
   async openDatePicker() {
@@ -91,8 +94,10 @@ export class DashboardVisitorPage implements OnInit {
   async openAddTaskModal() {
     const modal = await this.modalCtrl.create({
       component: AddTaskModalComponent,
-      initialBreakpoint: 0.80,
       cssClass: "modal-border",
+      componentProps: {
+        type: 'Visitor'
+      }
     });
     modal.present();
   }

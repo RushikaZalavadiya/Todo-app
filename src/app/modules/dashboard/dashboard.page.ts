@@ -36,7 +36,6 @@ export class DashboardPage implements OnInit {
   ngOnInit() {
     this.selectedDate = new Date();
     this.getTodos();
-
   }
 
   getTodos() {
@@ -97,7 +96,6 @@ export class DashboardPage implements OnInit {
   async openAddTaskModal() {
     const modal = await this.modalCtrl.create({
       component: AddTaskModalComponent,
-      initialBreakpoint: 0.80,
       cssClass: "modal-border",
     });
     modal.present();

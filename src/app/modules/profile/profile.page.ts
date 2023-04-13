@@ -16,7 +16,8 @@ const IMAGE_DIR = 'stored-images';
 export class ProfilePage implements OnInit {
   image;
   user = {
-    email: ''
+    email: '',
+    username: ''
   };
   constructor(
     private plt: Platform,
@@ -27,17 +28,14 @@ export class ProfilePage implements OnInit {
   ) { }
 
   ionViewWillEnter() {
-    this.auth._user$.subscribe((res) => {
-      console.log(res.user);
-      if (res) {
-        this.user.email = res.user.email;
-      }
+    this.auth.getUserProfile().then((res) => {
+      this.user.email = res.data().email;
+      this.user.username = res.data().username;
     })
+
   }
   ngOnInit() {
     const data = JSON.parse(localStorage.getItem('Profile')) || [];
-    console.log(data);
-
     this.image = data;
   }
 
@@ -58,10 +56,13 @@ export class ProfilePage implements OnInit {
 
     this.image = image;
     console.log(image);
+
+    console.log(image);
   }
   async save() {
     const toast = await this.toastCtrl.create({ message: 'Profile saved.', duration: 2000, color: 'success' });
     toast.present();
+    this.image = { ...this.image, type: 'Pro' };
     localStorage.setItem('Profile', JSON.stringify(this.image));
   }
 }

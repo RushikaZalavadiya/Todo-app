@@ -15,7 +15,7 @@ h3 {
   font-weight: 600;
 }
 
-p {
+.form-error {
   color: red;
   font-weight: 500;
   padding-bottom: 13px;
@@ -44,6 +44,7 @@ form {
   text-align: center;
   font-size: 17px;
   margin-top: 45%;
+  font-weight: 600;
 
   a {
     text-decoration: underline;

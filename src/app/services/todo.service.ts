@@ -10,6 +10,7 @@ import { USER_ID } from "../constants/commonKeys";
 })
 export class TodoService {
   public todos = [];
+  public visitorTodos = [];
   public deletedTodo = [];
   public _todos$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   public _visitorTodo$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
@@ -49,7 +50,7 @@ export class TodoService {
   }
 
   addVisitorTodo(todo: TaskDetail, id: string) {
-    return firebase.firestore().collection(this.userCollection).doc(id).collection(this.todoCollection).add(todo);
+    return firebase.firestore().collection(this.visitorCollection).doc(id).collection(this.todoCollection).add(todo);
   }
   getVisitorTodos(uid, todos) {
 
@@ -64,9 +65,9 @@ export class TodoService {
         }));
 
         // console.log("user data", data);
-        this.todos = data.filter((todo) => todo.isDeleted == false);
+        this.visitorTodos = data.filter((todo) => todo.isDeleted == false);
 
-        todos(this.todos);
+        todos(this.visitorTodos);
         this._visitorTodo$.next(data);
       });
   }

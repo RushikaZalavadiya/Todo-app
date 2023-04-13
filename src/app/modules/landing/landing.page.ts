@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { USER_ID } from 'src/app/constants/commonKeys';
 import { User } from 'src/app/interfaces/todo';
 import { AuthService } from 'src/app/services/auth.service';
+import { DeviceService } from 'src/app/services/device.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { StripeService } from 'src/app/services/stripe.service';
 
@@ -13,19 +14,26 @@ import { StripeService } from 'src/app/services/stripe.service';
 })
 export class LandingPage implements OnInit {
 
-  constructor(public router: Router, public auth: AuthService, public stripe: StripeService, public loading: LoadingService) { }
+  constructor(
+    public router: Router,
+    public auth: AuthService,
+    public stripe: StripeService,
+    public loading: LoadingService,
+    public device: DeviceService
+  ) { }
 
   ngOnInit() {
+    this.device.getInfo();
 
   }
   async continue() {
+    const id = localStorage.getItem(USER_ID.deviceId);
     const user: User = {
-      id: this.create_UUID(),
+      id: id,
       type: 'Visitor'
     }
-    this.auth.addVisitor(user, user.id);
+    this.auth.addVisitor(user, id);
     await this.loading.present('Loading...');
-    localStorage.setItem(USER_ID.uid, user.id);
     this.router.navigate(['dashboard-visitor']);
   }
   create_UUID() {

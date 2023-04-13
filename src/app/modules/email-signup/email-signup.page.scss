@@ -10,7 +10,7 @@ h1 {
     font-weight: 700;
 }
 
-p {
+.form-error {
     color: red;
     font-weight: 500;
     padding-bottom: 13px;
@@ -34,6 +34,8 @@ form {
     text-align: center;
     font-size: 17px;
     margin-top: 23%;
+    color: #171c25 !important;
+    font-weight: 600;
 
     a {
         text-decoration: underline;

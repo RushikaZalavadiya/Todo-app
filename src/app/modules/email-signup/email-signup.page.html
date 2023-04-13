@@ -42,16 +42,16 @@
       <label [ngClass]="focused ? 'label-focused' : ''">Username</label>
       <input type="text" (focus)="focused = true" (blur)="onBlur($event)" formControlName="name" />
     </div>
-    <p *ngIf="signupForm.get('name').invalid && signupForm.get('name').touched" color="danger" class="form-error">
+    <div *ngIf="signupForm.get('name').invalid && signupForm.get('name').touched" color="danger" class="form-error">
       *Please enter a valid name
-    </p>
+    </div>
     <div class="form-field">
       <label [ngClass]="focused ? 'label-focused' : ''">Email</label>
       <input type="email" (focus)="focused = true" (blur)="onBlur($event)" formControlName="email" />
     </div>
-    <p *ngIf="signupForm.get('email').invalid && signupForm.get('email').touched" color="danger" class="form-error">
+    <div *ngIf="signupForm.get('email').invalid && signupForm.get('email').touched" color="danger" class="form-error">
       *Please enter a valid email address
-    </p>
+    </div>
     <div class="form-field">
       <div class="pass">
         <label [ngClass]="focused ? 'label-focused' : ''">Password</label>
@@ -63,10 +63,10 @@
         <ion-icon item-end [name]="passwordIcon" class="passwordIcon"></ion-icon>
       </div>
     </div>
-    <p *ngIf="signupForm.get('password').invalid && signupForm.get('password').touched" color="danger"
+    <div *ngIf="signupForm.get('password').invalid && signupForm.get('password').touched" color="danger"
       class="form-error">
       *Please enter a valid password
-    </p>
+    </div>
     <app-button label='Register' (click)="onSubmit()"></app-button>
     <app-icon-button icon='logo-google' label='Connect with Google' color="danger" (click)="google()"></app-icon-button>
   </form>
