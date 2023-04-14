@@ -21,6 +21,7 @@ export class TodoService {
   public userCollection = "User";
   public todoCollection = "Todo";
   public visitorCollection = "Visitor";
+  public categoryCollection = "Categories";
 
   constructor() {
   }

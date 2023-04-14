@@ -4,13 +4,13 @@
   <form [formGroup]="signupForm" class="container">
     <ion-icon name="person" color="black"></ion-icon>
     <ion-item lines="none" class="ion-text-center itemDesign" color="light">
-      <ion-input required formControlName="email" type="text" placeholder="Enter email"></ion-input>
+      <ion-ion-input required formControlName="email" type="text" placeholder="Enter email"></ion-ion-input>
     </ion-item>
     <p *ngIf="formData.email.invalid && formData.email.touched" lines="none" class="form-error">
       Please enter a valid email address.
     </p>
     <ion-item lines="none" class="ion-text-center itemDesign" color="light">
-      <ion-input required formControlName="password" type="text" placeholder="Enter password"></ion-input>
+      <ion-ion-input required formControlName="password" type="text" placeholder="Enter password"></ion-ion-input>
     </ion-item>
     <p *ngIf="formData.password.invalid && formData.password.touched" lines="none" class="form-error">
       Please enter a valid password.
@@ -33,40 +33,38 @@
    
   </div>
 </ion-content> -->
+
 <ion-content class="ion-padding">
   <h1>Create Account,</h1>
   <h3>Sign up to get started!</h3>
-
+  <img src="assets/images/auth.svg" alt="">
   <form [formGroup]="signupForm">
-    <div class="form-field">
-      <label [ngClass]="focused ? 'label-focused' : ''">Username</label>
-      <input type="text" (focus)="focused = true" (blur)="onBlur($event)" formControlName="name" />
-    </div>
-    <div *ngIf="signupForm.get('name').invalid && signupForm.get('name').touched" color="danger" class="form-error">
-      *Please enter a valid name
-    </div>
-    <div class="form-field">
-      <label [ngClass]="focused ? 'label-focused' : ''">Email</label>
-      <input type="email" (focus)="focused = true" (blur)="onBlur($event)" formControlName="email" />
-    </div>
-    <div *ngIf="signupForm.get('email').invalid && signupForm.get('email').touched" color="danger" class="form-error">
-      *Please enter a valid email address
-    </div>
-    <div class="form-field">
-      <div class="pass">
-        <label [ngClass]="focused ? 'label-focused' : ''">Password</label>
-        <input [type]="passwordType" (focus)="focused = true" (blur)="onBlur($event)" formControlName="password" />
-      </div>
-
-
-      <div (click)='hideShowPassword()' class="icon">
-        <ion-icon item-end [name]="passwordIcon" class="passwordIcon"></ion-icon>
-      </div>
-    </div>
-    <div *ngIf="signupForm.get('password').invalid && signupForm.get('password').touched" color="danger"
+    <ion-item class="form-field">
+      <ion-label position="floating">Username</ion-label>
+      <ion-input type="text" formControlName="name"></ion-input>
+    </ion-item>
+    <!-- <div *ngIf="signupForm.controls.name.invalid && signupForm.controls.name.touched" color="danger" class="form-error">
+      *Mandatory field.
+    </div> -->
+    <ion-item class="form-field">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+    </ion-item>
+    <!-- <div *ngIf="signupForm.controls.email.invalid && signupForm.controls.email.touched" color="danger"
       class="form-error">
-      *Please enter a valid password
-    </div>
+      *Mandatory field.
+    </div> -->
+
+    <ion-item class=" form-field pass">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input [type]="showPass ? 'text' : 'password'" formControlName="password"></ion-input>
+      <ion-icon slot="end" (click)="showPass = !showPass"
+        [name]="showPass ? 'eye-outline' : 'eye-off-outline'"></ion-icon>
+    </ion-item>
+    <!-- <div *ngIf="signupForm.controls.password.invalid && signupForm.controls.password.touched" color="danger"
+      class="form-error">
+      *Mandatory field.
+    </div> -->
     <app-button label='Register' (click)="onSubmit()"></app-button>
     <app-icon-button icon='logo-google' label='Connect with Google' color="danger" (click)="google()"></app-icon-button>
   </form>

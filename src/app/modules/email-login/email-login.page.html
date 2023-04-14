@@ -43,32 +43,28 @@
 <ion-content class="ion-padding">
   <h1>Welcome,</h1>
   <h3>Sign in to continue!</h3>
-
+  <img src="assets/images/login.jpg" alt="">
   <form [formGroup]="loginForm">
-    <div class="form-field">
-      <label [ngClass]="focused ? 'label-focused' : ''">Email</label>
-      <input type="email" (focus)="focused = true" (blur)="onBlur($event)" formControlName="email" />
-    </div>
-    <p *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched" color="danger" class="form-error">
-      *Please enter a valid email address.
-    </p>
-    <div class="form-field">
-      <div class="pass">
-        <label [ngClass]="focused ? 'label-focused' : ''">Password</label>
-        <input [type]="passwordType" (focus)="focused = true" (blur)="onBlur($event)" formControlName="password" />
-      </div>
+    <ion-item class="form-field">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+    </ion-item>
+    <!-- <div *ngIf="loginForm.controls.email.invalid && loginForm.controls.email.touched" color="danger" class="form-error">
+      *Mandatory field.
+    </div> -->
 
-      <div (click)='hideShowPassword()' class="icon">
-        <ion-icon item-end [name]="passwordIcon" class="passwordIcon"></ion-icon>
-      </div>
-    </div>
-    <p *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched" color="danger" class="form-error">
-      *Please enter Password.
-    </p>
-    <a routerLink="/forgot-password" class="forgot-password-link">Forgot Password?</a>
-
+    <ion-item class=" form-field pass">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input [type]="showPass ? 'text' : 'password'" formControlName="password"></ion-input>
+      <ion-icon slot="end" (click)="showPass = !showPass"
+        [name]="showPass ? 'eye-outline' : 'eye-off-outline'"></ion-icon>
+    </ion-item>
+    <!-- <div *ngIf="loginForm.controls.password.invalid && loginForm.controls.password.touched" color="danger"
+      class="form-error">
+      *Mandatory field.
+    </div> -->
     <app-button label='Login' (click)="onSubmit()"></app-button>
-    <!-- <app-icon-button icon='logo-google' label='Connect with Google' color="danger"></app-icon-button> -->
+    <!-- <app-icon-button icon='logo-google' label='Connect with Google' color="danger" (click)="google()"></app-icon-button> -->
   </form>
 
   <p class="footer-text">I'm a new user, <a routerLink="/email-signup">Sign Up</a></p>
