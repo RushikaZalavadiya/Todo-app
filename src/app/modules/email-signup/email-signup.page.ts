@@ -11,9 +11,10 @@ import { LoadingService } from 'src/app/services/loading.service';
   templateUrl: './email-signup.page.html',
   styleUrls: ['./email-signup.page.scss'],
 })
-export class EmailSignupPage {
+export class EmailSignupPage implements OnInit {
   id: string;
   signupForm: FormGroup;
+  showPass: boolean = false;
   focused: boolean;
   passwordType: string = 'password';
   passwordIcon: string = 'eye';
@@ -23,13 +24,6 @@ export class EmailSignupPage {
     public router: Router,
     public loading: LoadingService
   ) {
-
-    this.signupForm = new FormGroup({
-      name: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.email, Validators.required]),
-      password: new FormControl('', [Validators.minLength(6), Validators.required]),
-    });
-
     if (router) {
 
       const data = router.getCurrentNavigation().extras.state;
@@ -39,6 +33,13 @@ export class EmailSignupPage {
         this.id = data['id'];
       }
     }
+  }
+  ngOnInit(): void {
+    this.signupForm = new FormGroup({
+      name: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.email, Validators.required]),
+      password: new FormControl('', [Validators.minLength(6), Validators.required]),
+    });
   }
 
   hideShowPassword() {

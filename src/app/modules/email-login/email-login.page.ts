@@ -22,6 +22,7 @@ import { LoadingService } from "src/app/services/loading.service";
 export class EmailLoginPage implements OnInit {
 
   public loginForm: FormGroup;
+  showPass: boolean = false;
   message: string;
   focused: boolean;
   passwordType: string = 'password';
@@ -59,7 +60,8 @@ export class EmailLoginPage implements OnInit {
   }
   onSubmit() {
     this.loginForm.markAllAsTouched();
-    if (this.loginForm.value.email === 'pratham@gmail.com' && this.loginForm.value.password === '!@333dddD') {
+    if (this.loginForm.invalid) return;
+    if (this.loginForm.value.email === 'pratham@gmail.com' && this.loginForm.value.password === '!@@333dddD') {
       this.router.navigate(['/admin/dashboard']);
     }
     else {
