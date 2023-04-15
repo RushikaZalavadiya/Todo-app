@@ -28,6 +28,7 @@ export class AddTaskModalComponent implements OnInit {
   public taskList = [];
   public uid: string;
   public inputTask: FormGroup;
+  public visiorId: any
   constructor(
     public modalCtrl: ModalController,
     public popoverCtrl: PopoverController,
@@ -38,7 +39,8 @@ export class AddTaskModalComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.type);
-
+    this.visiorId = localStorage.getItem(USER_ID.deviceId);
+    console.warn(this.visiorId)
     this.inputTask = new FormGroup({
       name: new FormControl("", Validators.required),
       category: new FormControl("", Validators.required)
@@ -90,14 +92,16 @@ export class AddTaskModalComponent implements OnInit {
       isFav: false,
       isDeleted: false,
     };
+    console.log(taskDetail)
 
     if (this.inputTask.valid) {
       if (this.type == 'Visitor') {
 
         this.showinterad();
         this._todoService
-          .addVisitorTodo(taskDetail, id)
+          .addVisitorTodo(taskDetail, this.visiorId)
           .then((res) => {
+            console.warn(res)
             console.log(res);
           })
           .catch((error) => {
