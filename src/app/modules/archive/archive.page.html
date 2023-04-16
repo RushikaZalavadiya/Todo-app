@@ -1,17 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <div class="heading">
+      <h2>{{'Archive.ArchiveText'|translate}}</h2>
+      <ion-icon name="trash" size="large"></ion-icon>
+    </div>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
-  <div class="heading">
-    <h2>{{'Archive.ArchiveText'|translate}}</h2>
-  </div>
-  <div *ngIf="!deletedTask.length" class="del-task">
-    <ion-img src="assets/icon/complete.png"></ion-img>
+  <div *ngIf=" !deletedTask.length" class="del-task">
+    <ion-img src="assets/images/delete.jpg"></ion-img>
     <p class="task-info">{{'Archive.NoTask'|translate}}</p>
   </div>
-  <div *ngIf="deletedTask">
+  <div *ngIf="deletedTask" class="tasklist">
     <app-task *ngFor="let task of deletedTask" [task]="task"></app-task>
   </div>
-
-
-  <div class="dlt-btn">
+  <!-- <div class="dlt-btn">
     <ion-button routerLink="/dashboard">{{'Archive.DeleteTask'|translate}}</ion-button>
-  </div>
+  </div> -->
 </ion-content>

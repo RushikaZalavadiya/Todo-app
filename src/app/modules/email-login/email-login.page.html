@@ -49,9 +49,9 @@
       <ion-label position="floating">Email</ion-label>
       <ion-input type="email" formControlName="email"></ion-input>
     </ion-item>
-    <!-- <div *ngIf="loginForm.controls.email.invalid && loginForm.controls.email.touched" color="danger" class="form-error">
+    <div *ngIf="loginForm.controls.email.invalid && loginForm.controls.email.touched" color="danger" class="form-error">
       *Mandatory field.
-    </div> -->
+    </div>
 
     <ion-item class=" form-field pass">
       <ion-label position="floating">Password</ion-label>
@@ -59,10 +59,10 @@
       <ion-icon slot="end" (click)="showPass = !showPass"
         [name]="showPass ? 'eye-outline' : 'eye-off-outline'"></ion-icon>
     </ion-item>
-    <!-- <div *ngIf="loginForm.controls.password.invalid && loginForm.controls.password.touched" color="danger"
+    <div *ngIf="loginForm.controls.password.invalid && loginForm.controls.password.touched" color="danger"
       class="form-error">
       *Mandatory field.
-    </div> -->
+    </div>
     <app-button label='Login' (click)="onSubmit()"></app-button>
     <!-- <app-icon-button icon='logo-google' label='Connect with Google' color="danger" (click)="google()"></app-icon-button> -->
   </form>

@@ -17,6 +17,7 @@ import { LanguageService } from "./language.service";
 import { User } from "../interfaces/todo";
 import "firebase/compat/firestore"
 import { LoadingService } from "./loading.service";
+import { environment } from "src/environments/environment";
 // import { FirebaseAnalytics } from "@capacitor-community/firebase-analytics";
 // import { FirebaseCrashlytics } from "@capacitor-community/firebase-crashlytics";
 
@@ -28,6 +29,7 @@ export class AuthService {
 
   public userCollection = "User";
   public visitorCollection = "Visitor";
+  public registeredUSer = 'Register User';
   public _regUser$: BehaviorSubject<any> = new BehaviorSubject(null);
 
   constructor(
@@ -65,6 +67,10 @@ export class AuthService {
   getUserProfile() {
     const id = localStorage.getItem(USER_ID.uid);
     return firebase.firestore().collection(this.userCollection).doc(id).get()
+  }
+  setUserProfile(user: User) {
+    const id = localStorage.getItem(USER_ID.uid);
+    return firebase.firestore().collection(this.userCollection).doc(id).set(user);
   }
   get user() {
     return this._user$.asObservable();
@@ -119,6 +125,11 @@ export class AuthService {
     localStorage.removeItem(USER_ID.uid);
     return firebase.auth().signOut();
   }
-
+  setRegisteredUSer(user: User) {
+    return firebase.firestore().collection(this.registeredUSer).add(user);
+  }
+  getAllUser() {
+    return firebase.firestore().collection(this.userCollection).get();
+  }
 
 }

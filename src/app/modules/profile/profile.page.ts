@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Filesystem, Directory } from '@capacitor/filesystem';
 import { HttpClient } from '@angular/common/http';
-import { LoadingController, Platform, ToastController } from '@ionic/angular';
+import { LoadingController, ModalController, Platform, ToastController } from '@ionic/angular';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { AuthService } from 'src/app/services/auth.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FaqComponent } from 'src/app/components/faq/faq.component';
 
 const IMAGE_DIR = 'stored-images';
 
@@ -14,29 +16,43 @@ const IMAGE_DIR = 'stored-images';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
+  profile: FormGroup;
   image;
-  user = {
-    email: '',
-    username: ''
-  };
+
+
   constructor(
     private plt: Platform,
     private http: HttpClient,
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
-    public auth: AuthService
+    public auth: AuthService,
+    public modal: ModalController
   ) { }
 
   ionViewWillEnter() {
-    this.auth.getUserProfile().then((res) => {
-      this.user.email = res.data().email;
-      this.user.username = res.data().username;
-    })
-
+    this.getData();
   }
   ngOnInit() {
-    const data = JSON.parse(localStorage.getItem('Profile')) || [];
-    this.image = data;
+    this.profile = new FormGroup({
+      name: new FormControl('', Validators.required),
+      email: new FormControl('', []),
+      gender: new FormControl('', Validators.required),
+      city: new FormControl('', Validators.required),
+      profile: new FormControl('', [])
+    })
+  }
+  async getData() {
+    const loading = await this.loadingCtrl.create({ message: 'Loading...' });
+    loading.present();
+    this.auth.getUserProfile().then((res) => {
+      console.log(res.data());
+      loading.dismiss();
+      this.profile.get('name').setValue(res.data().username);
+      this.profile.get('email').setValue(res.data().email);
+      this.profile.get('gender').setValue(res.data().gender);
+      this.profile.get('city').setValue(res.data().city);
+      this.image = res.data().profile;
+    })
   }
 
   async presentToast(text) {
@@ -53,16 +69,25 @@ export class ProfilePage implements OnInit {
       allowEditing: true,
       resultType: CameraResultType.DataUrl
     });
-
-    this.image = image;
-    console.log(image);
-
+    this.image = image.dataUrl
     console.log(image);
   }
   async save() {
-    const toast = await this.toastCtrl.create({ message: 'Profile saved.', duration: 2000, color: 'success' });
-    toast.present();
-    this.image = { ...this.image, type: 'Pro' };
-    localStorage.setItem('Profile', JSON.stringify(this.image));
+    if (this.profile.valid) {
+      const toast = await this.toastCtrl.create({ message: 'Profile saved.', duration: 2000, color: 'success' });
+      toast.present();
+      const data = { ...this.profile.value, profile: this.image.dataUrl }
+      await this.auth.setUserProfile(data);
+    }
+
+  }
+  async openHelp() {
+    const modal = await this.modal.create({
+      component: FaqComponent
+    });
+    modal.present();
+  }
+  cancel() {
+    return;
   }
 }

@@ -2,11 +2,11 @@
   <div class="add-task">
 
     <form [formGroup]="inputTask">
-      <ion-item class="input-task">
+      <ion-item class="input-task" lines="full">
         <ion-label>{{ "AddTask.TaskName" | translate }}</ion-label>
         <ion-input formControlName="name"></ion-input>
       </ion-item>
-      <ion-item class="d">
+      <ion-item class="d" lines="full">
         <ion-select placeholder="Select Category" formControlName="category">
           <ion-select-option value="All">All</ion-select-option>
           <ion-select-option value="Work">Work</ion-select-option>
@@ -14,15 +14,15 @@
           <ion-select-option value="Birthday">Birthday</ion-select-option>
         </ion-select>
       </ion-item>
-    </form>
 
-    <ion-item class="date">
+    </form>
+    <ion-item class="date" lines="full">
       <ion-label>{{ "AddTask.Date" | translate }}</ion-label>
       <ion-input (click)="openDatePicker()" value="{{ selectedDate | date: 'EEEE, d MMMM' }}"
         id="open-date-picker"></ion-input>
       <ion-icon src="assets/icon/date.svg"></ion-icon>
     </ion-item>
-    <ion-item class="reminder">
+    <ion-item class="reminder" lines="full">
       <ion-label>Set Reminder</ion-label>
       <ion-input [(ngModel)]="reminderTime" type="time" value="{{ reminderTime}}"></ion-input>
       <!-- <ion-icon name="alarm-outline" class="alarm"></ion-icon> -->

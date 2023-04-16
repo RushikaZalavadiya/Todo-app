@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Help</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-accordion-group>
+    <ion-accordion *ngFor="let q of questions">
+      <ion-item slot="header" color="light">
+        <ion-label>{{q.question}}</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        {{q.answer}}
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+</ion-content>

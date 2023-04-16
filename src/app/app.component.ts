@@ -1,10 +1,12 @@
 import { Component } from "@angular/core";
 import { LocalNotifications } from "@capacitor/local-notifications";
-import { isPlatform } from "@ionic/angular";
+import { LoadingController, isPlatform } from "@ionic/angular";
 import { environment } from "src/environments/environment";
 import { LanguageService } from "./services/language.service";
 import { FirebaseDynamicLinks } from "@pantrist/capacitor-firebase-dynamic-links";
 import { Router } from "@angular/router";
+import { AuthService } from "./services/auth.service";
+import { USER_ID } from "./constants/commonKeys";
 
 @Component({
   selector: "app-root",
@@ -12,7 +14,7 @@ import { Router } from "@angular/router";
   styleUrls: ["app.component.scss"],
 })
 export class AppComponent {
-  constructor(public langService: LanguageService, public router: Router) {
+  constructor(public langService: LanguageService, public router: Router, public loadingCtrl: LoadingController, public auth: AuthService) {
     langService.initializeLang();
     if (isPlatform('mobileweb')) {
       // FirebaseAnalytics.initializeFirebase(environment.firebaseConfig).then(res=>{
@@ -25,6 +27,18 @@ export class AppComponent {
       this.schedule();
     }
     this.getLinkData();
+  }
+  ionViewWillEnter() {
+    this.getData();
+  }
+  async getData() {
+    const loading = await this.loadingCtrl.create({ message: 'Loading...' });
+    loading.present();
+    this.auth.getUserProfile().then((res) => {
+      console.log(res.data());
+      loading.dismiss();
+      localStorage.setItem(USER_ID.profile, JSON.stringify(res.data()));
+    })
   }
   getLinkData() {
     FirebaseDynamicLinks.addListener('deepLinkOpen', (data) => {

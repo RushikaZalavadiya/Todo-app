@@ -12,6 +12,7 @@ ion-content {
 .container {
     @include flexProperty();
     flex-direction: column;
+    margin-bottom: 20px;
 
     .header {
         display: flex;

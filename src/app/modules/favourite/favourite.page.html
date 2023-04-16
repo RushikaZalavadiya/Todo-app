@@ -1,27 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <div class="heading">
+      <h2>{{'Favourite.FavouriteText'|translate}}</h2>
+      <ion-icon src="assets/icon/fill-star.svg" size="large"></ion-icon>
+    </div>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
-  <div class="heading">
-    <h2>{{'Favourite.FavouriteText'|translate}}</h2>
-    <ion-icon name="star-sharp" size="large"></ion-icon>
+  <div *ngIf="!favTask.length" class="fav-task">
+    <ion-img src="assets/images/fav.svg"></ion-img>
+    <p class="task-info">{{'Favourite.NoTask'|translate}}</p>
   </div>
-  <div *ngIf="favTask.length > 0">
+
+  <div *ngIf="favTask" class="tasklist">
     <app-task *ngFor="let task of favTask" [task]="task"></app-task>
   </div>
-  <div *ngIf="!favTask.length && flag" class="fav-task">
 
-
-    <ion-img src="assets/icon/complete.png" id="img"></ion-img>
-    <p class="task-info">{{'Favourite.NoTask'|translate}}</p>
-  </div>
-  <!-- <div *ngIf="!favTask1.length  && !flag" class="fav-task">
-    <h2>nn</h2>
-    <ion-img src="assets/icon/complete.png"></ion-img>
-    <p class="task-info">{{'Favourite.NoTask'|translate}}</p>
-  </div> -->
-  <!-- 
-  <div *ngIf="favTask1.length > 0">
-    <app-visitor-fav *ngFor="let task of favTask1" [task]="task"></app-visitor-fav>
-  </div> -->
-  <div class="fav-btn">
+  <!-- <div class="fav-btn">
     <ion-button (click)="goBack()">{{'Favourite.FavouriteTask'|translate}}</ion-button>
-  </div>
+  </div> -->
 </ion-content>

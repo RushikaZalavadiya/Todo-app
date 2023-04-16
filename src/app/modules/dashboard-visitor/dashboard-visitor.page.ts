@@ -95,6 +95,7 @@ export class DashboardVisitorPage implements OnInit {
     const modal = await this.modalCtrl.create({
       component: AddTaskModalComponent,
       cssClass: "modal-border",
+      initialBreakpoint: 0.80,
       componentProps: {
         type: 'Visitor'
       }

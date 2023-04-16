@@ -10,7 +10,7 @@
 
   ion-card {
     border-radius: 25px;
-    margin-top: 5px;
+    margin-top: -10px;
     width: 80%;
 
     ion-card-content {
@@ -64,6 +64,7 @@
           }
 
           .checked-header {
+            font-family: "Source Sans Pro-SemiBold";
             text-decoration: line-through;
             font-size: 22px;
             line-height: 27px;

@@ -43,17 +43,17 @@
       <ion-label position="floating">Username</ion-label>
       <ion-input type="text" formControlName="name"></ion-input>
     </ion-item>
-    <!-- <div *ngIf="signupForm.controls.name.invalid && signupForm.controls.name.touched" color="danger" class="form-error">
+    <div *ngIf="signupForm.controls.name.invalid && signupForm.controls.name.touched" color="danger" class="form-error">
       *Mandatory field.
-    </div> -->
+    </div>
     <ion-item class="form-field">
       <ion-label position="floating">Email</ion-label>
       <ion-input type="email" formControlName="email"></ion-input>
     </ion-item>
-    <!-- <div *ngIf="signupForm.controls.email.invalid && signupForm.controls.email.touched" color="danger"
+    <div *ngIf="signupForm.controls.email.invalid && signupForm.controls.email.touched" color="danger"
       class="form-error">
       *Mandatory field.
-    </div> -->
+    </div>
 
     <ion-item class=" form-field pass">
       <ion-label position="floating">Password</ion-label>
@@ -61,10 +61,28 @@
       <ion-icon slot="end" (click)="showPass = !showPass"
         [name]="showPass ? 'eye-outline' : 'eye-off-outline'"></ion-icon>
     </ion-item>
-    <!-- <div *ngIf="signupForm.controls.password.invalid && signupForm.controls.password.touched" color="danger"
+    <div *ngIf="signupForm.controls.password.invalid && signupForm.controls.password.touched" color="danger"
       class="form-error">
       *Mandatory field.
-    </div> -->
+    </div>
+    <ion-item class="select">
+      <ion-select placeholder="Select Gender" formControlName="gender">
+        <ion-select-option value="Male">Male</ion-select-option>
+        <ion-select-option value="Female">Female</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <div *ngIf="signupForm.controls.gender.invalid && signupForm.controls.gender.touched" color="danger"
+      class="form-error">
+      *Mandatory field.
+    </div>
+
+    <ion-item class=" form-field pass">
+      <ion-label position="floating">City</ion-label>
+      <ion-input formControlName="city"></ion-input>
+    </ion-item>
+    <div *ngIf="signupForm.controls.city.invalid && signupForm.controls.city.touched" color="danger" class="form-error">
+      *Mandatory field.
+    </div>
     <app-button label='Register' (click)="onSubmit()"></app-button>
     <app-icon-button icon='logo-google' label='Connect with Google' color="danger" (click)="google()"></app-icon-button>
   </form>

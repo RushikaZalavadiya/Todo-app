@@ -33,6 +33,12 @@ form {
     }
 }
 
+.select {
+    ion-select {
+        --placeholder-color: #939fab;
+    }
+}
+
 .footer-text {
     text-align: center;
     font-size: 17px;

@@ -5,14 +5,12 @@
   </div>
 
   <div *ngIf="!favTask1.length  " class="fav-task">
-    <h2>nn</h2>
     <ion-img src="assets/icon/complete.png"></ion-img>
     <p class="task-info">{{'Favourite.NoTask'|translate}}</p>
   </div>
 
   <div *ngIf="favTask1.length > 0">
     <app-visitor-fav *ngFor="let task of favTask1" [task]="task"></app-visitor-fav>
-    <!-- <app-task *ngFor="let task of favTask" [task]="task"></app-task> -->
   </div>
   <div class="fav-btn">
     <ion-button (click)="goBack()">{{'Favourite.FavouriteTask'|translate}}</ion-button>

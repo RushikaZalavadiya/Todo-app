@@ -23,7 +23,7 @@ export class DashboardPage implements OnInit {
   public selectedDate: Date;
   public segmentValue: SegmentTypes = "all";
   public todos: TaskDetail[] = [];
-
+  public profile: any;
   constructor(
     public modalCtrl: ModalController,
     public menuCtrl: MenuController,
@@ -36,6 +36,7 @@ export class DashboardPage implements OnInit {
   ngOnInit() {
     this.selectedDate = new Date();
     this.getTodos();
+    this.profile = localStorage.getItem(USER_ID.profile);
   }
 
   getTodos() {
@@ -97,6 +98,7 @@ export class DashboardPage implements OnInit {
     const modal = await this.modalCtrl.create({
       component: AddTaskModalComponent,
       cssClass: "modal-border",
+      initialBreakpoint: 0.80
     });
     modal.present();
   }
@@ -104,5 +106,7 @@ export class DashboardPage implements OnInit {
   async logout() {
     await this._authService.signOut();
     this.router.navigate(["landing"]);
+    localStorage.removeItem(USER_ID.uid);
+    localStorage.removeItem(USER_ID.profile);
   }
 }

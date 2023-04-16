@@ -65,7 +65,7 @@
         review="{{'SegmentTypes.Incomplete.Review'|translate}}"></app-empty-task-list>
     </div>
 
-    <ng-container *ngFor="let task of todos">
+    <ng-container *ngFor="let task of todos" class="tasklist">
       <app-task *ngIf="!task.isCompleted" [task]="task"></app-task>
     </ng-container>
   </div>
@@ -83,7 +83,7 @@
   <ion-menu-toggle>
     <div class="menu-screen">
       <div class="profile-picture">
-        <img src="assets/images/dummy.png">
+        <img [src]="profile?.profile ? profile.profile : 'assets/images/dummy.png'">
       </div>
       <div class="username">
         <ion-label>{{'UserName'|translate}}</ion-label>

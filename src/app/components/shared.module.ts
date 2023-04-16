@@ -15,6 +15,8 @@ import { ButtonComponent } from "./button/button.component";
 import { IconButtonComponent } from "./icon-button/icon-button.component";
 import { InputComponent } from "./input/input.component";
 import { VisitorFavComponent } from "../modules/visitor-fav/visitor-fav.component";
+import { FaqComponent } from "./faq/faq.component";
+import { AnsComponent } from "./ans/ans.component";
 
 const COMPONENTS = [
   AddTaskModalComponent,
@@ -25,7 +27,9 @@ const COMPONENTS = [
   TaskComponent,
   FilterPipe,
   InputComponent, ButtonComponent, IconButtonComponent,
-  VisitorFavComponent
+  VisitorFavComponent,
+  InputComponent, ButtonComponent, IconButtonComponent, FaqComponent,
+  AnsComponent
 ];
 @NgModule({
   declarations: [...COMPONENTS],

@@ -17,14 +17,17 @@ body {
     margin-bottom: 10%;
 }
 
+
+
+
 img {
     width: 150px;
     height: 150px;
 }
 
+.form {
+    width: 90%;
 
-
-.lx-column {
     &.column-user-pic {
         display: flex;
         align-items: flex-start;
@@ -188,45 +191,55 @@ form {
             margin-bottom: 0;
         }
     }
+}
 
-    .actions {
-        width: 100%;
+.actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+
+    ion-button {
+        margin-inline: 0px !important;
+        --border-radius: 0px !important;
+    }
+
+    .lx-btn {
+
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        margin-top: 20px;
+        justify-content: center;
+        font-weight: 700;
+        color: white;
 
-        ion-button {
-            margin-inline: 0px !important;
-            --border-radius: 0px !important;
+        &#cancel,
+        &.cancel {
+            --background: #ff5555;
+            width: 35%;
+            height: 40px;
         }
 
-        .lx-btn {
+        &#save,
+        &.save {
+            --background: #538e46;
+            width: 35%;
+            height: 40px;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: white;
-
-            &#cancel,
-            &.cancel {
-                --background: #ff5555;
-                width: 35%;
-                height: 40px;
-            }
-
-            &#save,
-            &.save {
-                --background: #538e46;
-                width: 35%;
-                height: 40px;
-
-            }
         }
     }
 }
 
+.help {
+    margin-top: 30px;
+
+    img {
+        width: 40px;
+        height: 40px;
+    }
+
+    ion-label {
+        margin-left: 20px;
+    }
+}
 
 @media screen and (max-width: 64rem) {
     main {

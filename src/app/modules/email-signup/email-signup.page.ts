@@ -6,6 +6,7 @@ import * as firebaseErrorCodes from 'firebase-error-codes';
 import { Router } from '@angular/router';
 import { LoadingService } from 'src/app/services/loading.service';
 import { TodoService } from 'src/app/services/todo.service';
+import { User } from 'src/app/interfaces/todo'
 
 @Component({
   selector: 'app-email-signup',
@@ -41,6 +42,8 @@ export class EmailSignupPage implements OnInit {
       name: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.email, Validators.required]),
       password: new FormControl('', [Validators.minLength(6), Validators.required]),
+      gender: new FormControl('', Validators.required),
+      city: new FormControl('', Validators.required),
     });
   }
 
@@ -72,7 +75,17 @@ export class EmailSignupPage implements OnInit {
             console.log(Err)
           })
           this.loading.present('Loaing...', 4000).then(() => {
-            this.checkoutSubscription(userCredential);
+            this.loading.present('Loaing...', 4000).then(async () => {
+              const user: User = {
+                email: userCredential.user.email,
+                id: userCredential.user.uid,
+                username: this.signupForm.controls["name"].value,
+                gender: this.signupForm.controls["gender"].value,
+                city: this.signupForm.controls["city"].value,
+              }
+              await this._authService.setRegisteredUSer(user);
+              this.checkoutSubscription(userCredential);
+            })
           })
         }).catch((e) => {
           console.log(e.message);

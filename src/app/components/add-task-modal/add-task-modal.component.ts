@@ -22,7 +22,7 @@ type PriorityTypes =
 })
 export class AddTaskModalComponent implements OnInit {
   type: string;
-  public selectedDate: Date;
+  public selectedDate;
   public reminderTime: any;
   public taskPriority: PriorityTypes = "High Priority";
   public taskList = [];
@@ -71,7 +71,7 @@ export class AddTaskModalComponent implements OnInit {
   }
 
   addTask() {
-    this.time();
+
     let id = localStorage.getItem(USER_ID.uid);
     this._authService._user$.subscribe((user) => {
       console.log(user);
@@ -92,8 +92,7 @@ export class AddTaskModalComponent implements OnInit {
       isFav: false,
       isDeleted: false,
     };
-    console.log(taskDetail)
-
+    this.time(taskDetail);
     if (this.inputTask.valid) {
       if (this.type == 'Visitor') {
 
@@ -138,30 +137,35 @@ export class AddTaskModalComponent implements OnInit {
     })
   }
 
-  async time() {
+  async time(taskDetail) {
     let todayDate = new Date();
-    console.log('t', todayDate);
-    let dateSelected = new Date(this.selectedDate)
-    console.log(this.selectedDate);
 
-    console.log('s', this.reminderTime);
+    let dateSelected = this.selectedDate;
+    console.log('date sekected ===>', dateSelected);
 
-    if (todayDate.getDate() > dateSelected.getDate()) {
-      const toast = this.toast.create({ message: "Please select valid date", duration: 2000 });
-      (await toast).present();
-    } else {
-      dateSelected = this.selectedDate;
-      console.log("valid date.....");
-    }
+    const t = dateSelected.toString().split('T');
+    console.log(t);
+
+    const d = t[0] + 'T' + this.reminderTime
+    console.log('final datae    => ', d);
+
+    // if (todayDate.getDate() > dateSelected.getDate()) {
+    //   const toast = this.toast.create({ message: "Please select valid date", duration: 2000 });
+    //   (await toast).present();
+    // } else {
+    //   dateSelected = this.selectedDate;
+    //   console.log("valid date.....");
+    // }
     await LocalNotifications.schedule({
       notifications: [{
-        id: 1,
-        title: 'Reminder....',
-        body: 'reminder.....  ',
+        id: Math.random(),
+        title: `Your task due time over now.`,
+        body: taskDetail.name,
         schedule: {
-          at: new Date(dateSelected),
+          at: new Date(d),
           repeats: true,
         },
+        smallIcon: 'todo'
       }]
     })
   }

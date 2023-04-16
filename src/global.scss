@@ -29,10 +29,11 @@
 @import './theme/mixin.scss';
 
 .modal-border {
-  height: 90%;
-  margin: auto;
-  width: 90%;
+  // height: 90%;
+  // margin: auto;
+  // width: 90%;
   // --border-radius: 20px;
+  --border-radius: 50px;
 }
 
 * {

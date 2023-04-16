@@ -9,13 +9,13 @@ import { TodoService } from 'src/app/services/todo.service';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
-  todoList: any = []
+  users: any = []
   constructor(private menuController: MenuController, public _todo: TodoService, public router: Router) { }
 
   ngOnInit() {
     this._todo._todos$.subscribe((res) => {
       console.log('res...', res);
-      this.todoList = res;
+      this.users = res;
     })
   }
 

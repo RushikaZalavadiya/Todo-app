@@ -11,7 +11,11 @@ export interface TaskDetail {
 export interface User {
   email?: string;
   id?: string;
-  type?: string
+  type?: string;
+  profile?: string;
+  username?: string;
+  gender?: string;
+  city?: string
 }
 export enum Category {
   all = 'All',
