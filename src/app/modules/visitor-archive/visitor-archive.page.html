@@ -7,11 +7,11 @@
     <p class="task-info">{{'Archive.NoTask'|translate}}</p>
   </div>
   <div *ngIf="deletedTask">
-    <app-task *ngFor="let task of deletedTask" [task]="task"></app-task>
+    <app-visitor-fav *ngFor="let task of deletedTask" [task]="task"></app-visitor-fav>
   </div>
 
 
   <div class="dlt-btn">
-    <ion-button routerLink="/dashboard">{{'Archive.DeleteTask'|translate}}</ion-button>
+    <ion-button routerLink="/dashboard-visitor">{{'Archive.DeleteTask'|translate}}</ion-button>
   </div>
 </ion-content>

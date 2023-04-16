@@ -56,21 +56,34 @@ const routes: Routes = [
     loadChildren: () => import('./forgot-password/forgot-password.module').then(m => m.ForgotPasswordPageModule)
   },
 
+
+  {
+    path: 'profile',
+    loadChildren: () => import('./modules/profile/profile.module').then(m => m.ProfilePageModule)
+  },
+  {
+    path: 'update',
+    loadChildren: () => import('./modules/update/update.module').then(m => m.UpdatePageModule)
+  },
+  {
+    path: 'dashboard-visitor',
+    loadChildren: () => import('./modules/dashboard-visitor/dashboard-visitor.module').then(m => m.DashboardVisitorPageModule)
+  },
   {
     path: 'admin/user',
     loadChildren: () => import('./modules/admin/user/user.module').then(m => m.UserPageModule)
   },  {
-    path: 'profile',
-    loadChildren: () => import('./modules/profile/profile.module').then( m => m.ProfilePageModule)
+    path: 'visitor-favourite',
+    loadChildren: () => import('./modules/visitor-favourite/visitor-favourite.module').then( m => m.VisitorFavouritePageModule)
   },
   {
-    path: 'update',
-    loadChildren: () => import('./modules/update/update.module').then( m => m.UpdatePageModule)
+    path: 'visitor-archive',
+    loadChildren: () => import('./modules/visitor-archive/visitor-archive.module').then( m => m.VisitorArchivePageModule)
   },
-  {
-    path: 'dashboard-visitor',
-    loadChildren: () => import('./modules/dashboard-visitor/dashboard-visitor.module').then( m => m.DashboardVisitorPageModule)
-  },
+
+
+
+
 
 
 

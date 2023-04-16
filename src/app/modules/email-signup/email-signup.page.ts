@@ -5,6 +5,7 @@ import { StripeService } from 'src/app/services/stripe.service';
 import * as firebaseErrorCodes from 'firebase-error-codes';
 import { Router } from '@angular/router';
 import { LoadingService } from 'src/app/services/loading.service';
+import { TodoService } from 'src/app/services/todo.service';
 
 @Component({
   selector: 'app-email-signup',
@@ -22,7 +23,8 @@ export class EmailSignupPage implements OnInit {
     public _authService: AuthService,
     public stripe: StripeService,
     public router: Router,
-    public loading: LoadingService
+    public loading: LoadingService,
+    public _toDo: TodoService
   ) {
     if (router) {
 
@@ -64,6 +66,11 @@ export class EmailSignupPage implements OnInit {
         )
         .then((userCredential) => {
           console.log(userCredential.user);
+          this._toDo.addRegUser(this.signupForm.value).then((res) => {
+            console.log(res)
+          }).catch((Err) => {
+            console.log(Err)
+          })
           this.loading.present('Loaing...', 4000).then(() => {
             this.checkoutSubscription(userCredential);
           })

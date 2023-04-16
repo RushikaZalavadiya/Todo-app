@@ -1,0 +1,61 @@
+@mixin flexProperty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ion-content {
+    --background: var(--ion-color-white-lilac);
+}
+
+.heading {
+    @include flexProperty();
+    margin-top: 20px;
+
+    h2 {
+        font-family: "Source Sans Pro-Bold";
+        color: var(--ion-color-navy);
+    }
+
+    ion-icon {
+        margin-left: 10px;
+        margin-top: 5px;
+    }
+}
+
+.fav-task {
+    @include flexProperty();
+    flex-direction: column;
+    margin-top: 40px;
+
+    ion-img {
+        width: 280px;
+        height: 250px;
+    }
+
+    .task-info {
+        font-family: "Source Sans Pro-Bold";
+        font-size: 18px;
+        line-height: 23px;
+        color: var(--ion-color-royal-blue);
+        margin-top: 20px;
+    }
+}
+
+.fav-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 38px;
+
+    ion-button {
+        --border-radius: 20px;
+        --background: var(--ion-color-royal-blue);
+        --color: var(--ion-color-white);
+        font-size: 16px;
+        width: 200px;
+        height: 56px;
+        text-transform: capitalize;
+        --box-shadow: 0px 12px 25px rgba(47, 88, 226, 0.4);
+    }
+}

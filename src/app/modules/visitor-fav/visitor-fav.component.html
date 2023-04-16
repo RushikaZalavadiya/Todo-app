@@ -12,7 +12,7 @@
           "></div>
 
         <div class="content">
-          <p [ngClass]="task.isCompleted == true ? 'checked-header' : 'header'">
+          <p [ngClass]="task?.isCompleted == true ? 'checked-header' : 'header'">
             {{ task.name }}
           </p>
           <p class="detail">{{ task.priority }}</p>

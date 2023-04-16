@@ -14,6 +14,7 @@ import { TranslateModule } from "@ngx-translate/core";
 import { ButtonComponent } from "./button/button.component";
 import { IconButtonComponent } from "./icon-button/icon-button.component";
 import { InputComponent } from "./input/input.component";
+import { VisitorFavComponent } from "../modules/visitor-fav/visitor-fav.component";
 
 const COMPONENTS = [
   AddTaskModalComponent,
@@ -23,7 +24,8 @@ const COMPONENTS = [
   EmptyTaskListComponent,
   TaskComponent,
   FilterPipe,
-  InputComponent, ButtonComponent, IconButtonComponent
+  InputComponent, ButtonComponent, IconButtonComponent,
+  VisitorFavComponent
 ];
 @NgModule({
   declarations: [...COMPONENTS],

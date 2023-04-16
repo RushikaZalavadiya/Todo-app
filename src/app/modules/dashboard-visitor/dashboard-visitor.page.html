@@ -44,7 +44,9 @@
     </div>
 
     <ng-container *ngIf="todos">
-      <app-task *ngFor="let task of todos" [task]="task"></app-task>
+      <app-visitor-fav *ngFor="let task of todos" [task]="task"></app-visitor-fav>
+
+      <!-- <app-task *ngFor="let task of todos" [task]="task"></app-task> -->
     </ng-container>
   </div>
 
@@ -55,7 +57,9 @@
     </div>
 
     <ng-container *ngFor="let task of todos">
-      <app-task *ngIf="task.isCompleted" [task]="task"></app-task>
+      <app-visitor-fav *ngIf="task.isCompleted" [task]="task"></app-visitor-fav>
+
+      <!-- <app-task *ngIf="task.isCompleted" [task]="task"></app-task> -->
     </ng-container>
   </div>
 
@@ -66,7 +70,8 @@
     </div>
 
     <ng-container *ngFor="let task of todos">
-      <app-task *ngIf="!task.isCompleted" [task]="task"></app-task>
+      <app-visitor-fav *ngIf="!task.isCompleted" [task]="task"></app-visitor-fav>
+      <!-- <app-task *ngIf="!task.isCompleted" [task]="task"></app-task> -->
     </ng-container>
   </div>
 
@@ -90,7 +95,7 @@
         <div class="separator-line"></div>
       </div>
       <div class="menu-options">
-        <div class="home" routerLink="/dashboard">
+        <div class="home">
           <ion-icon src="assets/icon/home.svg"></ion-icon>
           <ion-label>{{'Menu.Home'|translate}}</ion-label>
         </div>
@@ -98,11 +103,11 @@
           <img src=" assets/images/crown.png">
           <ion-label>Upgrade to pro</ion-label>
         </div>
-        <div class="favourite" routerLink="/favourite">
-          <ion-icon src="assets/icon/favourite.svg"></ion-icon>
+        <div class="favourite" routerLink="/visitor-favourite">
+          <ion-icon src=" assets/icon/favourite.svg"></ion-icon>
           <ion-label>{{'Menu.Favourite'|translate}}</ion-label>
         </div>
-        <div class="archive" routerLink="/archive">
+        <div class="archive" routerLink="/visitor-archive">
           <ion-icon name="trash"></ion-icon>
           <ion-label>{{'Menu.Archive'|translate}}</ion-label>
         </div>
