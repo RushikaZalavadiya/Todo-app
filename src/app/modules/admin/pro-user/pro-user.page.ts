@@ -22,8 +22,6 @@ export class ProUserPage implements OnInit {
         this._todo.getProNewadminTodo(item.id).then((res) => {
           this.todoList = res.docs.map((item) => item.data());
           console.log(this.todoList)
-          // console.log())
-          console.log(this.newList)
           this.newList.push(this.todoList);
           console.log(this.newList)
         })

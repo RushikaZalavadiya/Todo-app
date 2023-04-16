@@ -30,10 +30,7 @@ export class TodoService {
   addTodo(todo: TaskDetail, id: string) {
     return firebase.firestore().collection(this.userCollection).doc(id).collection(this.todoCollection).add(todo);
   }
-  addRegUser(item: any) {
-    return firebase.firestore().collection('Register User').add(item);
 
-  }
   getTodos(uid, todos) {
 
     return firebase

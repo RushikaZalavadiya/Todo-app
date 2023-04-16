@@ -69,23 +69,17 @@ export class EmailSignupPage implements OnInit {
         )
         .then((userCredential) => {
           console.log(userCredential.user);
-          this._toDo.addRegUser(this.signupForm.value).then((res) => {
-            console.log(res)
-          }).catch((Err) => {
-            console.log(Err)
-          })
-          this.loading.present('Loaing...', 4000).then(() => {
-            this.loading.present('Loaing...', 4000).then(async () => {
-              const user: User = {
-                email: userCredential.user.email,
-                id: userCredential.user.uid,
-                username: this.signupForm.controls["name"].value,
-                gender: this.signupForm.controls["gender"].value,
-                city: this.signupForm.controls["city"].value,
-              }
-              await this._authService.setRegisteredUSer(user);
-              this.checkoutSubscription(userCredential);
-            })
+          this.loading.present('Loading...', 4000).then(async () => {
+            const user: User = {
+              email: userCredential.user.email,
+              id: userCredential.user.uid,
+              username: this.signupForm.controls["name"].value,
+              gender: this.signupForm.controls["gender"].value,
+              city: this.signupForm.controls["city"].value,
+              profile: ''
+            }
+            await this._authService.setRegisteredUSer(user, userCredential.user.uid);
+            this.checkoutSubscription(userCredential);
           })
         }).catch((e) => {
           console.log(e.message);

@@ -8,18 +8,29 @@ ion-content {
     --background: var(--ion-color-white-lilac);
 }
 
+ion-header {
+    z-index: 0;
+
+    ion-toolbar {
+        --background: var(--ion-color-white-lilac);
+    }
+}
+
+.tasklist {
+    margin-top: 20px;
+}
+
 .heading {
     @include flexProperty();
-    margin-top: 20px;
 
     h2 {
         font-family: "Source Sans Pro-Bold";
         color: var(--ion-color-navy);
+        margin: initial;
     }
 
     ion-icon {
         margin-left: 10px;
-        margin-top: 5px;
     }
 }
 

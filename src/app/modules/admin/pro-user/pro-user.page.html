@@ -1,18 +1,28 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>pro-user</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Premium Users</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div *ngFor="let todo of newList">
-    <ion-card *ngFor="let task of todo">
-      <ion-card-content>
-        <ion-label>{{task.name}}</ion-label>
-        <ion-text>
-          {{task.priority}}
-        </ion-text>
-      </ion-card-content>
-    </ion-card>
+  <div class="container">
+    <div *ngFor="let todo of newList" class="todos">
+      <div *ngIf="todo.length">
+        <ion-card *ngFor="let task of todo">
+          <ion-card-content>
+            <ion-label class="todo">{{task.name}}</ion-label>
+            <ion-text>
+              {{task.priority}}
+            </ion-text>
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <ng-container *ngIf="!todo.length" class="container">
+        <h3>No records found</h3>
+      </ng-container>
+    </div>
   </div>
 </ion-content>

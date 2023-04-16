@@ -83,12 +83,12 @@
   <ion-menu-toggle>
     <div class="menu-screen">
       <div class="profile-picture">
-        <img [src]="profile?.profile ? profile.profile : 'assets/images/dummy.png'">
+        <img src='assets/images/logo.png'>
       </div>
-      <div class="username">
-        <ion-label>{{'UserName'|translate}}</ion-label>
+      <!-- <div class="username">
+        <ion-label>{{profile.name}}</ion-label>
         <div class="separator-line"></div>
-      </div>
+      </div> -->
       <div class="menu-options">
         <div class="home" routerLink="/dashboard">
           <ion-icon src="assets/icon/home.svg"></ion-icon>

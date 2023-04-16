@@ -142,13 +142,15 @@ ion-menu {
     }
 
     .username {
-      @include flexProperty();
+      display: flex;
       flex-direction: column;
 
       ion-label {
         font-family: "Source Sans Pro-Bold";
         font-size: 24px;
         line-height: 30px;
+        margin-left: 12px;
+        margin-top: 30px;
       }
 
       .separator-line {

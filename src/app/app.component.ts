@@ -34,11 +34,6 @@ export class AppComponent {
   async getData() {
     const loading = await this.loadingCtrl.create({ message: 'Loading...' });
     loading.present();
-    this.auth.getUserProfile().then((res) => {
-      console.log(res.data());
-      loading.dismiss();
-      localStorage.setItem(USER_ID.profile, JSON.stringify(res.data()));
-    })
   }
   getLinkData() {
     FirebaseDynamicLinks.addListener('deepLinkOpen', (data) => {

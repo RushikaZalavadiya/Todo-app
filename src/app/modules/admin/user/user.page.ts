@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { TodoService } from 'src/app/services/todo.service';
 
@@ -9,14 +10,18 @@ import { TodoService } from 'src/app/services/todo.service';
 })
 export class UserPage implements OnInit {
   public regUser: any = []
-  constructor(public auth: TodoService) { }
+  constructor(public auth: TodoService, public loading: LoadingController) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const loading = await this.loading.create({ message: 'loading...', duration: 2000 });
+    loading.present();
     this.auth.getRegUser().then((res) => {
-      console.log(res.forEach((data) => {
+      res.forEach((data) => {
+        loading.dismiss();
         this.regUser.push(data.data())
-      }))
+      })
     })
+
   }
 
 }

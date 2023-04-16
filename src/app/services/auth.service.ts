@@ -68,11 +68,13 @@ export class AuthService {
   }
   getUserProfile() {
     const id = localStorage.getItem(USER_ID.uid);
-    return firebase.firestore().collection(this.userCollection).doc(id).get()
+    return firebase.firestore().collection(this.registeredUSer).doc(id).get()
   }
   setUserProfile(user: User) {
+    console.log(user);
+
     const id = localStorage.getItem(USER_ID.uid);
-    return firebase.firestore().collection(this.userCollection).doc(id).set(user);
+    return firebase.firestore().collection(this.registeredUSer).doc(id).update(user);
   }
   get user() {
     return this._user$.asObservable();
@@ -127,8 +129,8 @@ export class AuthService {
     localStorage.removeItem(USER_ID.uid);
     return firebase.auth().signOut();
   }
-  setRegisteredUSer(user: User) {
-    return firebase.firestore().collection(this.registeredUSer).add(user);
+  setRegisteredUSer(user: User, id: string) {
+    return firebase.firestore().collection(this.registeredUSer).doc(id).set(user);
   }
   getAllUser() {
     return firebase.firestore().collection(this.userCollection).get();

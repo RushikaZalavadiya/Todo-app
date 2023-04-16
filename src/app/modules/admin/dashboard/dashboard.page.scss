@@ -4,35 +4,66 @@
     align-items: center;
 }
 
-.header {
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: row;
-    width: 77%;
-    padding-bottom: 4%;
+.container {
+    @include flexProperty();
+    flex-direction: column;
+    margin-bottom: 20px;
 
-    .menu {
+    .header {
         display: flex;
-        justify-content: center;
-        align-items: flex-start;
+        justify-content: flex-start;
         flex-direction: column;
-        margin-top: 15px;
-        margin-bottom: 4% !important;
-        position: absolute;
-        top: -6%;
-        left: 6%;
+        width: 77%;
 
-        .menu-icon {
-            height: 21px;
-            width: 26px;
-            margin-top: 60px;
+        .menu {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            margin-top: 15px;
+
+            .menu-icon {
+                height: 21px;
+                width: 26px;
+                margin-top: 25px;
+            }
+        }
+
+        h1 {
+            font-family: "Source Sans Pro-Bold";
+            margin-top: 10px;
+            line-height: 50px;
+            --background: var(--ion-color-royal-blue);
         }
     }
 }
 
-h1 {
-    margin-left: 45%;
-}
+// .header {
+//     display: flex;
+//     justify-content: flex-start;
+//     flex-direction: row;
+//     width: 77%;
+//     padding-bottom: 4%;
+
+//     .menu {
+//         display: flex;
+//         justify-content: center;
+//         align-items: flex-start;
+//         flex-direction: column;
+//         margin-top: 15px;
+//         margin-bottom: 4% !important;
+//         position: absolute;
+//         top: -6%;
+//         left: 6%;
+
+//         .menu-icon {
+//             height: 21px;
+//             width: 26px;
+//             margin-top: 60px;
+//         }
+//     }
+// }
+
 
 .menu-screen {
     display: flex;
@@ -176,9 +207,21 @@ ion-menu {
 
 }
 
+ion-card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
 ion-label {
-    color: aliceblue;
-    font-size: 21px;
+    color: white;
+
+    &.todo {
+        color: #000000;
+        font-size: 21px;
+        font-weight: 500;
+    }
 }
 
 ion-icon {
@@ -186,11 +229,11 @@ ion-icon {
 }
 
 ion-card:nth-child(even) {
-    background: #b0b0d7;
+    background: #b6b6b6;
 
 }
 
 ion-card:nth-child(odd) {
-    background: #c8baba;
+    background: #ebebed;
 
 }

@@ -12,7 +12,6 @@ import { TodoService } from 'src/app/services/todo.service';
 })
 export class VisitorFavouritePage implements OnInit {
   public favTask = [];
-  public favTask1 = [];
   visitorCapId = localStorage.getItem(USER_ID.deviceId);
   flag = false
   public subscription: Subscription;
@@ -30,9 +29,9 @@ export class VisitorFavouritePage implements OnInit {
     this._todoService._visitorTodo$.subscribe((res) => {
       console.log(res)
       this.flag = true
-      this.favTask1 = res.filter((task) => task.isFav);
-      console.log(this.favTask1);
-      console.warn("dasboard user.....", this.favTask1)
+      this.favTask = res.filter((task) => task.isFav);
+      console.log(this.favTask);
+      console.warn("dasboard user.....", this.favTask)
 
     })
     console.log('fav...');

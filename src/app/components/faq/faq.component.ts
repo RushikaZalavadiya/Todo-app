@@ -41,5 +41,7 @@ export class FaqComponent implements OnInit {
       }
     ]
   }
-
+  back() {
+    this.modal.dismiss();
+  }
 }

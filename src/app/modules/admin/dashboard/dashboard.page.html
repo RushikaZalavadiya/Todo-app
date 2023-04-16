@@ -1,39 +1,45 @@
 <ion-content>
-  <div class="header">
-    <div class="menu" id="menu">
-      <ion-icon src="assets/icon/menu-icon.svg" class="menu-icon" (click)="openMenu()"></ion-icon>
+  <div class="container">
+    <div class="header">
+      <div class="menu" id="menu">
+        <ion-icon src="assets/icon/menu-icon.svg" class="menu-icon" (click)="openMenu()"></ion-icon>
+      </div>
+      <h1>Pratham's Dashboard</h1>
     </div>
-    <h1>Dashboard</h1>
   </div>
-
-
   <div *ngFor="let todo of newList">
-    <ion-card *ngFor="let task of todo">
-      <ion-card-content>
-        <ion-label>{{task.name}}</ion-label>
-        <ion-text>
-          {{task.priority}}
-        </ion-text>
-      </ion-card-content>
-    </ion-card>
+    <div *ngIf="todo.length">
+      <ion-card *ngFor="let task of todo">
+
+        <ion-card-content>
+          <ion-label class="todo">{{task.name}}</ion-label>
+          <ion-text>
+            {{task.priority}}
+          </ion-text>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <ng-container *ngIf="!todo.length" class="container">
+      <img src="assets/images/folder.png" alt="">
+    </ng-container>
   </div>
 
 </ion-content>
 <ion-menu contentId="menu" class="menu">
   <ion-menu-toggle>
     <div class="menu-screen">
-      <div class="profile-picture">
+      <!-- <div class="profile-picture">
         <img src="assets/images/user.jpg">
-      </div>
-      <div class="username">
+      </div> -->
+      <!-- <div class="username">
         <ion-label></ion-label>
-        <div class="separator-line"></div>
-      </div>
+        <div class="separator-line"></div> -->
+      <!-- </div> -->
       <div class="menu-options">
         <div class="home" routerLink="/admin/dashboard">
           <ion-icon name="home-outline"></ion-icon>
           <!-- <ion-icon src="assets/icon/home.svg"></ion-icon> -->
-          <ion-label>Home</ion-label>
+          <ion-label>Dashboard</ion-label>
         </div>
         <div class="upgrade" routerLink="/admin/user">
           <ion-icon name="people-outline"></ion-icon>
@@ -41,7 +47,7 @@
         </div>
         <div class="upgrade" routerLink="/pro-user">
           <ion-icon name="people-outline"></ion-icon>
-          <ion-label>Pro Users</ion-label>
+          <ion-label>Premium Users</ion-label>
         </div>
         <!-- <div class="favourite">
           <ion-icon name="code-working-outline"></ion-icon>

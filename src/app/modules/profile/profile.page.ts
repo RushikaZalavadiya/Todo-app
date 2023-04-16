@@ -6,6 +6,8 @@ import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera
 import { AuthService } from 'src/app/services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FaqComponent } from 'src/app/components/faq/faq.component';
+import { User } from 'src/app/interfaces/todo';
+import { USER_ID } from 'src/app/constants/commonKeys';
 
 const IMAGE_DIR = 'stored-images';
 
@@ -19,7 +21,7 @@ export class ProfilePage implements OnInit {
   profile: FormGroup;
   image;
 
-
+  user: User
   constructor(
     private plt: Platform,
     private http: HttpClient,
@@ -46,8 +48,9 @@ export class ProfilePage implements OnInit {
     loading.present();
     this.auth.getUserProfile().then((res) => {
       console.log(res.data());
+      this.user = res.data();
       loading.dismiss();
-      this.profile.get('name').setValue(res.data().username);
+      this.profile.get('name').setValue(res.data().name);
       this.profile.get('email').setValue(res.data().email);
       this.profile.get('gender').setValue(res.data().gender);
       this.profile.get('city').setValue(res.data().city);
@@ -70,14 +73,15 @@ export class ProfilePage implements OnInit {
       resultType: CameraResultType.DataUrl
     });
     this.image = image.dataUrl
-    console.log(image);
+    console.warn(image);
   }
   async save() {
     if (this.profile.valid) {
       const toast = await this.toastCtrl.create({ message: 'Profile saved.', duration: 2000, color: 'success' });
       toast.present();
-      const data = { ...this.profile.value, profile: this.image.dataUrl }
-      await this.auth.setUserProfile(data);
+      const data = { ...this.profile.value, profile: this.image }
+      await this.auth.setRegisteredUSer(data, this.user.id);
+      localStorage.setItem(USER_ID.profile, JSON.stringify(data));
     }
 
   }

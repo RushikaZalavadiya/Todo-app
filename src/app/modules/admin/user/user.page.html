@@ -1,11 +1,27 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>user</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Users</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div *ngFor="let item of regUser">
-    <h2>{{item.email}}</h2>
+  <div *ngIf="regUser.length">
+
+    <div *ngFor="let item of regUser">
+      <ion-list>
+        <ion-item>
+          <ion-avatar>
+            <img [src]="item.profile ? item.profile : 'assets/images/dummy.png'" />
+          </ion-avatar>
+          <ion-label>{{item.email}}</ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
   </div>
+  <ng-container *ngIf="!regUser.length" class="container">
+    <h3>No records found</h3>
+  </ng-container>
 </ion-content>

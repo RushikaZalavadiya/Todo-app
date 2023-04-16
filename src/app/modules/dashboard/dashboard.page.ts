@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import {
+  LoadingController,
   MenuController,
   ModalController,
   PopoverController,
@@ -30,15 +31,27 @@ export class DashboardPage implements OnInit {
     public popoverCtrl: PopoverController,
     private _todoService: TodoService,
     private _authService: AuthService,
-    private router: Router
+    private router: Router,
+    public loadingCtrl: LoadingController
   ) { }
 
   ngOnInit() {
     this.selectedDate = new Date();
     this.getTodos();
-    this.profile = localStorage.getItem(USER_ID.profile);
+    this.profile = JSON.parse(localStorage.getItem(USER_ID.profile));
+    console.log(this.profile);
   }
-
+  ionViewWillEnter() {
+    this.getData();
+  }
+  async getData() {
+    const loading = await this.loadingCtrl.create({ message: 'Loading...' });
+    loading.present();
+    this._authService.getUserProfile().then((res) => {
+      loading.dismiss();
+      this.profile = res.data();
+    })
+  }
   getTodos() {
     this._authService._user$.subscribe((user) => {
       // console.log(user?.uid);
