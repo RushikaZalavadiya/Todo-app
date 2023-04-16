@@ -64,7 +64,7 @@ export class DashboardVisitorPage implements OnInit {
           new Date(task.date).setHours(0, 0, 0, 0) ===
           new Date(this.selectedDate).setHours(0, 0, 0, 0)
       );
-      // console.log(this.todos);
+      console.log(this.todos);
     });
   }
 

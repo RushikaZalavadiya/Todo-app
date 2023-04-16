@@ -72,14 +72,19 @@ const routes: Routes = [
   {
     path: 'admin/user',
     loadChildren: () => import('./modules/admin/user/user.module').then(m => m.UserPageModule)
-  },  {
+  },
+  {
     path: 'visitor-favourite',
-    loadChildren: () => import('./modules/visitor-favourite/visitor-favourite.module').then( m => m.VisitorFavouritePageModule)
+    loadChildren: () => import('./modules/visitor-favourite/visitor-favourite.module').then(m => m.VisitorFavouritePageModule)
   },
   {
     path: 'visitor-archive',
-    loadChildren: () => import('./modules/visitor-archive/visitor-archive.module').then( m => m.VisitorArchivePageModule)
+    loadChildren: () => import('./modules/visitor-archive/visitor-archive.module').then(m => m.VisitorArchivePageModule)
+  },  {
+    path: 'pro-user',
+    loadChildren: () => import('./modules/admin/pro-user/pro-user.module').then( m => m.ProUserPageModule)
   },
+
 
 
 

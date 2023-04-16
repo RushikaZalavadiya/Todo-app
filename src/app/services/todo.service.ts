@@ -31,7 +31,7 @@ export class TodoService {
     return firebase.firestore().collection(this.userCollection).doc(id).collection(this.todoCollection).add(todo);
   }
   addRegUser(item: any) {
-    return firebase.firestore().collection('reguser').add(item);
+    return firebase.firestore().collection('Register User').add(item);
 
   }
   getTodos(uid, todos) {
@@ -57,7 +57,7 @@ export class TodoService {
   addVisitorTodo(todo: TaskDetail, id: string) {
     return firebase.firestore().collection(this.visitorCollection).doc(id).collection(this.todoCollection).add(todo);
   }
-  getVisitorTodos(uid, todos) {
+  getVisitorTodos(uid, todos?) {
 
     return firebase
       .firestore()
@@ -76,24 +76,31 @@ export class TodoService {
         this._visitorTodo$.next(data);
       });
   }
-
+  getAdminVisitorTodo() {
+    return firebase
+      .firestore()
+      .collection(this.visitorCollection).get()
+  }
+  getNewadminTodo(uid: any) {
+    return firebase
+      .firestore()
+      .collection(this.visitorCollection).doc(uid).collection(this.todoCollection).get()
+  }
+  getProadminTodo() {
+    return firebase
+      .firestore()
+      .collection(this.userCollection).get()
+  }
+  getProNewadminTodo(uid: any) {
+    return firebase
+      .firestore()
+      .collection(this.userCollection).doc(uid).collection(this.todoCollection).get()
+  }
 
   getRegUser() {
-    firebase
+    return firebase
       .firestore()
-      .collection('reguser')
-      .onSnapshot((snapshot) => {
-        const data = snapshot.docs.map((doc) => ({
-          id: doc.id,
-
-          ...doc.data(),
-        }));
-
-
-
-        this._regUser$.next(data);
-        return this._regUser$.asObservable()
-      });
+      .collection('Register User').get()
   }
   markAsComplete(id: string, todo: TaskDetail) {
     console.log(todo, id);

@@ -6,13 +6,17 @@
     <h1>Dashboard</h1>
   </div>
 
-  <ion-card *ngFor="let user of users;">
-    <ion-card-header>
-      <ion-card-title>{{ user.name }}</ion-card-title>
-      <ion-card-subtitle>{{user.priority}}</ion-card-subtitle>
-    </ion-card-header>
 
-  </ion-card>
+  <div *ngFor="let todo of newList">
+    <ion-card *ngFor="let task of todo">
+      <ion-card-content>
+        <ion-label>{{task.name}}</ion-label>
+        <ion-text>
+          {{task.priority}}
+        </ion-text>
+      </ion-card-content>
+    </ion-card>
+  </div>
 
 </ion-content>
 <ion-menu contentId="menu" class="menu">
@@ -31,9 +35,13 @@
           <!-- <ion-icon src="assets/icon/home.svg"></ion-icon> -->
           <ion-label>Home</ion-label>
         </div>
-        <div class="upgrade">
+        <div class="upgrade" routerLink="/admin/user">
           <ion-icon name="people-outline"></ion-icon>
           <ion-label>All Users</ion-label>
+        </div>
+        <div class="upgrade" routerLink="/pro-user">
+          <ion-icon name="people-outline"></ion-icon>
+          <ion-label>Pro Users</ion-label>
         </div>
         <!-- <div class="favourite">
           <ion-icon name="code-working-outline"></ion-icon>

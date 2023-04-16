@@ -53,6 +53,8 @@ export class AuthService {
   addVisitor(user: User, id: string) {
     return firebase.firestore().collection(this.visitorCollection).doc(id).set(user);
   }
+
+
   getUser() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {

@@ -62,6 +62,7 @@ export class DashboardPage implements OnInit {
   allTask(uid: string) {
     // this._todoService.getTodos() 
     this._todoService.getTodos(uid, (data) => {
+      console.warn(data)
       this.todos = data.filter(
         (task) =>
           new Date(task.date).setHours(0, 0, 0, 0) ===

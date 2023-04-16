@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>pro-user</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngFor="let todo of newList">
+    <ion-card *ngFor="let task of todo">
+      <ion-card-content>
+        <ion-label>{{task.name}}</ion-label>
+        <ion-text>
+          {{task.priority}}
+        </ion-text>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
