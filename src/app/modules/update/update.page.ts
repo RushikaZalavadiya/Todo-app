@@ -1,7 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LocalNotifications } from '@capacitor/local-notifications';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { AdmobAds, BannerPosition, BannerSize } from 'capacitor-admob-ads';
+import { DateTimeComponent } from 'src/app/components/date-time/date-time.component';
+import { TodoService } from 'src/app/services/todo.service';
+
+type PriorityTypes =
+  | "High Priority"
+  | "Medium Priority"
+  | "Low Priority"
+  | "Very Low Priority";
 
 @Component({
   selector: 'app-update',
@@ -13,9 +22,54 @@ export class UpdatePage implements OnInit {
   date: any;
   datePipe: any;
   localNotifications: any;
-  constructor(public toastCtrl: ToastController) { }
+  updateItem: any;
+  public newId: any;
+  newDate: any;
+
+  public taskPriority: PriorityTypes = "High Priority";
+
+  constructor
+    (public toastCtrl: ToastController, public activeroute: ActivatedRoute, public todoservie: TodoService, public route: Router, public modalCtrl: ModalController,
+    ) { }
 
   ngOnInit() {
+    const item1 = this.activeroute.snapshot.paramMap.get('id')
+    console.log(item1);
+    this.newId = item1
+
+    this.todoservie._visitorTodo$.subscribe((res) => {
+      console.log(res);
+      // console.log(item)
+      const i = res.find((item => {
+
+        return item.id == item1
+      }));
+      console.log(i)
+      this.updateItem = i
+      this.newDate = this.updateItem.date
+      console.warn("dasboard user.....", res)
+
+    })
+  }
+  changeStyle(priority: PriorityTypes) {
+    this.taskPriority = priority;
+    this.updateItem.priority = this.taskPriority
+  }
+  update() {
+    const item = {
+      name: this.updateItem.name,
+      priority: this.updateItem.priority,
+      category: this.updateItem.category,
+      date: this.selectedDate ? this.selectedDate : this.newDate
+    }
+    console.log(this.updateItem.name)
+    this.todoservie.updateVisitorTod(this.newId).update(item).then((res) => {
+      console.log(res);
+      this.preserntToas("Updated sucessfully.....")
+      this.route.navigate(["dashboard-visitor"]);
+
+    })
+
   }
 
   async preserntToas(message: string) {
@@ -28,52 +82,7 @@ export class UpdatePage implements OnInit {
     })
     toast.present()
   }
-  //a show kare chhe banner add ne.....
-  // showbaaner() {
-  //   AdmobAds.showBannerAd({
-  //     adId: "ca-app-pub-3940256099942544/6300978111", isTesting: true,
-  //     adSize: BannerSize.BANNER, adPosition: BannerPosition.BOTTOM
-  //   }).then(() => {
-  //     console.log('Banner Ad Shown');
-  //     this.preserntToas("banner AD shown")
-  //   }).catch(err => {
-  //     console.log(err.message);
-  //     this.preserntToas(err.message)
-  //   });
 
-  // }
-  //a hide kare chhe banner ad ne....
-  // hidebanner() {
-  //   AdmobAds.hideBannerAd().then(() => {
-  //     console.log('Banner Ad Hidden')
-  //     this.preserntToas("Hidden")
-
-  //   }).catch(err => {
-  //     console.log(err.message);
-  //     this.preserntToas("banner AD Hidden")
-
-  //   });
-
-  // }
-
-  //a chhe ne resume kare chhe banner ad ne
-  // resumebanner() {
-  //   AdmobAds.resumeBannerAd().then(() => {
-  //     console.log('Banner Ad Resumed');
-  //   }).catch(err => {
-  //     console.log(err.message);
-  //   });
-
-  // }
-  //a chhe ne remove kare chhe banner ad ne
-  // removebannerad() {
-  //   AdmobAds.removeBannerAd().then(() => {
-  //     console.log('Banner Ad Removed');
-  //   }).catch(err => {
-  //     console.log(err.message);
-  //   });
-
-  // }
   loadinterad() {
     AdmobAds.loadInterstitialAd({
       adId: 'ca-app-pub-3940256099942544/1033173712',
@@ -115,25 +124,25 @@ export class UpdatePage implements OnInit {
 
       }]
     })
-    // await LocalNotifications.schedule({  
-    //   notifications: [
-    //     {
-    //       id: 1,
-    //       title: 'My first notification',
-    //       trigger: { at: new Date(time1) },
-    //       data: { "id": 1, "name": "Mr. A" }
-    //     },
-    //     {
-    //       id: 2,
-    //       title: 'My Second notification',
-    //       trigger: { at: new Date(time2) },
-    //       data: { "id": 2, "name": "Mr. B" },
 
-    //     }
-    //   ]
-    // })
 
   }
+  async openDatePicker() {
+    let dateModal = await this.modalCtrl.create({
+      component: DateTimeComponent,
+      initialBreakpoint: 0.5,
+    });
+
+    dateModal.present();
+    let { data, role } = await dateModal.onWillDismiss();
+    console.log(data, role);
+
+    if (role == "confirm") {
+      this.selectedDate = data;
+    }
+    console.log(this.selectedDate);
+  }
+
   async time() {
     let todayDate = new Date();
     console.log('t', todayDate);

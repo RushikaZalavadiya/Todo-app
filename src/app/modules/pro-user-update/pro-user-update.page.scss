@@ -8,53 +8,6 @@
 
 }
 
-.priority {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 0px !important;
-
-
-    ion-label {
-        width: 85%;
-        display: flex;
-        justify-content: flex-start;
-        font-family: "Source Sans Pro-SemiBold";
-        font-size: 18px;
-        line-height: 23px;
-        color: var(--ion-color-white);
-    }
-
-    .priority-btns {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        margin-top: 0px;
-
-        ion-button {
-            margin-top: 10px;
-            line-height: 23px;
-            margin-left: 10px;
-            width: 95px;
-            height: 40px;
-            font-size: 15px;
-            --border-width: 3px;
-            --border-radius: 10px;
-            --color: var(--ion-color-white);
-            text-transform: capitalize;
-
-            &.btn-checked {
-                background: var(--ion-color-white);
-                color: var(--ion-color-royal-blue);
-                border-radius: 10px;
-                --border-width: 0px;
-                --box-shadow: 0px 12px 25px rgba(255, 255, 255, 0.42);
-            }
-        }
-    }
-}
 
 .add-task {
     display: flex;
@@ -130,7 +83,7 @@ ion-select {
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    margin-top: 42px;
+    margin-top: 0px;
 
 
     ion-label {

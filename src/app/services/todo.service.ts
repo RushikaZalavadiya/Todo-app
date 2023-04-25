@@ -15,7 +15,7 @@ export class TodoService {
   public _todos$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   public _visitorTodo$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   public _regUser$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
-
+  public userId: any
   public _newtodos$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   id = localStorage.getItem(USER_ID.uid);
   visitorCapId = localStorage.getItem(USER_ID.deviceId);
@@ -32,7 +32,7 @@ export class TodoService {
   }
 
   getTodos(uid, todos) {
-
+    this.userId = uid
     return firebase
       .firestore()
       .collection(this.userCollection).doc(uid).collection(this.todoCollection)
@@ -72,6 +72,20 @@ export class TodoService {
         todos(this.visitorTodos);
         this._visitorTodo$.next(data);
       });
+  }
+  updateVisitorTod(id2: any) {
+    const id = localStorage.getItem(USER_ID.deviceId);
+
+    return firebase.firestore().collection(this.visitorCollection).doc(id).collection(this.todoCollection).doc(id2)
+  }
+  updateProuserTod(id2: any) {
+
+    return firebase.firestore().collection(this.userCollection).doc(this.userId).collection(this.todoCollection).doc(id2)
+  }
+  updateTodo(id, item: any) {
+    return firebase.firestore().collection(this.todoCollection).doc(id).update(item).then((res) => {
+      console.log(res, 'aaa')
+    })
   }
   getAdminVisitorTodo() {
     return firebase

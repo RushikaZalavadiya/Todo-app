@@ -19,6 +19,9 @@
         </div>
       </div>
       <div class="modify-icons">
+        <ion-icon name="create-outline" class="update" (click)="update(task)"></ion-icon>
+        <!-- <ion-button (click)="update(task)">update</ion-button> -->
+        <!-- <ion-icon name="create-outline" ></ion-icon> -->
         <ion-icon class="star" [src]="
             task.isFav ? 'assets/icon/fill-star.svg' : 'assets/icon/star.svg'
           " (click)="addToFavourite(task)"></ion-icon>

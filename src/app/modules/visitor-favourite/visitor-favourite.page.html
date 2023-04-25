@@ -16,7 +16,9 @@
   </div>
 
   <div *ngIf="favTask" class="tasklist">
-    <app-task *ngFor="let task of favTask" [task]="task"></app-task>
+    <!-- <app-task *ngFor="let task of favTask" [task]="task"></app-task> -->
+    <app-visitor-fav *ngFor="let task of favTask" [task]="task"></app-visitor-fav>
+
   </div>
 
   <!-- <div class="fav-btn">

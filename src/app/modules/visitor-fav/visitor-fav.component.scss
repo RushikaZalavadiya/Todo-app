@@ -4,6 +4,10 @@
     align-items: center;
 }
 
+.update {
+    font-size: 20px
+}
+
 .card {
     @include flexProperty();
     flex-direction: column;
@@ -11,7 +15,7 @@
     ion-card {
         border-radius: 25px;
         margin-top: 5px;
-        width: 80%;
+        width: 84%;
 
         ion-card-content {
             display: flex;

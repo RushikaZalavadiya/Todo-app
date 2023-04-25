@@ -62,7 +62,7 @@ const routes: Routes = [
     loadChildren: () => import('./modules/profile/profile.module').then(m => m.ProfilePageModule)
   },
   {
-    path: 'update',
+    path: 'update/:id',
     loadChildren: () => import('./modules/update/update.module').then(m => m.UpdatePageModule)
   },
   {
@@ -80,10 +80,17 @@ const routes: Routes = [
   {
     path: 'visitor-archive',
     loadChildren: () => import('./modules/visitor-archive/visitor-archive.module').then(m => m.VisitorArchivePageModule)
-  },  {
-    path: 'pro-user',
-    loadChildren: () => import('./modules/admin/pro-user/pro-user.module').then( m => m.ProUserPageModule)
   },
+  {
+    path: 'pro-user',
+    loadChildren: () => import('./modules/admin/pro-user/pro-user.module').then(m => m.ProUserPageModule)
+  },
+
+  {
+    path: 'pro-user-update/:id',
+    loadChildren: () => import('./modules/pro-user-update/pro-user-update.module').then(m => m.ProUserUpdatePageModule)
+  },
+
 
 
 

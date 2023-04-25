@@ -1,38 +1,15 @@
-<!-- <ion-content>
+<ion-content>
   <ion-header>
-    <ion-toolbar>
-      <ion-title>
-        Edit Appointment
+    <ion-toolbar class="h">
+      <ion-title style="color:white">
+        Edit Task
       </ion-title>
+      <ion-buttons slot="start">
+        <ion-back-button routerLink="/"></ion-back-button>
+      </ion-buttons>
+
     </ion-toolbar>
   </ion-header>
-  <ion-list lines="full">
-    <ion-item>
-      <ion-label>TaskName:</ion-label>
-      <ion-input type="text" required [(ngModel)]="updateItem.name"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Priority:</ion-label>
-      <ion-input type="text" required [(ngModel)]="updateItem.priority">
-      </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Category:</ion-label>
-      <ion-input type="text" required [(ngModel)]="updateItem.category">
-      </ion-input>
-    </ion-item>
-    <ion-row>
-      <ion-col>
-        <ion-button type="submit" color="primary" shape="full" expand="block" (click)="update()">Update </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-list>
-
-
-</ion-content> -->
-<ion-content>
-
-
   <div class="container">
 
     <div class="add-task" style="padding-top: 6%;">
@@ -97,4 +74,30 @@
       </ion-button>
     </div>
   </div>
+  <!-- <div class="container">
+
+    <div class="add-task" style="padding-top: 6%;">
+
+      <ion-item class="input-task" lines="full">
+        <ion-label>TaskName:</ion-label>
+        <ion-input type="text" required [(ngModel)]="updateItem.name"></ion-input>
+      </ion-item>
+      <ion-item class="input-task" lines="full">
+        <ion-label>Priority:</ion-label>
+        <ion-input type="text" required [(ngModel)]="updateItem.priority"></ion-input>
+      </ion-item> <ion-item class="input-task" lines="full">
+        <ion-label>Category:</ion-label>
+        <ion-input type="text" required [(ngModel)]="updateItem.category"></ion-input>
+      </ion-item>
+
+
+
+    </div>
+
+    <div class="create-task-btn">
+      <ion-button color="white" (click)="update()">
+        <ion-label>Save</ion-label>
+      </ion-button>
+    </div>
+  </div> -->
 </ion-content>

@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { UpdatePageRoutingModule } from './update-routing.module';
+import { ProUserUpdatePageRoutingModule } from './pro-user-update-routing.module';
 
-import { UpdatePage } from './update.page';
+import { ProUserUpdatePage } from './pro-user-update.page';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     FormsModule,
     IonicModule,
-    UpdatePageRoutingModule,
+    ProUserUpdatePageRoutingModule,
     TranslateModule
   ],
-  declarations: [UpdatePage]
+  declarations: [ProUserUpdatePage]
 })
-export class UpdatePageModule { }
+export class ProUserUpdatePageModule { }
