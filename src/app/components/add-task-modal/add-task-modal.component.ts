@@ -28,7 +28,8 @@ export class AddTaskModalComponent implements OnInit {
   public taskList = [];
   public uid: string;
   public inputTask: FormGroup;
-  public visiorId: any
+  public visiorId: any;
+  public todayDate
   constructor(
     public modalCtrl: ModalController,
     public popoverCtrl: PopoverController,
@@ -70,7 +71,7 @@ export class AddTaskModalComponent implements OnInit {
     console.log(this.selectedDate);
   }
 
-  addTask() {
+  async addTask() {
 
     let id = localStorage.getItem(USER_ID.uid);
     this._authService._user$.subscribe((user) => {
@@ -81,7 +82,14 @@ export class AddTaskModalComponent implements OnInit {
         this.uid = id;
       }
     });
+    this.todayDate = new Date().getDate();
 
+    if (this.todayDate > new Date(this.selectedDate).getDate()) {
+      const toast = this.toast.create({ message: "Please select valid date", duration: 2000 });
+      (await toast).present();
+      this.selectedDate = ''
+      return;
+    }
     const taskDetail: TaskDetail = {
       uid: this.uid,
       name: this.inputTask.controls["name"].value,
@@ -138,8 +146,7 @@ export class AddTaskModalComponent implements OnInit {
   }
 
   async time(taskDetail) {
-    let todayDate = new Date();
-
+    console.log(new Date(this.selectedDate))
     let dateSelected = this.selectedDate;
     console.log('date sekected ===>', dateSelected);
 
@@ -149,13 +156,7 @@ export class AddTaskModalComponent implements OnInit {
     const d = t[0] + 'T' + this.reminderTime
     console.log('final datae    => ', d);
 
-    // if (todayDate.getDate() > dateSelected.getDate()) {
-    //   const toast = this.toast.create({ message: "Please select valid date", duration: 2000 });
-    //   (await toast).present();
-    // } else {
-    //   dateSelected = this.selectedDate;
-    //   console.log("valid date.....");
-    // }
+
     await LocalNotifications.schedule({
       notifications: [{
         id: Math.random(),
